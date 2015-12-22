@@ -1,0 +1,4 @@
+require("../algorithms/CenteredChar.js");
+require("../algorithms/Individuo.js");
+require("../models/Character.js");
+require("../models/Scene.js");
