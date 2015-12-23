@@ -1,3 +1,8 @@
+// lista de ficheros javascript
+
+// comando para fallo git de salto de línea
+//git.config core.autocrlf false
+
 require("../algorithms/CenteredChar.js");
 require("../algorithms/Individuo.js");
 require("../models/Character.js");
