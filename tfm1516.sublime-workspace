@@ -1,0 +1,278 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"y",
+				"yAxis"
+			],
+			[
+				"yAx",
+				"yAxisG"
+			],
+			[
+				"xA",
+				"xAxisG"
+			],
+			[
+				"select",
+				"selectEmployer"
+			],
+			[
+				"ng-in",
+				"ng-init	AngularJS"
+			],
+			[
+				"c",
+				"circle	svg:circle"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"se",
+				"selectAll"
+			],
+			[
+				"ci",
+				"circleData"
+			],
+			[
+				"sel",
+				"selectAll(\"circle"
+			],
+			[
+				"at",
+				"attr(\"height\",200"
+			],
+			[
+				"att",
+				"attr(\"width"
+			],
+			[
+				"a",
+				"append(\"svg"
+			],
+			[
+				"s",
+				"select(\"body"
+			],
+			[
+				"sv",
+				"svgContainer"
+			],
+			[
+				"fun",
+				"function〔keyword〕"
+			],
+			[
+				"cir",
+				"circleData〔variable〕"
+			],
+			[
+				"max",
+				"maxPoint〔variable〕"
+			],
+			[
+				"m",
+				"max_y"
+			],
+			[
+				"tem",
+				"temp_y〔variable〕"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 167.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/cradud/msi_tfm_1516",
+		"/Users/cradud/msi_tfm_1516/models"
+	],
+	"file_history":
+	[
+		"/Users/cradud/msi_tfm_1516/models/Scene.js",
+		"/Users/cradud/msi_tfm_1516/tfm1516.sublime-project",
+		"/Applications/MAMP/htdocs/tfm/pruebasD3/scriptD3Angular_Animations_BCKUP.js",
+		"/Applications/MAMP/htdocs/tfm/pruebasD3/scriptD3Angular_Animations.js",
+		"/Applications/MAMP/htdocs/tfm/pruebasD3/scriptD3Angular.js",
+		"/Applications/MAMP/htdocs/tfm/pruebasD3/script.js",
+		"/Users/cradud/msi_tfm_1516/listaFicherosJS.txt",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/interpolators/SceneResizeInterpolator.as",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/interpolators/TypedSceneInterpolator.as",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/interpolators/SceneInterpolator.as",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/interpolators/PointInterpolator.as",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/layout/LayoutGuion.as",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/pagsPopUp/PagsPopUpEvent.as",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/Proyecto.mxml",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/views/Load.mxml",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/mySprites/CharEntry.as",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/utils/CubicBezier.as",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/algorithms/Genetic.as",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/algorithms/PositioningAlgorithm.as",
+		"/Users/cradud/Documents/MSSII/tfm/otros/src/algorithms/Genetic.as.cpgz"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "tfm1516.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 265.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
