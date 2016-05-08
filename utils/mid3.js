@@ -82,6 +82,9 @@ d3.xml("xml_guiones/Rocky_corregido-min.plt-sent.xml", function(error, pelicula)
 	// se añaden chechbox para los personajes
     d3.selectAll(".dvPersonaje").append('input').attr('type','checkbox')
 
+
+    
+
     //cargar personajes principales
    // var mispersonajes = obtenerPersonajesPrincipales(escenas, personajes, maxPersonajes);
 

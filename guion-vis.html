@@ -6,17 +6,15 @@
 	<link rel="stylesheet" href="./style/style.css">
 	<link rel="stylesheet" href="./style/estilos.css">
 </head>
-<body>
+<body ng-app="myApp" ng-controller="MainCtrl">
 
-	<div id="dvPrincipal">
-		<div id="dvControles"></div>
-		<div id="dvPersonajes"></div>
-		<div id="dvEscenas"></div>
-	</div>
-	
 	<div id="personajes">
-		<span>PERSONAJES</span>
-		<input type='checkbox' id="chkSeleccionarPersonajes" onchange='seleccionarPersonajes()'>Seleccionar</input>
+		<span>PERSONAJES ({{personajes.length}})</span>
+		<!-- <input type='checkbox' id="chkSeleccionarPersonajes">Seleccionar</input> -->
+		<div ng-repeat="personaje in personajes" style="width: 750px;">
+			{{personaje.name}}
+		</div>
+
 	</div>
 
 	<div id="escenas"><span>ESCENAS</span></div>
@@ -33,10 +31,47 @@
     </div>
 
 	<script src="./references/jquery-2.1.4.min.js"></script>
-	<script src="./references/jquery.lightbox_me.js"></script>
+	<script src="./references/jquery.lightbox_me.js"></script>	
 	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://d3js.org/queue.v1.min.js"></script>
+	<script src="./references/angular.min.js"></script>
+<!-- 	
 	<script src="./utils/util.js"></script>
 	<script src="./utils/mid3.js"></script>
-	
+ -->
+	<script src="./AngularApp/angularApp.js"></script>
+
 </body>
 </html>
+
+
+
+<!-- <html>
+	<head>
+		<title>Pruebas D3JS</title>
+		<link rel="stylesheet" href="./style/style_angular.css">
+	</head>
+	<body ng-app="myApp" ng-controller="MainCtrl">
+		<h3>Desarrollo de pruebas d3js</h3>
+
+
+		<div class="scatter-container">
+			<scatter data="employers" selected-point="selectEmployer"></scatter>
+		</div>
+		<div class="detail">
+			<div ng-show="selectEmployer">
+				<h2>{{selectEmployer.name}}</h2>
+				<h3>Employees: {{selectEmployer.value }}M</h3>
+			</div>
+			<div ng-show="!selectEmployer">
+				<h2> [hover over a company] </h2>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="./references/angular.min.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script type="text/javascript" src="./AngularApp/AccessorFunctions.js"></script>
+	</body>
+</html> -->
+
+

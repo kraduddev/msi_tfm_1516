@@ -1,0 +1,46 @@
+body, html{
+      margin: 0;
+      width: 900px;
+      color: white;
+      background-color: black;
+      font-family: helvetica;
+      margin: auto;
+    }
+    .scatter-container{
+      width: 50%;
+      float: left;
+      height: 400px;
+    }
+    .detail{
+      width: 50%;
+      float: left;
+      height: 400px;
+    }
+    scatter{
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 0;
+      overflow: hidden;
+      font-size: 10px;
+    }
+    scatter circle{
+      fill: yellow;
+      opacity: 1;
+      cursor: pointer;
+      stroke-width: 2;
+    }
+    scatter circle:hover{
+      stroke: white;
+    }
+    scatter text{
+      fill: white;
+      stroke: none;
+    }
+    scatter .x-axis path, scatter .y-axis path{
+      stroke: none;
+      fill: none;
+    }
+    scatter .x-axis line, scatter .y-axis line{
+      stroke: rgba(255, 255, 255, 0.2);
+    }
