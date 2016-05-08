@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TFMSSII</title>
+	<link rel="stylesheet" href="./style/style.css">
+	<link rel="stylesheet" href="./style/estilos.css">
+</head>
+<body>
+
+	<div id="dvPrincipal">
+		<div id="dvControles"></div>
+		<div id="dvPersonajes"></div>
+		<div id="dvEscenas"></div>
+	</div>
+	
+	<div id="personajes">
+		<span>PERSONAJES</span>
+		<input type='checkbox' id="chkSeleccionarPersonajes" onchange='seleccionarPersonajes()'>Seleccionar</input>
+	</div>
+
+	<div id="escenas"><span>ESCENAS</span></div>
+
+	<div id="detalle-escena">
+        <h3>Detalle de escena</h3>
+        <span>A continuación se muestran detalles relativos a la escena</span>
+        <div id="contenido-detalle-escena">
+        	<div id="personajes-contenido-detalle-escena">
+        		<h4>Personajes</h4>
+					<span>RACHEL</span>
+        	</div>
+        </div>	                
+    </div>
+
+	<script src="./references/jquery-2.1.4.min.js"></script>
+	<script src="./references/jquery.lightbox_me.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="./utils/util.js"></script>
+	<script src="./utils/mid3.js"></script>
+	
+</body>
+</html>

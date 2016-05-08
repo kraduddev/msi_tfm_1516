@@ -1,0 +1,85 @@
+#personajes{
+	float:left;
+	width: 250px;
+}
+
+#personajes span, #escenas span{
+	font-weight: bold;
+}
+
+#escenas, svg{
+	float:left;
+}
+
+.cuadrado{
+	width: 15px; 
+ 	height: 15px;
+ 	float: left;
+ 	margin: 2px;
+}
+
+.elipse
+{
+  	width: 50px;
+ 	height: 40px;
+ 	-moz-border-radius: 50%;
+ 	-webkit-border-radius: 50%;
+ 	border-radius: 50%;
+}
+
+.personajePositivo{
+	content:url('./img/positivo.png');
+	float: left;
+	width: 15px; 
+ 	height: 15px;
+ 	margin: 2px;
+}
+
+.personajeNegativo{
+	content:url('./img/negativo.png');
+	float: left;
+	width: 15px; 
+ 	height: 15px;
+ 	margin: 2px;
+}
+
+.personajeNeutro{
+	content:url('./img/neutral.png');
+	float: left;
+	width: 15px; 
+ 	height: 15px;
+ 	margin: 2px;
+}
+
+#detalle-escena{
+	display:none;
+	left: 50%;
+  	margin-left: -223px;
+  	z-index: 1002;
+  	position: fixed;
+  	top: 50%;
+  	margin-top: -159px;
+
+  	background: #eef2f7;
+  	-webkit-border-radius: 6px;
+  	border: 1px solid #536376;
+  	-webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
+  	-moz-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
+  	padding: 14px 22px;
+  	width: 400px;
+  	position: relative;
+
+  	margin: 0;
+  	padding: 15;
+  	font-size: 1em;
+  	text-decoration: none;
+  	border: none;
+  	list-style: none;
+  	outline: none;
+
+  	font: 13px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.tick text, .tick line{
+  display: none;
+}

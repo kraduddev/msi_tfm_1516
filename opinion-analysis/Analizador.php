@@ -5,7 +5,7 @@
 <body>
 <?php
 
-	include './opinion-analysis/bayesian-opinion-mining.php';
+	include './bayesian-opinion-mining.php';
 
   	copy($_FILES['archivo']['tmp_name'],$_FILES['archivo']['name']);
   	echo "El fichero ha sido cargado en el servidor correctamente.<br>";
@@ -13,7 +13,7 @@
   	//echo "<img src=\"$nom\">";
   	echo $nom;
 
-  	echo '<a href="index.html">Generar visualización</a>';
+  	echo '<a href="../guion-vis.html">Generar visualización</a>';
 
 
 	$pelicula = new SimpleXMLElement($nom, null, true);
@@ -28,8 +28,8 @@
 	 //print_r($personajes);
 
 	$op = new Opinion();
-	$op->addToIndex('opinion-analysis/opinion/rt-polaritydata/rt-polarity.neg', 'neg');
-	$op->addToIndex('opinion-analysis/opinion/rt-polaritydata/rt-polarity.pos', 'pos');
+	$op->addToIndex('opinion/rt-polaritydata/rt-polarity.neg', 'neg');
+	$op->addToIndex('opinion/rt-polaritydata/rt-polarity.pos', 'pos');
 
 	$valorSentimiento = 0;
 

@@ -3,11 +3,55 @@
     <chars>
         <char color="0xA4A4A4" name="BLACK FIGHTER" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
         <char color="0xDF0101" name="CORNERMAN" narrador="0" sentimiento="neutro" color-sentimiento="blue"/>
-        <char color="0xF6CECE" name="ROCKY" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0xF6CECE" name="ROCKY" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
         <char color="0xDF7401" name="FAN" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
-        <char color="0x868A08" name="ANNOUNCER" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x868A08" name="ANNOUNCER" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
         <char color="0xF7FE2E" name="FIGHTER #1" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
         <char color="0x5FB404" name="FIGHTER #2" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x81F781" name="PROMOTER" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x088A4B" name="WOMAN" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x0101DF" name="MAFIA #1" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x2EFEF7" name="FATS" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x7401DF" name="ADRIAN" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0xB404AE" name="CUSTOMER" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0xFF0080" name="OWNER" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x0B615E" name="GAZZO" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0x00FF00" name="BODYGUARD" narrador="0" sentimiento="neutro" color-sentimiento="blue"/>
+        <char color="0xF67439" name="RUDY" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x5FAAAAA" name="MIKE" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x81BBBC" name="FIGHTER" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x00AABB" name="MICKEY" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x01DAAF" name="DIPPER" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0xABCDEF" name="TRAINER" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0xA4A4A4" name="PAULIE" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0xDF0101" name="ANDY" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0xF6CECE" name="COMMENTATOR" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0xDF7401" name="APOLLO" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x868A08" name="CHIPPED TOOTH" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0xF7FE2E" name="YOUNG MAN #2" narrador="0" sentimiento="neutro" color-sentimiento="blue"/>
+        <char color="0x5FB404" name="MARIE" narrador="0" sentimiento="neutro" color-sentimiento="blue"/>
+        <char color="0x81F781" name="LAWYER" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x088A4B" name="JERGENS" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x0101DF" name="CLEANER" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x2EFEF7" name="SECRETARY" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0x7401DF" name="REPORTER #2" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0xB404AE" name="REPORTER #3" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0xFF0080" name="REPORTER #1" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0xA4A4A4" name="JOSE" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0xDF0101" name="BOY" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0xF6CECE" name="REPORTER" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0xDF7401" name="CAMERAMAN" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0x868A08" name="SOUND MAN" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0xF7FE2E" name="BUSINESSMAN #3" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x5FB404" name="BENNY" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x81F781" name="MAYOR" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x088A4B" name="COMMENTATOR #1" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x0101DF" name="COMMENTATOR #2" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0x2EFEF7" name="DEMPSEY" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x7401DF" name="FRAZIER" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
+        <char color="0xB404AE" name="REFEREE" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0xFF0080" name="DOCTOR" narrador="0" sentimiento="negativo" color-sentimiento="red"/>
+        <char color="0x0B615E" name="ANOTHER ANGLE" narrador="0" sentimiento="positivo" color-sentimiento="green"/>
 
     </chars>
     <vis height="1100" width="2600">

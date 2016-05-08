@@ -25,7 +25,7 @@ var maxPersonajes = 6;
 
 //CARGAMOS EL FICHERO 
 //d3.xml("./csv/BatmanBegins-min-sent.xml", function(error, pelicula){
-d3.xml("./Rocky_corregido.plt-sent.xml", function(error, pelicula){
+d3.xml("xml_guiones/Rocky_corregido-min.plt-sent.xml", function(error, pelicula){
 
 	console.log(pelicula);
 
