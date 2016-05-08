@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+ 
+<html lang="es">
+ 
+<head>
+<title>Mi prueba Opinion.js</title>
+<meta charset="utf-8" />
+
+<script type="text/javascript" src="Opinion.js"></script>
+<script src="../../js/jquery-2.1.4.min.js"></script>
+
+</head>
+ 
+<body>
+    <script>
+    	$(document).ready(function(){
+    		op = new Opinion;
+    		op.addToIndex('rt-polaritydata/rt-polarity.neg','neg');
+    		op.addToIndex('rt-polaritydata/rt-polarity.neg','pos');
+
+    		var doc = "he day you left Gotham";
+    		var sentences = doc.split(".");
+
+    		var score = [{"pos":0},{"neg":0}];
+
+    		for(sentence in sentences){
+    			clase = op.classify(sentence);
+    			if (sentence.trim().length > 0){
+    				document.write("Classifying "+sentence.trim()+" as " +Object.keys()+ " ");
+    				score[clase]++;
+    			}
+    		}
+    	});
+    </script>
+</body>
+</html>
