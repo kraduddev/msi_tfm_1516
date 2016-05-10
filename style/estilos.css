@@ -1,13 +1,17 @@
-#personajes{
+#dvPersonajes{
 	float:left;
 	width: 250px;
 }
 
-#personajes span, #escenas span{
+.dvPersonaje{
+  float: left;
+}
+
+#dvPersonajes span, #dvEscenas span{
 	font-weight: bold;
 }
 
-#escenas, svg{
+#dvEscenas, svg{
 	float:left;
 }
 
@@ -49,6 +53,30 @@
 	width: 15px; 
  	height: 15px;
  	margin: 2px;
+}
+
+.positivo{
+  content:url('./img/positivo.png');
+  float: left;
+  width: 15px; 
+  height: 15px;
+  margin: 2px;
+}
+
+.negativo{
+  content:url('./img/negativo.png');
+  float: left;
+  width: 15px; 
+  height: 15px;
+  margin: 2px;
+}
+
+.neutro{
+  content:url('./img/neutral.png');
+  float: left;
+  width: 15px; 
+  height: 15px;
+  margin: 2px;
 }
 
 #detalle-escena{

@@ -1,0 +1,35 @@
+<div id="dvEscenas">
+	<h3>ESCENAS ({{escenas.length}})</h3>
+	<div>
+		<input type="text" placeholder="Núm. Máx. Escenas" ng-model="maxEscenas">
+	</div>
+	<div>	
+		<table border="2px;">
+			<thead>
+				<thead>Cabecera</thead>
+				<thead>Duración</thead>
+				<thead>Letra</thead>
+				<thead>Nº Cabecera</thead>
+				<thead>Step</thead>
+				<thead>Step Real</thead>
+				<thead>Time</thead>
+				<thead>Sentimiento</thead>
+				<thead>Color Sentimiento</thead>
+			</thead>
+			<tbody>
+				<tr ng-repeat="escena in escenas | limitTo:maxEscenas" style="background: {{escena.colorSentimiento}}">
+					<td>{{escena.cabecera}}</td>
+					<td>{{escena.duracion}}</td>
+					<td>{{escena.letra}}</td>
+					<td>{{escena.numeroCabecera}}</td>
+					<td>{{escena.step}}</td>
+					<td>{{escena.stepReal}}</td>
+					<td>{{escena.time}}</td>
+					<td>{{escena.sentimiento}}</td>
+					<td>{{escena.colorSentimiento}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+

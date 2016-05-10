@@ -1,15 +1,17 @@
 var myApp = angular.module('myApp', []);
 
 myApp.controller('MainCtrl', function($scope, $window){
-
 	$scope.personajes = [];
-	$scope.maxPersonajes = 3;
+	$scope.escenas = [];
 
 	d3.xml("xml_guiones/Rocky_corregido-min.plt-sent.xml", function(error, pelicula){
-		
 		if(error) {throw error;}
-		console.log(pelicula);
-		var personajes = d3.select(pelicula).selectAll("char")[0];		
+		
+		$scope.pelicula = pelicula;
+		var personajes = d3.select(pelicula).selectAll("char")[0];	
+		var escenas = d3.select(pelicula).selectAll("timeSlice")[0];
+
+		// Relleno el array de objetos Personaje
 		angular.forEach(personajes, function(p){
 			$scope.personajes.push({
 				name: p.getAttribute("name"),
@@ -19,72 +21,62 @@ myApp.controller('MainCtrl', function($scope, $window){
 			});
 		});
 
-		var divPersonajes = d3.select("#personajes")
-    	.selectAll("div")    	
-    	.data(personajes)    	
-    	.enter();
-
-		divPersonajes.append("div")
-	    	.attr("class","dvPersonaje")    	
-	      	.style("width", function(d) { return 750 + "px"; })
-	      	.style("color", function(d){return d.getAttribute("color").replace("0x","#");})
-	    //  	.append('input').attr('type','checkbox');
-	      	.text(function(d) { return d.getAttribute("name"); });
-	      	
-
-	    // se añaden sentimientos para los personajes
-	    d3.selectAll(".dvPersonaje")
-	    	.data(personajes)
-			.append("div")
-			.attr("class", "cuadrado")
-			.attr("style",function(d){return "background:"+d.getAttribute("color-sentimiento");});
-
-		d3.selectAll(".dvPersonaje")
-	    	.data(personajes)
-			.append("div")
-			.attr("class", function(d){
-				var sentimiento = d.getAttribute('sentimiento');
-				var clase = null;
-				if (sentimiento == 'positivo'){
-					clase="personajePositivo";
-				}
-				else if (sentimiento == 'negativo'){
-					clase="personajeNegativo";
-				}
-				else{
-					clase="personajeNeutro";
-				}
-				return clase;
+		// Relleno el array de objetos Escena
+		angular.forEach(escenas, function(e){
+			$scope.escenas.push({
+				cabecera: e.getAttribute("cabecera"),
+				duracion: e.getAttribute("duracion"),
+				letra: e.getAttribute("letra"),
+				numeroCabecera: e.getAttribute("numerocabecera"),
+				step:e.getAttribute("step"), 
+				stepReal: e.getAttribute("stepreal"),
+				sentimiento: e.getAttribute("sentimiento"),
+				colorSentimiento: e.getAttribute("color-sentimiento"),
+				pointGroup: {
+					ambiente: e.childNodes[1].getAttribute("ambiente"),
+					dummy: e.childNodes[1].getAttribute("dummy"),
+					indiceAsignado: e.childNodes[1].getAttribute("indiceasignado"),
+					name: e.childNodes[1].getAttribute("name"),
+					pin: e.childNodes[1].getAttribute("pin"),
+					principal: e.childNodes[1].getAttribute("principal"),
+					tipo: e.childNodes[1].getAttribute("tipo"),
+					tipoEscena: e.childNodes[1].getAttribute("tipoescena"),
+					urlImagen: e.childNodes[1].getAttribute("urlimagen"),
+					y: e.childNodes[1].getAttribute("y")
+				},
+				charPoints: $filter('filter')(e.childNodes[1].children, nodeName:'charPoint')
 			});
+		});
+console.log(escenas);
+console.log($scope.escenas);
+		$scope.$apply();
+			
+    });	
 
-
-		// se añaden chechbox para los personajes
-	    d3.selectAll(".dvPersonaje").append('input').attr('type','checkbox')
-
-
-
-
-		$scope.apply;
-    });
 });
 
-myApp.directive('personajesContainer', function(){
-	function link(scope, el, attr){
-		scope.$watch('data', function(data){
-          scope.personajes = [];
-          for (var i=0; i<scope.maxPersonajes; i++){
-          	cope.personajes.push({
-				name: p.getAttribute("name"),
-				color: p.getAttribute("color").replace("0x","#"),
-				sentimiento: p.getAttribute("sentimiento"),
-				colorSentimiento: p.getAttribute("color-sentimiento")
-			});
-          }
-        }, true);	
+myApp.directive('chars', function(){
+	function link(scope, el, attr){		
 	}
 	return{
 		link: link,
 		restrict: 'E',
-		scope:{data:'='}
+		scope:{personajes:'='},
+		templateUrl: 'layout/chars.htm',
+		replace:false
+
+	};
+});
+
+myApp.directive('vis', function(){
+	function link(scope, el, attr){		
+	}
+	return{
+		link: link,
+		restrict: 'E',
+		scope:{escenas:'='},
+		templateUrl: 'layout/vis.htm',
+		replace:false
+
 	};
 });
