@@ -73,7 +73,7 @@ function addDetalleEscena(){
     		return duracion==0?5:duracion;
     	})
     .attr("ry", 17)
-    .attr("fill", function(d){return d.getAttribute("color-sentimiento");});*/
+    .attr("fill", function(d){return d.getAttribute("colorSentimiento");});*/
 
 }
 

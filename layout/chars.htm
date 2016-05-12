@@ -1,14 +1,14 @@
 <div id="dvPersonajes">
-	<h3>PERSONAJES ({{personajes.length}})</h3>
+	<h3>PERSONAJES ({{personajes._length}})</h3>
 	<div>
 		<input type="text" placeholder="Núm. Máx. Personajes" ng-model="maxPersonajes">
 	</div>
 	<div ng-repeat="personaje in personajes | limitTo:maxPersonajes" style="float:left;">	
 		<div class="dvPersonaje"
-			style="color:{{personaje.color}};">
-			{{personaje.name}}
+			style="color:{{personaje._color}};">
+			{{personaje._name}}
 		</div>
-		<div class="cuadrado" style="background: {{personaje.colorSentimiento}};"></div>
-		<div class="{{personaje.sentimiento}}"></div>
+		<div class="cuadrado" style="background: {{personaje._colorSentimiento}};"></div>
+		<div class="{{personaje._sentimiento}}"></div>
 	</div>
 </div>

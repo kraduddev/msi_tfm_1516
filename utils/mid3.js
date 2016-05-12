@@ -27,15 +27,14 @@ var maxPersonajes = 6;
 //d3.xml("./csv/BatmanBegins-min-sent.xml", function(error, pelicula){
 d3.xml("xml_guiones/Rocky_corregido-min.plt-sent.xml", function(error, pelicula){
 
-	console.log(pelicula);
 
 	// Personajes
 	var personajes = d3.select(pelicula).selectAll("char")[0];
-	console.log(personajes);
+
 
 	//Escenas
 	var escenas = d3.select(pelicula).selectAll("timeSlice")[0];
-	console.log(escenas);
+
 
 
 /* CARGA DE PERSONAJES */
@@ -116,7 +115,7 @@ function PersonajeColor (nombre, color){
 		personajesArray.push(personajeColor);
 	});
 
-	console.log(personajesArray);
+
 
 	var aPersonajesEscenas = [];
 	var oPersonajes=[];
@@ -143,7 +142,6 @@ function PersonajeColor (nombre, color){
 	}
 
 
-	console.log(oPersonajes);
 
 
 	// recorro escenas para crear un objeto y adaptarlo al gráfico.
@@ -198,7 +196,7 @@ function PersonajeColor (nombre, color){
 		oPersonajeEscenas.push(personajeEscenas);
 		var personajeEscenas = new Object();
 	}
-	console.log(oPersonajeEscenas);
+
 	
 	var oPersonajeEscenasAux = oPersonajeEscenas.sort(function(obj1, obj2) {
 		return obj2.numEscenas - obj1.numEscenas;
@@ -209,7 +207,6 @@ function PersonajeColor (nombre, color){
 		oPersonajeEscenas.push(oPersonajeEscenasAux[i]);
 	}
 
-//	console.log(oPersonajeEscenas);
 
 ////////////////////////////////////////////////////////////////////////
 	

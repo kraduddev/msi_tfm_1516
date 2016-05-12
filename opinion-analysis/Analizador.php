@@ -68,15 +68,15 @@
 			if ($valorSentimiento > 0)
 			{
 				$accion->addAttribute('sentimiento','positivo');
-				$accion->addAttribute('color-sentimiento','green');	
+				$accion->addAttribute('colorSentimiento','green');	
 			}
 			else if ($valorSentimiento < 0){
 				$accion->addAttribute('sentimiento','negativo');
-				$accion->addAttribute('color-sentimiento','red');
+				$accion->addAttribute('colorSentimiento','red');
 			}
 			else{
 				$accion->addAttribute('sentimiento','neutro');
-				$accion->addAttribute('color-sentimiento','blue');
+				$accion->addAttribute('colorSentimiento','blue');
 			}
 
 			$valorSentimiento = 0; 
@@ -125,11 +125,11 @@
 				if ($valorSentimiento > 0)
 				{
 					$charDialog->addAttribute('sentimiento','positivo');	
-					$charDialog->addAttribute('color-sentimiento','green');	
+					$charDialog->addAttribute('colorSentimiento','green');	
 				}
 				else if ($valorSentimiento < 0){
 					$charDialog->addAttribute('sentimiento','negativo');
-					$charDialog->addAttribute('color-sentimiento','red');	
+					$charDialog->addAttribute('colorSentimiento','red');	
 				}
 				else{
 					$charDialog->addAttribute('sentimiento','neutro');
@@ -170,15 +170,15 @@
 	 		if ($sentimientoParcial > 0)
 			{
 				$charPoint->addAttribute('sentimiento','positivo');	
-				$charPoint->addAttribute('color-sentimiento','green');	
+				$charPoint->addAttribute('colorSentimiento','green');	
 			}
 			else if ($sentimientoParcial < 0){
 				$charPoint->addAttribute('sentimiento','negativo');
-				$charPoint->addAttribute('color-sentimiento','red');
+				$charPoint->addAttribute('colorSentimiento','red');
 			}
 			else{
 				$charPoint->addAttribute('sentimiento','neutro');
-				$charPoint->addAttribute('color-sentimiento','blue');
+				$charPoint->addAttribute('colorSentimiento','blue');
 			}
 		endforeach;
 	endforeach;
@@ -208,15 +208,15 @@
 	 	if ($sentimientoParcial > 0)
 		{
 			$char->addAttribute('sentimiento','positivo');	
-			$char->addAttribute('color-sentimiento','green');
+			$char->addAttribute('colorSentimiento','green');
 		}
 		else if ($sentimientoParcial < 0){
 			$char->addAttribute('sentimiento','negativo');
-			$char->addAttribute('color-sentimiento','red');
+			$char->addAttribute('colorSentimiento','red');
 		}
 		else{
 			$char->addAttribute('sentimiento','neutro');
-			$char->addAttribute('color-sentimiento','blue');
+			$char->addAttribute('colorSentimiento','blue');
 		}
 	endforeach;
 
@@ -244,15 +244,15 @@
 		if ($sentimientoParcial > 0)
 		{
 			$timeSlice->addAttribute('sentimiento','positivo');	
-			$timeSlice->addAttribute('color-sentimiento','green');
+			$timeSlice->addAttribute('colorSentimiento','green');
 		}
 		else if ($sentimientoParcial < 0){
 			$timeSlice->addAttribute('sentimiento','negativo');
-			$timeSlice->addAttribute('color-sentimiento','red');
+			$timeSlice->addAttribute('colorSentimiento','red');
 		}
 		else{
 			$timeSlice->addAttribute('sentimiento','neutro');
-			$timeSlice->addAttribute('color-sentimiento','blue');
+			$timeSlice->addAttribute('colorSentimiento','blue');
 		}
 	endforeach;
 

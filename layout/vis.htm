@@ -4,7 +4,7 @@
 		<input type="text" placeholder="Núm. Máx. Escenas" ng-model="maxEscenas">
 	</div>
 	<div>	
-		<table border="2px;">
+		<!-- <table border="2px;">
 			<thead>
 				<thead>Cabecera</thead>
 				<thead>Duración</thead>
@@ -17,19 +17,50 @@
 				<thead>Color Sentimiento</thead>
 			</thead>
 			<tbody>
-				<tr ng-repeat="escena in escenas | limitTo:maxEscenas" style="background: {{escena.colorSentimiento}}">
-					<td>{{escena.cabecera}}</td>
-					<td>{{escena.duracion}}</td>
-					<td>{{escena.letra}}</td>
-					<td>{{escena.numeroCabecera}}</td>
-					<td>{{escena.step}}</td>
-					<td>{{escena.stepReal}}</td>
-					<td>{{escena.time}}</td>
-					<td>{{escena.sentimiento}}</td>
-					<td>{{escena.colorSentimiento}}</td>
+				<tr ng-repeat="escena in escenas | limitTo:maxEscenas" style="background: {{escena._colorSentimiento}}">
+					<td>{{escena._cabecera}}</td>
+					<td>{{escena._duracion}}</td>
+					<td>{{escena._letra}}</td>
+					<td>{{escena._numeroCabecera}}</td>
+					<td>{{escena._step}}</td>
+					<td>{{escena._stepReal}}</td>
+					<td>{{escena._time}}</td>
+					<td>{{escena._sentimiento}}</td>
+					<td>{{escena._colorSentimiento}}</td>
 				</tr>
 			</tbody>
-		</table>
+		</table> -->
+		<ul>
+			<li ng-repeat="escena in escenas">
+			{{escena._cabecera}}
+				<ul>
+					<li>
+					{{escena.pointGroup._name}} ({{escena.pointGroup._tipoEscena}})
+						<ul>
+						<li ng-if="escena.pointGroup.charPoint.getPrototypeOf() == 'Object'">
+							PERSONAJE - {{escena.pointGroup.charPoint._char}}
+						</li>
+						<li ng-repeat="char in escena.pointGroup.charPoint" ng-if="escena.pointGroup.charPoint.getPrototypeOf()!= 'Object'">
+							PERSONAJE - {{char._char}}
+						</li>
+						<li ng-repeat="accion in escena.pointGroup.accion">
+							ACCION - {{accion._descripcion}}
+							<ul>
+							<li ng-repeat="dialogo in accion.charDialog">
+								{{dialogo._char}}: "{{dialogo._texto}}""
+							</li>
+						</ul>
+						</li>
+						
+					</ul>
+					</li>
+					
+				</ul>
+			</li>
+				
+		</ul>
 	</div>
 </div>
+
+
 
