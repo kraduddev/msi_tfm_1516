@@ -37,19 +37,44 @@
 					<li>
 					{{escena.pointGroup._name}} ({{escena.pointGroup._tipoEscena}})
 						<ul>
-						<li ng-if="escena.pointGroup.charPoint.getPrototypeOf() == 'Object'">
+						<!-- Una personaje -->
+						<li ng-if="escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length == null">
 							PERSONAJE - {{escena.pointGroup.charPoint._char}}
 						</li>
-						<li ng-repeat="char in escena.pointGroup.charPoint" ng-if="escena.pointGroup.charPoint.getPrototypeOf()!= 'Object'">
+						<!-- Varios Personajes -->
+						<li ng-repeat="char in escena.pointGroup.charPoint" ng-if="escena.pointGroup.charPoint.length != null">
 							PERSONAJE - {{char._char}}
 						</li>
-						<li ng-repeat="accion in escena.pointGroup.accion">
-							ACCION - {{accion._descripcion}}
+
+						<!-- Una acción -->
+						<li ng-if="escena.pointGroup.hasOwnProperty('accion') && escena.pointGroup.accion.length == null" >
+							ACCION - {{escena.pointGroup.accion._descripcion}}
 							<ul>
-							<li ng-repeat="dialogo in accion.charDialog">
-								{{dialogo._char}}: "{{dialogo._texto}}""
-							</li>
-						</ul>
+								<!-- Un diálogo -->
+								<li ng-if="accion.hasOwnProperty('charDialog') && accion.charDialog.length == null">
+									{{accion.charDialog._char}}: "{{accion.charDialog._texto}}""
+								</li>
+								<!-- Varios diálogos -->
+								<li ng-repeat="dialogo in accion.charDialog"
+									ng-if="accion.charDialog.length != null">
+									{{dialogo._char}}: "{{dialogo._texto}}""
+								</li>
+							</ul>
+						</li>
+
+						<!-- Varias acciones -->
+						<li ng-repeat="accion in escena.pointGroup.accion"
+							ng-if="escena.pointGroup.accion.length != null" >
+							ACCION - {{accion._descripcion}}
+							<!-- Un diálogo -->
+								<li ng-if="accion.hasOwnProperty('charDialog') && accion.charDialog.length == null">
+									{{accion.charDialog._char}}: "{{accion.charDialog._texto}}""
+								</li>
+								<!-- Varios diálogos -->
+								<li ng-repeat="dialogo in accion.charDialog"
+									ng-if="accion.charDialog.length != null">
+									{{dialogo._char}}: "{{dialogo._texto}}""
+								</li>
 						</li>
 						
 					</ul>
