@@ -1,21 +1,73 @@
-models = {
-	function Character (name, color, number){
-		var _color = color;
-		var _name = name;
-		var _number = number;
-		var _firstScene = -1;
-		var _lastScene = -1;
-		// var _startLabel = null;
-		// var _endLabel = null;
-		var _numScenes = 0;
-		var _position = -1;
+var models = models || {};
 
-		this.getNumber = function(){
-			return _number;
-		}
-		
-		this.getNumScenes = function(){
-			return _numScenes;
-		}
+models.Character = function(name, color, number){
+	var _color = "0xFFFFFF";
+	var _name = "No_Name";
+	var _number = 0;
+	var _firstScene = -1;
+	var _lastScene = -1;
+	var _startLabel;
+	var _endLabel;
+	var _numScenes = 0;
+	var _position = -1;
+
+	_name = name;
+	_color = color;
+	_number = number;
+
+	this.getNumber = function(){
+		return _number;
+	}
+	
+	this.getNumScenes = function(){
+		return _numScenes;
+	}
+
+	this.getName = function(){
+		return _name;
+	}
+
+	this.getNumber = function(){
+		return _number;
+	}
+
+	this.hasFirstScene = function()
+	{
+		return (_firstScene == -1 ? false : true);
+	}
+
+	this.setFirstScene = function(first)
+	{
+		_firstScene = first;
+	}
+	
+	this.setLastScene = function(last)
+	{
+		_lastScene = last;
+	}
+	
+	this.getFirstScene = function()
+	{
+		return _firstScene;
+	}
+	
+	this.getLastScene = function()
+	{
+		return _lastScene;
+	}
+	
+	this.addScene = function()
+	{
+		_numScenes++;
+	}
+	
+	this.getNumScenes = function()
+	{
+		return _numScenes;
+	}
+
+	this.getColor = function()
+	{
+		return _color;
 	}
 }

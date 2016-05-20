@@ -1,5 +1,5 @@
 <div id="dvEscenas">
-	<h3>ESCENAS ({{escenas.length}})</h3>
+	<h3>ESCENAS TOTALES ({{escenas.length}})</h3>
 	<div>
 		<input type="text" placeholder="Núm. Máx. Escenas" ng-model="maxEscenas">
 	</div>
@@ -31,7 +31,7 @@
 			</tbody>
 		</table> -->
 		<ul>
-			<li ng-repeat="escena in escenas">
+			<li ng-repeat="escena in escenas | limitTo: maxEscenas">
 			{{escena._cabecera}}
 				<ul>
 					<li>

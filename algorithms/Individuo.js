@@ -1,29 +1,33 @@
-algorithms = {
-	class Individuo(){
-		var _initCharPos = [];
-		var _scenePos = [];
+var algorithms = algorithms || {};
 
-		this.create = function(initCharPos, scenePos){
-			_initCharPos = initCharPos;
-			_scenePos = scenePos;
-		}
 
-		this.copy = function(ind){
-			_initCharPos = [];
-			int j=0;
-			int i=0;
+algorithms.Individuo = function(){
+	// Clase que implementa el algoritmo genético que coloca las lineas/escenas
+	this._initCharPos;
+	this._scenePos;
 
-			ind._initCharPos.forEach(function(icp){
-				_initCharPos[j]=icp;
-				j++;
-			});
-
-			_scenePos = [];
-			j=0;
-			ind._scenePos.forEach(function(sp){
-				_initCharPos[j]=sp;
-				j++;
-			});
-		}
+	this.create = function (initCharPos, scenePos){
+		_initCharPos = initCharPos;
+		_scenePos = scenePos;
 	}
+
+	this.copy = function (ind){
+		_initCharPos = [];
+		_scenePos = [];
+
+		var j = 0;
+
+		angular.forEach(ind._initCharPos, function(i){
+			_initCharPos[j] = i;
+			j++;
+		});
+
+		j=0;
+		angular.forEach(ind._scenePos, function(i){
+			_scenePos[j] = i;
+			j++;
+		});
+	}
+
 }
+
