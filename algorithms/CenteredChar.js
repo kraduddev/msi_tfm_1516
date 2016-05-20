@@ -82,7 +82,7 @@ algorithms.CenteredChar = function (){
 
 	var invertVector = function (v){
 		var result = [];
-		for (var i=0; i< v.length; i++){
+		for (var i in v){
 			result[v[i]] = i;
 		}
 

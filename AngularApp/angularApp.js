@@ -128,7 +128,7 @@ myApp.controller('MainCtrl', function($scope, $window){
 
 			angular.forEach(_chars, function(c){
 				if (!listChars[c.getName()]){
-					scene.addChar(c.getNumber(), c.getColor(), c.getName());
+					scene.addChar(c.getNumber(), c.getColor(), c.getName(), true);
 				}
 				else{
 					var numEscena = scene.getNumEscena();

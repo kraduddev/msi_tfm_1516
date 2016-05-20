@@ -60,12 +60,11 @@ algorithms.Iteractivo = function(){
 	}
 
 	this.invertVector = function (v){
-		var result = [];
+		var result = new Array(); 
 
-		for (var i=0; i<v.length; i++){
-			result[v[i]] = i;
+		for (var i in v){
+			result[v[i]] = i; 
 		}
-
 		return result;
 	}
 
@@ -141,6 +140,7 @@ algorithms.Iteractivo = function(){
 	}
 
 	this.calcIndividuo = function (numChars, scenes, chars){
+
 		var bestPos;
 		var numCharsScene;
 		var positions = [];
@@ -149,32 +149,39 @@ algorithms.Iteractivo = function(){
 		var newPos = [];
 		var posChar = [];
 		var minCruces;
-		var cruces;
+		var cruces = 0;
 
 		var arr2 = this.calcInitialPosition(numChars, chars);
 
 		//Inicializo la posición inicial
-		for(var i=0; i<arr2.length; i++){
+		for(var i in arr2){
 			prevPos[i] = arr2[i];
 		}
-		
+
 		var prevScene = scenes[0];
 		angular.forEach(scenes, function(scene){
 			//Calculo el nº de personajes en la elipse, para posicionarla correctamente
-			numCharsScene = scene.getNumVisibleChar();
+			numCharsScene = scene.getNumVisibleChar(); 
 			bestPos = Math.round(Math.random()*(numChars - numCharsScene));
 			minCruces = MAX_VALUE;
 
 			//Obtengo la ordenación de los personajes
-			for(var j=0; j<prevPos.length;j++){
-				posChar[prevPos[j]] = j;
+//console.log(prevPos);	
+			var i = 0;
+			for(var j in prevPos){				
+				posChar[prevPos[j]] = i;
+				i++; 
+//console.log(prevPos[j]); console.log(j);console.log("------")
 			}
-
+//console.log(prevPos);
 			//Calculo los cruces con cada posibilidad
 			for(j=0;j<numChars - numCharsScene; j++){
 				cruces = 0;
+				var k =0;
 				angular.forEach(posChar, function(char){
+console.log("prevPos[char]: "+prevPos[char]);	
 					if(scene.charVisible(char)){
+					
 						//Está en la escena
 						if(prevScene.charInAux(char) || prevScene.charVisible(char)){
 							//Este char no comienza aquí, por lo que se le da más peso
@@ -192,6 +199,7 @@ algorithms.Iteractivo = function(){
 					minCruces = cruces;
 					bestPos = j;
 				}
+//console.log("cruces: "+cruces);				
 			}
 
 			// Calcular las nuevas posiciones
@@ -209,7 +217,8 @@ algorithms.Iteractivo = function(){
 				}
 				i++;
 			}
-			
+// console.log(posChar);
+// console.log(charsObtained);
 			// Ahora los de fuera de la escena
 			charsObtained = 0;
 			i=0;
@@ -224,8 +233,9 @@ algorithms.Iteractivo = function(){
 			}
 			
 			var iNoEscena = 0;
-			var iEnEscena = 0;
-			for(i=0;i<prevPos.length;i++)
+			var iEnEscena = 0; 
+// console.log("prevPos.length: "+Object.keys(prevPos).length)
+			for(i=0;i<Object.keys(prevPos).length;i++)
 			{
 				if(i<bestPos || i>=bestPos+numCharsScene)
 				{
@@ -234,21 +244,24 @@ algorithms.Iteractivo = function(){
 				}
 				else
 				{
-					newPos[enEscena[iEnEscena]] = i
+					newPos[enEscena[iEnEscena]] = i;
 					cruces = cruces + Math.abs(prevPos[enEscena[iEnEscena]]-i)*Math.abs(prevPos[enEscena[iEnEscena]]-i);
+console.log(cruces);					
 					iEnEscena++;
 				}
 			}
 			
-			prevPos = newPos;
+			prevPos = newPos; 
 			positions.push(bestPos);
 			prevScene = scene;		
 		
 		});
 
-		var individuo = new algorithms.Individuo();
+		var individuo = new algorithms.Individuo(); 
+// console.log(arr2);
+// console.log(positions);
 		individuo.create(arr2, positions);
-		
+
 		return individuo;
 	}
 }
