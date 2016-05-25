@@ -1,6 +1,7 @@
 var debug = false;
 
 var width;
+var height;
 var x;
 var y;
 

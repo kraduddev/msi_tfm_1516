@@ -80,7 +80,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		}
 		else{
 			x = _scenes[_numEscena-2].getNextX();
-		}
+		} 
 	}
 
 	this.calcCharPoints = function(scenePoint, positions)

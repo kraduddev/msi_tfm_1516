@@ -14,9 +14,11 @@ myApp.controller('MainCtrl', function($scope, $window){
 
 		//Obtengo la primera y última escena de cada personaje
 		angular.forEach($scope.escenas, function(escena){
-			angular.forEach(escena.pointGroup.charPoint, function(charPoint){
-				var charNum = _charToNumber[charPoint._char];
-
+			
+			// sólo tengo un personaje en la escena
+			if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length == null){
+			
+				var charNum = _charToNumber[escena.pointGroup.charPoint._char];
 				//Sumo uno al número de escenas del personaje
 				if (_chars[charNum] != null){
 					_chars[charNum].addScene();
@@ -27,8 +29,28 @@ myApp.controller('MainCtrl', function($scope, $window){
 					}
 					//Actualizo la última escena obtenido
 					_chars[charNum].setLastScene(parseInt(escena._step));
-				}				
-			});
+				}	
+			}
+
+			// tengo varios personajes en la escena
+			else if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length != null){
+
+				angular.forEach(escena.pointGroup.charPoint, function(charPoint){
+				
+					var charNum = _charToNumber[charPoint._char];
+					//Sumo uno al número de escenas del personaje
+					if (_chars[charNum] != null){
+						_chars[charNum].addScene();
+
+						//Si no tiene primera escena, se la establezco
+						if(!_chars[charNum].hasFirstScene()){
+							_chars[charNum].setFirstScene(parseInt(escena._step));
+						}
+						//Actualizo la última escena obtenido
+						_chars[charNum].setLastScene(parseInt(escena._step));
+					}				
+				});
+			}
 		});
 
 		if (debug){
@@ -40,7 +62,11 @@ myApp.controller('MainCtrl', function($scope, $window){
 					+" t"+c.getNumScenes());
 			});
 		}
-		//Queda añadir la importancia de cada personaje.	
+		//Queda añadir la importancia de cada personaje.
+		//
+		
+
+		height = _chars.length * _pixelsPerChar;		
 	};
 
 	var calcMaxSceneInChars = function(){
@@ -155,21 +181,28 @@ myApp.controller('MainCtrl', function($scope, $window){
 			//Preparo el vector para cada personaje
 			var v = [];
 			var jumpSize = 0;
-
-			for (var i=0; i<_scenes.length;i++){ 
+			for (var i=0; i<_scenes.length;i++){  //console.log(_scenes[i])
 				if(i < c.getFirstScene()-1 || i>c.getLastScene()-1){
 					v[i] = -1;
 				}
-				else if(_scenes[i].charVisible(c.getNumber)){
+				else if(_scenes[i].charVisible(c.getNumber())){
 					v[i] = 0;
 				}
-				else if(i>0 && _scenes[i-1].charVisible(c.getNumber)){
-					//Calcular
-					jumpSize = 0;
-					for (var j = i; !_scenes[j].charVisible(c.getNumber()); j++){
-						jumpSize++;
-					}
-				}
+				// else if(i>0 && _scenes[i-1].charVisible(c.getNumber())){
+				// 	//Calcular
+				// 	jumpSize = 0;
+					
+				// 	var j = i;				
+				// 	while (!_scenes[j].charVisible(c.getNumber())){
+				// 		jumpSize++;
+				// 		j++;
+				// 	}
+
+				// 	// for (var j = i; !_scenes[j].charVisible(c.getNumber()); j++){
+				// 	// 	jumpSize++;
+				// 	// }
+				// 	v[i] = jumpSize;
+				// }
 				else{
 					// Esta es medio de un salto, cogemos el valor ya calculado
 					v[i] = v[i-1];
@@ -200,7 +233,7 @@ myApp.controller('MainCtrl', function($scope, $window){
 		var individuo = _algoritmo.calcIndividuo(_chars.length, _scenes, _chars);
 
 		//Realizo el cálculo inicial de posiciones
-		calcPointScenes(individuo._scenePos, _algoritmo.calcPositions(individuo._initCharPos, individuo._scenePos, _scenes));
+		// calcPointScenes(individuo._scenePos, _algoritmo.calcPositions(individuo._initCharPos, individuo._scenePos, _scenes));
 	};
 
 
@@ -255,15 +288,16 @@ myApp.controller('MainCtrl', function($scope, $window){
 		_lines = [];
 		for(var i=0; i<_chars.length; i++){
 			_lines[i] = new models.CharacterLine(_chars[i].getName(), _chars[i].getNumber());
-		}
+			// console.log(_lines[i].getName()+" "+_lines[i].getCharNumber());
+		} 
 
 		//Incluyo las escenas
 		createScenes($scope.escenas);
 		if (debug) {console.log(_scenes)};
 		
 		//Calculo los saltos desde cada punto
-		calcJumps();
-		if (debug) {console.log(_charJumps)};
+		calcJumps(); 
+		if (debug) {console.log(_charJumps)}; 
 
 		//Calculo las posiciones de las escenas
 		updateScenePositions(this._scenes);

@@ -17,13 +17,15 @@ algorithms.Iteractivo = function(){
 
 		for (var i=0; i<numChars; i++){
 			charArray[i] = chars[i].getNumber();
+			valueArray[i] = chars[i].getNumScenes();
 		}
 
 		for (var i=0; i<numChars; i++){
 			valueToInsert = valueArray[i];
 			valueToInsert2 = charArray[i];
 			holePos = 1;
-
+//console.log(valueArray[i]);
+console.log(charArray[i]);
 			while(holePos > 0 && valueToInsert > valueArray[holePos -1]){
 				valueArray[holePos] = valueArray[holePos-1];
 				charArray[holePos] = charArray[holePos-1];
@@ -54,7 +56,7 @@ algorithms.Iteractivo = function(){
 				sup--;
 			}
 		}
-
+console.log(result);
 		//Aqui tengo los chars ordenados
 		return this.invertVector(result);
 	}
@@ -152,7 +154,7 @@ algorithms.Iteractivo = function(){
 		var cruces = 0;
 
 		var arr2 = this.calcInitialPosition(numChars, chars);
-
+console.log(arr2);
 		//Inicializo la posición inicial
 		for(var i in arr2){
 			prevPos[i] = arr2[i];
@@ -179,7 +181,7 @@ algorithms.Iteractivo = function(){
 				cruces = 0;
 				var k =0;
 				angular.forEach(posChar, function(char){
-console.log("prevPos[char]: "+prevPos[char]);	
+//console.log("prevPos[char]: "+prevPos[char]);	
 					if(scene.charVisible(char)){
 					
 						//Está en la escena
@@ -196,7 +198,7 @@ console.log("prevPos[char]: "+prevPos[char]);
 
 				if(cruces < minCruces)
 				{
-					minCruces = cruces;
+					minCruces = cruces; 
 					bestPos = j;
 				}
 //console.log("cruces: "+cruces);				
@@ -246,7 +248,7 @@ console.log("prevPos[char]: "+prevPos[char]);
 				{
 					newPos[enEscena[iEnEscena]] = i;
 					cruces = cruces + Math.abs(prevPos[enEscena[iEnEscena]]-i)*Math.abs(prevPos[enEscena[iEnEscena]]-i);
-console.log(cruces);					
+//console.log(cruces);					
 					iEnEscena++;
 				}
 			}
