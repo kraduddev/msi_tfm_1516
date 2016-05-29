@@ -8,14 +8,6 @@
         <char color="0x868A08" name="ANNOUNCER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
         <char color="0xF7FE2E" name="FIGHTER #1" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
         <char color="0x5FB404" name="FIGHTER #2" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
-        <!-- He añadido varios personajes para completar con aquellos que salen en las 10 primeras escenas-->
-        <char color="0x000000" name="FIGHTER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
-        <char color="0x000000" name="PROMOTER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
-        <char color="0x000000" name="WOMAN" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
-        <char color="0x000000" name="MAFIA #1" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
-        <char color="0x000000" name="FATS" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
-        <char color="0x000000" name="GAZZO" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
-        <char color="0x000000" name="ADRIAN" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
 
     </chars>
     <vis height="1100" width="2600">

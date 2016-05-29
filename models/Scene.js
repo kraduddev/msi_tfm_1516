@@ -58,6 +58,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	this.addChar = function (num, color, charName, visible){
 		if (visible == true){
 			_chars[num] = new models.CharPoint(charName, color, num);
+// console.log("num",num,"_chars[num]",_chars[num]);			
 			_numChars++;
 		}
 		else{
@@ -86,15 +87,30 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	this.calcCharPoints = function(scenePoint, positions)
 	{
 		_scenePoint = scenePoint;
-		
-		// Obtengo los personajes de la escena
+// console.log("scenePoint", scenePoint);
+// console.log("positions", positions);
+// console.log("_chars",_chars);	
+		// Obtengo los personajes de la escena		
 		angular.forEach(_chars, function(charpoint){
+// console.log("charpoint", charpoint);				
 			charpoint.y = _margenSuperior + positions[charpoint._num] * _pixelsPerChar;
+// console.log("charpoint.y",charpoint.y);
 		});
 		
 		// Obtengo los personajes de fuera de la escena
 		angular.forEach(_charsAux, function(charpointAux){
 			charpointAux.y = _margenSuperior + positions[charpointAux._num] * _pixelsPerChar;
-		});
+// console.log("charpointAux.y",charpointAux.y);			
+		});		
+	}
+
+	this.getSceneChars = function()
+	{
+		return _chars;
+	}
+	
+	this.getNoSceneChars = function()
+	{
+		return _charsAux;
 	}
 }

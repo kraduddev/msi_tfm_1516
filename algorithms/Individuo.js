@@ -1,15 +1,15 @@
 var algorithms = algorithms || {};
 
 
-algorithms.Individuo = function(){
+algorithms.Individuo = function(initCharPos, scenePos){
 	// Clase que implementa el algoritmo genético que coloca las lineas/escenas
-	this._initCharPos;
-	this._scenePos;
+	this._initCharPos = initCharPos;
+	this._scenePos = scenePos;
 
-	this.create = function (initCharPos, scenePos){
-		_initCharPos = initCharPos;
-		_scenePos = scenePos;
-	}
+	// this.create = function (initCharPos, scenePos){
+	// 	_initCharPos = initCharPos;
+	// 	_scenePos = scenePos;
+	// }
 
 	this.copy = function (ind){
 		_initCharPos = [];

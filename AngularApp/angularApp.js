@@ -50,7 +50,7 @@ myApp.controller('MainCtrl', function($scope, $window){
 						_chars[charNum].setLastScene(parseInt(escena._step));
 					}				
 				});
-			}
+			}		
 		});
 
 		if (debug){
@@ -148,12 +148,24 @@ myApp.controller('MainCtrl', function($scope, $window){
 			var listChars = new Array();
 
 			//Obtengo la lista de personajes que aparecen en esta escena
-			angular.forEach(escena.pointGroup.charPoint, function(c){
-				listChars[c._char] = true;
-			});
+			//sólo tengo un personaje en la escena
+			if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length == null){
+				listChars[escena.pointGroup.charPoint._char] = true;
+			}
+
+			// tengo varios personajes en la escena
+			if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length != null){
+				angular.forEach(escena.pointGroup.charPoint, function(c){
+					listChars[c._char] = true;
+				});
+			}
+
+// console.log(scene.getNumEscena());
+// console.log(listChars);			
 
 			angular.forEach(_chars, function(c){
-				if (!listChars[c.getName()]){
+// console.log(scene.getNumEscena()+" "+listChars[c.getName()]);			
+				if (listChars[c.getName()]){
 					scene.addChar(c.getNumber(), c.getColor(), c.getName(), true);
 				}
 				else{
@@ -167,6 +179,8 @@ myApp.controller('MainCtrl', function($scope, $window){
 			_scenes.push(scene);
 			width = width + scene.getSize();
 			_numEscenas++;
+
+// console.log(scene.getNumEscena()+") "+scene.getNumVisibleChar());				
 
 		});
 
@@ -219,8 +233,10 @@ myApp.controller('MainCtrl', function($scope, $window){
 	};
 
 	var calcPointScenes = function(scenePoints, positions){
-		//Calculo los puntos de la primera escena
-		for(var i=0; i< scenes.length; i++){
+		//Calculo los puntos de la primera escena	
+// console.log(scenePoints, positions);
+		for(var i=0; i< _scenes.length; i++){
+// console.log("_scenes[i].getSceneChars()",_scenes[i].getSceneChars());
 			_scenes[i].calcCharPoints(scenePoints[i], positions[i]);
 		}
 	}
@@ -231,9 +247,9 @@ myApp.controller('MainCtrl', function($scope, $window){
 		_algoritmo.setOption(1);
 
 		var individuo = _algoritmo.calcIndividuo(_chars.length, _scenes, _chars);
-
+// console.log(individuo);
 		//Realizo el cálculo inicial de posiciones
-		// calcPointScenes(individuo._scenePos, _algoritmo.calcPositions(individuo._initCharPos, individuo._scenePos, _scenes));
+		calcPointScenes(individuo._scenePos, _algoritmo.calcPositions(individuo._initCharPos, individuo._scenePos, _scenes));
 	};
 
 

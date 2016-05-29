@@ -19,32 +19,41 @@ algorithms.Iteractivo = function(){
 			charArray[i] = chars[i].getNumber();
 			valueArray[i] = chars[i].getNumScenes();
 		}
-
-		for (var i=0; i<numChars; i++){
+// console.log(numChars); 
+// console.log(charArray); 
+		for (var i=1; i<numChars; i++){
 			valueToInsert = valueArray[i];
 			valueToInsert2 = charArray[i];
-			holePos = 1;
-//console.log(valueArray[i]);
-console.log(charArray[i]);
+			holePos = i;
+
+// console.log("charArray["+i+"]: "+ charArray[i]);
+// console.log("valueToInsert2: "+ valueToInsert2);
+
+// console.log(i+") holePos("+holePos+"), valueToInsert("+valueToInsert+"), valueArray[holePos-1]("+valueArray[holePos-1]+"), charArray[holePos-1]("+charArray[holePos-1]+")");
+
 			while(holePos > 0 && valueToInsert > valueArray[holePos -1]){
 				valueArray[holePos] = valueArray[holePos-1];
 				charArray[holePos] = charArray[holePos-1];
-				holePos = holePos - 1;
-			}
 
+// console.log("Dentro del while "+i+") holePos("+holePos+"), valueToInsert("+valueToInsert+"), valueArray[holePos-1]("+valueArray[holePos-1]+"), charArray[holePos-1]("+charArray[holePos-1]+")");					
+				holePos = holePos - 1;			
+			}
 			valueArray[holePos] = valueToInsert;
 			charArray[holePos] = valueToInsert2;
+// console.log("charArray["+i+"]: "+ charArray[i]);
+// console.log("valueArray["+i+"]: "+ valueArray[i]);			
 		}
 
 		// Obtengo el punto medio inicial
 		mid = numChars%2 == 0 ? numChars/2-1 : numChars/2;
 		inf = mid+1;
 		sup = mid-1;
-
+// console.log("mid("+mid+"), inf("+inf+"), sup("+sup+")");
 		//Primer personaje
 		result[mid] = charArray[0];
+// console.log("result[mid]: "+result[mid]);		
 		//Resto de personajes
-		for(var i=0; i<numChars;i++){
+		for(var i=1; i<numChars;i++){
 			if(i%2!=0){
 				//Parte inferior
 				result[inf] = charArray[i];
@@ -56,7 +65,8 @@ console.log(charArray[i]);
 				sup--;
 			}
 		}
-console.log(result);
+// console.log(result);
+// console.log(this.invertVector(result));
 		//Aqui tengo los chars ordenados
 		return this.invertVector(result);
 	}
@@ -65,75 +75,93 @@ console.log(result);
 		var result = new Array(); 
 
 		for (var i in v){
-			result[v[i]] = i; 
+			result[v[i]] = parseInt(i); 
 		}
 		return result;
 	}
 
 	this.calcPositions = function (initCharPos, scenePos, scenes){
-		var positions = [];
+		
+ // console.log(initCharPos,scenePos,scenes);
+
+		var positions = new Array(scenePos.length);
 		var prevPos = initCharPos;
-		var numChars;
-
-		var posChar = [];
-		var enEscena = [];
-		var noEscena = [];
-		var scenePos_;
-		var newPos = [];
-
-		var charsObtained = 0;
-
-		var iNoEscena = 0;
-		var iEnEscena = 0;
-
-		for(var k=0; scenePos.length; k++){
+		var numChars;				
+		
+// console.log("positions.length",positions.length);
+		for(var k=0; k< scenePos.length; k++){
 			//Calculo la posición de cada escena
 			numChars = scenes[k].getNumVisibleChar();
-			scenePos_ = scenePos[k];
-
+			var posChar = new Array(prevPos.length);
+			var enEscena = new Array(numChars);
+			var noEscena = new Array(prevPos.length - numChars);		
+			var newPos = new Array(prevPos.length);			
+			var scenePos_ = scenePos[k];
+// console.log(k,prevPos);
 			//Creo el vector para traducir posiciones a personajes
-			for (i=0; i<prevPos.length; i++){
-				posChar[prevPos[i]] = i;
+			// for (i=0; i<prevPos.length; i++){
+			// 	posChar[prevPos[i]] = i;
+			// 	// posChar[5] contiene el personaje que está en la pos 5
+			// }
+			for (i in prevPos){
+				posChar[prevPos[i]] = parseInt(i);
 				// posChar[5] contiene el personaje que está en la pos 5
 			}
 
-			//Busco los visibles ordenadamente
-			while (charsObtained < numChars.length){
+			var charsObtained = 0;
+
+// console.log("prevPos", prevPos);
+// console.log("posChar", posChar);
+			//Busco los visibles ordenadamente	
+			var i=0;
+			while (charsObtained < enEscena.length){			
 				if(scenes[k].charVisible(posChar[i])){
 					//Estamos ante un personaje de la escena
-					enEscena[charsObtained] = posChar[i];
+					enEscena[charsObtained] = parseInt(posChar[i]);
 					charsObtained++;
+ // console.log(scenes[k].getNumEscena(), posChar[i],scenes[k].charVisible(posChar[i]));						
 				}
-				i++;
+				 i++;
 			}
 
 			charsObtained = 0;
+			i=0;
 			while(charsObtained < (prevPos.length - numChars)){
 				if(!scenes[k].charVisible(posChar[i])){
 					//Estamos ante un personaje de fuera de la escena
-					noEscena[charsObtained] = posChar[i];
+					noEscena[charsObtained] = parseInt(posChar[i]);
 					charsObtained++;
 				}
 				i++;
 			}
 
 			//Creo un array con los personajes ordenados
-			for (var i=0; i<prevPos.length; i++){
-				if(i<scenePos_ || i>=scenePos_+numChars){
-					newPos[noEscena[iEnEscena]] = i;
+			var iNoEscena = 0;
+			var iEnEscena = 0;
+
+// console.log("scenePos_", scenePos_);	
+// console.log("prevPos.length",prevPos.length);
+			for (var i=0; i<prevPos.length; i++){				
+// console.log("i",i,"scenePos_",scenePos_,"numChars",numChars);				
+				if(i<scenePos_ || i>=scenePos_+numChars){									
+					newPos[noEscena[iNoEscena]] = parseInt(i);			
 					iNoEscena++;
 				}
 				else{
-					newPos[enEscena[iEnEscena]] = i;
+					newPos[enEscena[iEnEscena]] = parseInt(i);				
 					iEnEscena++;
 				}
 			}
+// console.log("enEscena", enEscena);
+// console.log("noEscena", noEscena);
+// console.log("newPos", newPos);			
 
 			prevPos = newPos;
 			positions[k] = newPos;
+// console.log("k",k,"positions[k]",positions[k]);			
 
 		}
-
+// console.log(positions);
 		return positions;
 	}
 
@@ -145,39 +173,46 @@ console.log(result);
 
 		var bestPos;
 		var numCharsScene;
-		var positions = [];
-		var prevPos = [];
+		var positions = new Array();
+		var prevPos = new Array(numChars);
 
-		var newPos = [];
-		var posChar = [];
+		var newPos = new Array(numChars);
+		var posChar = new Array(numChars);
 		var minCruces;
 		var cruces = 0;
+		var arr2 = [];
 
-		var arr2 = this.calcInitialPosition(numChars, chars);
-console.log(arr2);
+		arr2 = this.calcInitialPosition(numChars, chars);
+ // console.log(arr2);
+ 
 		//Inicializo la posición inicial
-		for(var i in arr2){
+		for(i=0; i<numChars;i++){			
 			prevPos[i] = arr2[i];
 		}
 
-		var prevScene = scenes[0];
-		angular.forEach(scenes, function(scene){
+// console.log(arr2);
+ // console.log(prevPos);		
+
+		var prevScene = scenes[0];	
+		angular.forEach(scenes, function(scene, index){
+// console.log(scene.getNumVisibleChar());				
 			//Calculo el nº de personajes en la elipse, para posicionarla correctamente
 			numCharsScene = scene.getNumVisibleChar(); 
+// console.log(numCharsScene);			
 			bestPos = Math.round(Math.random()*(numChars - numCharsScene));
-			minCruces = MAX_VALUE;
+			minCruces = MAX_VALUE;	
 
 			//Obtengo la ordenación de los personajes
-//console.log(prevPos);	
-			var i = 0;
-			for(var j in prevPos){				
-				posChar[prevPos[j]] = i;
-				i++; 
-//console.log(prevPos[j]); console.log(j);console.log("------")
+// console.log(prevPos);	
+			for(var j=0; j<prevPos.length; j++){		
+// console.log(index+", "+j+", "+prevPos.length+" -> "+prevPos[j]);					
+				posChar[prevPos[j]] = j;
+// console.log(j+", "+prevPos[j]+", "+posChar[prevPos[j]]);
 			}
-//console.log(prevPos);
+// console.log(posChar);			
+// console.log(prevPos);
 			//Calculo los cruces con cada posibilidad
-			for(j=0;j<numChars - numCharsScene; j++){
+			for(var j=0;j<(numChars - numCharsScene); j++){
 				cruces = 0;
 				var k =0;
 				angular.forEach(posChar, function(char){
@@ -205,12 +240,14 @@ console.log(arr2);
 			}
 
 			// Calcular las nuevas posiciones
-			var enEscena = [];
-			var noEscena = [];
+			var enEscena = new Array(numCharsScene);
+			var noEscena = new Array(numChars - numCharsScene);
 			
 			// Busco los de la escena ordenadamente
 			var charsObtained = 0;
-			while(charsObtained < numCharsScene.length)
+			var i = 0;
+// console.log("charsObtained:"+charsObtained+", numCharsScene:"+numCharsScene)			
+			while(charsObtained < numCharsScene)
 			{
 				if(scene.charVisible(posChar[i]))
 				{ // Estamos ante un personaje visible
@@ -252,18 +289,16 @@ console.log(arr2);
 					iEnEscena++;
 				}
 			}
-			
+// console.log(prevPos);			
 			prevPos = newPos; 
 			positions.push(bestPos);
 			prevScene = scene;		
 		
 		});
 
-		var individuo = new algorithms.Individuo(); 
+		var individuo = new algorithms.Individuo(arr2, positions); 
 // console.log(arr2);
 // console.log(positions);
-		individuo.create(arr2, positions);
-
 		return individuo;
 	}
 }
