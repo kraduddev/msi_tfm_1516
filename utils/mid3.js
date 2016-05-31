@@ -209,7 +209,7 @@ function PersonajeColor (nombre, color){
 
 
 ////////////////////////////////////////////////////////////////////////
-	
+console.log("oPersonajesEscenas", oPersonajeEscenas);	
 	x.domain(dimensions=d3.keys(oPersonajeEscenas[0]).filter(function(d){
 		return d!="personaje"&&d!="color"&&d!="numEscenas"&&(y[d] = d3.scale.linear()
 			//.domain(d3.extent(oPersonajeEscenas, function(p){ return +p[d];}))

@@ -320,6 +320,8 @@ myApp.controller('MainCtrl', function($scope, $window){
 
 		calcRepresentation();
 
+		drawRepresentation();
+
 		$scope.$apply();
 			
     });	
