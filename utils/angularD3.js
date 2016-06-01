@@ -2,7 +2,7 @@
 var drawRepresentation = function(){
 
 var margin = {top:30, right:10, bottom:10, left:10},
-	width = 2600 - margin.left - margin.right,
+	width = 800 - margin.left - margin.right,
 	height = 600 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
@@ -15,22 +15,34 @@ var line = d3.svg.line(),
 	background,
 	foreground;
 
-var svg = d3.select("body").append("svg")
+var root =  d3.select("#viz").append("svg:svg").style("position", "absolute")
+                .attr("width", 800)
+                .attr("height", height+100)
+
+var svg = root
+                .append("svg:g")
+                .attr("transform", "translate("+margin.left+", "+margin.top+")");
+/*
+d3.select("body").append("svg")
 	.attr({
 		width: width+margin.left+margin.right,
 		height: height + margin.top + margin.bottom
 	})
 	.append('g')
-	.attr('transform', 'translate('+margin.left+','+margin.top+')');
+	.attr('transform', 'translate('+margin.left+','+margin.top+')');*/
 
 
 console.log(_chars);
 console.log(_scenes);
 
-svg.selectAll("circle").data(_scenes).enter().append("circle")
-	.attr('cx', function(d,i){return d.getNumEscena()*10;})
-	.attr('cy', function(d,i){return 1;})
-	.attr('r', 2.5);
+/*svg.selectAll("circle").data(_scenes).enter().append("circle")
+	.attr('cx', function(d,i){d.display(); return d.getNextX();})
+	.attr('cy', function(d,i){return d.y;})
+	.attr('r', 10);*/
+
+var scenes = root.append("g").attr("class", "scenes");
+
+
 
 // 	// Personajes
 // 	var personajes = d3.select(_chars).selectAll("models.Character")[0];
