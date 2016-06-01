@@ -29,6 +29,18 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	// Tamaño del texto de la escena
 	var _sceneLength = sceneLength;
 
+	var _pixelsPerChar = 16;
+	var _rectMargin = 10;
+	var _anchoRect = 7;//8;
+	var _pointSize = 2;
+
+	// TODO: Cambiar el punto del scenePoint por el apropiado
+	var _scenePoint = 20;
+
+	var _circleColor = 0x252525;
+	var _ellipseColor = 0x969696;
+	var _rectColor = 0xCCCCCC;
+
 	this.getNumVisibleChar = function(){
 		return _numChars;
 	}
@@ -112,5 +124,141 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	this.getNoSceneChars = function()
 	{
 		return _charsAux;
+	}
+
+	this.display = function()
+	{
+		y=0;
+		x = _numEscena==1? _margenDerecho : _scenes[_numEscena-2].getNextX();
+		//_margenDerecho + (_numEscena-1)*_hSize;
+		
+		/*if(_actDivision)
+		{
+			if(this._startingPag<=30 && this._scenes[this.numEscena]._startingPag>30 || this._startingPag>=30 && this._startingPag<31){
+				showShadow();
+			}
+			
+			if(this._startingPag<=60 && this._scenes[this.numEscena]._startingPag>60 || this._startingPag>=60 && this._startingPag<61){
+				showShadow();
+			}
+			
+			
+			if(this._startingPag<=90 && this._scenes[this.numEscena]._startingPag>90 || this._startingPag>=90 && this._startingPag<91){
+				showShadow();
+			}
+		}
+		
+		
+		if(_showVlines)
+		{
+			vlinesDisplay();
+		}
+		*/
+		ellipseDisplay();
+		/*
+		if(_showSceneNumbers)
+		{
+			showSceneNumber();
+		}
+		else
+		{
+			label.visible = false;
+		}*/
+	}
+
+	var ellipseDisplay = function()
+	{
+		if(_numChars > 0)
+		{
+			// Calculo alto rectangulo a partir de los chars
+			//var altoRect:int = _numChars * _pixelsPerChar;
+			var altoElipse = _numChars * _pixelsPerChar + _rectMargin;
+			
+			var xRect = (_hSize/2)-(_anchoRect/2);
+			var yRect = (_scenePoint + _sceneMovement) *_pixelsPerChar - _pixelsPerChar/2 + _margenSuperior;
+			
+			// Dibujar elipse
+d3.selectAll(".scenes")
+    	.data(_scenes)
+		.append("ellipse")
+              			.attr("cx", _ellipseMargin)
+			          	.attr("cy", yRect - _rectMargin/2 )
+			         	.attr("rx", _hSize-_ellipseMargin*2)
+			         	.attr("ry", altoElipse);
+
+/*
+			_ellipse.graphics.clear();
+			_ellipse.graphics.lineStyle();
+			_ellipse.graphics.beginFill(_ellipseColor);
+			
+			_ellipse.graphics.drawEllipse(_ellipseMargin,yRect - _rectMargin/2 ,_hSize-_ellipseMargin*2, altoElipse);
+			// Dibujar el cuadrado interior
+			_ellipse.graphics.beginFill(_rectColor);
+			_ellipse.graphics.drawRect(xRect, yRect-_rectAddedY/2, _anchoRect, _altoRect);
+*/
+
+/*			
+			if(_ellipseClicked)
+			{
+				_sceneNameText.visible = true;
+				_sceneNameText.y = (_scenePoint + _sceneMovement)*_pixelsPerChar - _pixelsPerChar/2 + _margenSuperior - _sceneNameText.height/2 - _rectAddedY/4 ;
+				if (_sceneNameText.width > 110)
+				{
+					_sceneNameText.width = 110;
+				}
+				_sceneNameText.x = xRect + 10;
+				_house.x = _anchoRectSize - 25;
+				_house.y = _sceneNameText.y - 5;
+				_sun.x = _anchoRectSize - 27;
+				_sun.y = _sceneNameText.y - 7;
+			}
+			else
+			{
+				_sceneNameText.visible = false;
+			}
+*/
+
+/*
+			// Dibutar puntos de personajes
+			var i = 0;
+			if(_ellipseClicked)
+			{
+				for each(var char:CharPoint in _chars)
+				{
+					if(_colorCircle)
+					{
+						_ellipse.graphics.beginFill(_layoutPadre.chars[char._num].getColor());
+					}
+					else
+					{
+						_ellipse.graphics.beginFill(_circleColor);	
+					}
+					_ellipse.graphics.drawCircle(xRect + 20, char.y , _pointSize);
+					_charNames[i].y = char.y - 5;
+					_charNames[i].x = xRect + 20 + 10;
+					_charNames[i].text = char._name;
+					_charNames[i].visible = true;
+					i++;
+				}
+			}
+			else
+			{
+				for each(char in _chars)
+				{
+					if(_colorCircle)
+					{
+						_ellipse.graphics.beginFill(_layoutPadre.chars[char._num].getColor());
+					}
+					else
+					{
+						_ellipse.graphics.beginFill(_circleColor);	
+					}
+					_ellipse.graphics.drawCircle(xRect + _anchoRect/2, char.y , _pointSize);
+					_charNames[i].visible = false;
+					i++;
+				}
+			}
+*/			
+		}
 	}
 }
