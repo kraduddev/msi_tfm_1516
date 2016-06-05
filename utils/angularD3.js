@@ -1,27 +1,147 @@
-
-var drawRepresentation = function(){
+var marginSurface = {};
+var widthSurface = 0;
+var heightSurface = 0;
 
 var margin = {top:30, right:10, bottom:10, left:10},
 	width = 800 - margin.left - margin.right,
 	height = 600 - margin.top - margin.bottom;
 
-var x = d3.scale.ordinal()
+var xD3 = d3.scale.ordinal()
 	.rangePoints([0, width], 1),
-	y={},
+	yD3={},
 	dragging = {};
 
-var line = d3.svg.line(),
+var line = d3.svg.line().interpolate("cardinal"),
 	axis = d3.svg.axis().orient("left"),
 	background,
 	foreground;
+ 
+ var svg;
+ var dimensions = [];
 
-var root =  d3.select("#viz").append("svg:svg").style("position", "absolute")
-                .attr("width", 800)
-                .attr("height", height+100)
 
-var svg = root
-                .append("svg:g")
-                .attr("transform", "translate("+margin.left+", "+margin.top+")");
+var drawRepresentation = function(){
+
+	marginSurface = {
+			            top: 30,
+			            right: 10,
+			            bottom: 10,
+			            left: 10
+		        	};
+    widthSurface = 800 - marginSurface.left - marginSurface.right,
+    heightSurface = 400 - marginSurface.top - margin.bottom;
+
+    svg = d3.select("#parallelcoordinates")
+            .append("svg")
+            .attr("width", widthSurface + marginSurface.right + marginSurface.left)
+            .attr("height", heightSurface + marginSurface.top + marginSurface.bottom)
+            .attr("class", "parallelCoordinates")
+            .append("g")
+            .attr("transform", "translate(" + marginSurface.left + "," + marginSurface.top + ")");
+ 
+	
+	angular.forEach(_scenes, function(escena){
+		dimensions.push(escena.getNumEscena());
+	});
+	//Se extrae dimensión y se crea una escala
+	//xD3.domain([0,800]);
+
+	xD3.domain(dimensions.filter(function(d){
+		return (yD3[d]= d3.scale.linear()
+			.domain([0,1])
+			.range([heightSurface,0]));
+	}));
+//console.log(yD3[0](1))
+// Se añaden las lineas azules en el foco
+	foreground = svg.append("g")
+		.attr('class', 'foreground')
+		.selectAll("path")
+		.data(_chars)
+		.enter().append('path')
+		.attr('d', path)
+		.attr("style", function(d) { return "stroke:" + d.getColor() +""; })
+		.attr("stroke-width", function(d) { return d.getNumScenes()+"px"; })
+		.append("svg:title")
+   .text(function(d) { return d.getName(); });
+
+	// Añado las dimensiones (escenas)
+	var g = svg.selectAll(".escena")
+                .data(dimensions)
+                .enter().append("g")
+                .attr("class", "escena")
+                .attr("transform", function(d) {
+                    return "translate(" + xD3(d) + ")";
+                })
+                .call(d3.behavior.drag()
+                  /*  .on("dragstart", function(d) {
+                        dragging[d] = this.__origin__ = xD3(d);
+                        background.attr("visibility", "hidden");
+                    })
+                    .on("drag", function(d) {
+                        dragging[d] = Math.min(width, Math.max(0, this.__origin__ += d3.event.dx));
+                        foreground.attr("d", path);
+                        dimensions.sort(function(a, b) {
+                            return position(a) - position(b);
+                        });
+                        x.domain(dimensions);
+                        g.attr("transform", function(d) {
+                            return "translate(" + position(d) + ")";
+                        })
+                    })
+                    .on("dragend", function(d) {
+                        delete this.__origin__;
+                        delete dragging[d];
+                        transition(d3.select(this)).attr("transform", "translate(" + xD(d) + ")");
+                        transition(foreground)
+                            .attr("d", path);
+                        background
+                            .attr("d", path)
+                            .transition()
+                            .delay(500)
+                            .duration(0)
+                            .attr("visibility", null);
+                    })*/
+                    );
+	g.append("g")
+                .attr("class", "axis")
+                .each(function(d) {
+                    d3.select(this).call(axis.scale(yD3[d]));
+                })
+                .append("text")
+                .attr("text-anchor", "middle")
+                .attr("y", -9)
+                .text(function(d){ return "Escena "+(parseInt(d));});
+
+ 
+          /*  g.append("g")
+                .attr("class", "brush")
+                .each(function(d) {
+                    d3.select(this).call(yD3[d].brush = d3.svg.brush().y(yD3[d]).on("brush", brush));
+                })
+                .selectAll("rect")
+                .attr("x", -8)
+                .attr("width", 16);*/
+
+		   svg.selectAll("ellipse").data(_scenes).enter().append("ellipse")
+		    .style("stroke", "gray")
+	        .style("fill", "white")
+			.attr('cx', function(d,i){d.display(); return (d.getNextX()*2)-150;})
+			.attr('cy', function(d,i){return (Math.random()*200)+50;})
+			.attr('rx', 10)
+			.attr('ry', 20)
+			.on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
+	        .on("mouseout", function(){d3.select(this).style("fill", "white");});
+
+/*
+.attr("r", _anchoEllipse)
+        .attr("cx", x*2)
+        .attr("cy", function(){return (Math.random()*_hSize)+100})
+        .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
+        .on("mouseout", function(){d3.select(this).style("fill", "white");});
+*/        
+
+
+
 /*
 d3.select("body").append("svg")
 	.attr({
@@ -30,17 +150,39 @@ d3.select("body").append("svg")
 	})
 	.append('g')
 	.attr('transform', 'translate('+margin.left+','+margin.top+')');*/
+/*
+angular.forEach(_scenes, function(escena){
+	escena.display();
+	console.log("escena",escena.getNumEscena(), "x", escena.getNextX(), "size", escena.getSize(), "personajes", escena.getSceneChars());
+});*/
+/*
+var svg = d3.select("body").append('svg')
+							.attr('width', width)
+							.attr('height', height);
 
+var circle = svg.selectAll('circle')
+				.data(_scenes)
+				.enter()
+				.append('circle');
 
-console.log(_chars);
-console.log(_scenes);
+circle
+    .attr('cx', function(d){
+    	d.display();
+    	return d.getNextX();
+    })
+    .attr('cy', function(d){
+    	d.display();
+    	return d.getSize();
+    })
+    .attr('r', 10)
+    .style('fill', '#fea');*/
+
 
 /*svg.selectAll("circle").data(_scenes).enter().append("circle")
 	.attr('cx', function(d,i){d.display(); return d.getNextX();})
 	.attr('cy', function(d,i){return d.y;})
 	.attr('r', 10);*/
 
-var scenes = root.append("g").attr("class", "scenes");
 
 
 
@@ -222,7 +364,7 @@ var scenes = root.append("g").attr("class", "scenes");
 // //	console.log(oPersonajeEscenas);
 
 // ////////////////////////////////////////////////////////////////////////
-	
+/* PRUEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	
 	x.domain(dimensions=d3.keys(_scenes.length).filter(function(d){
 		return (y[d.getNumEscena()] = d3.scale.linear()
 			//.domain(d3.extent(oPersonajeEscenas, function(p){ return +p[d];}))
@@ -251,7 +393,7 @@ var scenes = root.append("g").attr("class", "scenes");
 		.append("svg:title")
    .text(function(d) { return d.personaje; });
    
-
+*/
 
 // 	// Se añade un grupo de elementos por cada dimensión
 // 	var g=svg.selectAll(".dimension")

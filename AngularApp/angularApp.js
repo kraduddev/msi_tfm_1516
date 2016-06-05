@@ -252,7 +252,6 @@ myApp.controller('MainCtrl', function($scope, $window){
 		calcPointScenes(individuo._scenePos, _algoritmo.calcPositions(individuo._initCharPos, individuo._scenePos, _scenes));
 	};
 
-
 	$scope.personajes = [];
 	$scope.escenas = [];
 	var x2js = new X2JS(); //objeto para convertir XML a JSON

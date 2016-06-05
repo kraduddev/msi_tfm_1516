@@ -21,3 +21,4 @@ var _sceneMaxLength = MIN_VALUE;
 var numPagsScript = 1;
 var _pixelsPerChar = 16;
 var _algoritmo;
+

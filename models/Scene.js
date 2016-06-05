@@ -41,6 +41,8 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	var _ellipseColor = 0x969696;
 	var _rectColor = 0xCCCCCC;
 
+	var _sceneMovement = 0;
+
 	this.getNumVisibleChar = function(){
 		return _numChars;
 	}
@@ -126,6 +128,12 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		return _charsAux;
 	}
 
+	this.getXValue = function()
+	{
+		return getNextX() - _hSize/2; //_margenDerecho + (_numEscena-1)*_hSize + _hSize/2;
+	}
+		
+
 	this.display = function()
 	{
 		y=0;
@@ -177,14 +185,35 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			var xRect = (_hSize/2)-(_anchoRect/2);
 			var yRect = (_scenePoint + _sceneMovement) *_pixelsPerChar - _pixelsPerChar/2 + _margenSuperior;
 			
-			// Dibujar elipse
-d3.selectAll(".scenes")
-    	.data(_scenes)
-		.append("ellipse")
+
+
+/*
+var g = svg.selectAll(".trait")
+      .data(traits)
+    .enter().append("svg:g")
+      .attr("class", "trait")
+      .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
+      .call(d3.behavior.drag()
+      .origin(function(d) { return {x: x(d)}; })
+      .on("dragstart", dragstart)
+      .on("drag", drag)
+      .on("dragend", dragend));
+
+*//*
+        g.append("circle")
+        .style("stroke", "gray")
+        .style("fill", "white")
+        .attr("r", _anchoEllipse)
+        .attr("cx", x*2)
+        .attr("cy", function(){return (Math.random()*_hSize)+100})
+        .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
+        .on("mouseout", function(){d3.select(this).style("fill", "white");});*/
+    	/*
+		g.append("ellipse")
               			.attr("cx", _ellipseMargin)
 			          	.attr("cy", yRect - _rectMargin/2 )
 			         	.attr("rx", _hSize-_ellipseMargin*2)
-			         	.attr("ry", altoElipse);
+			         	.attr("ry", altoElipse);*/
 
 /*
 			_ellipse.graphics.clear();

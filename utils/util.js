@@ -1,6 +1,6 @@
 function position(d){
 	var v = dragging[d];
-	return v == null ? x(d) : v;
+	return v == null ? xD3(d) : v;
 }
 
 function transition(g){
@@ -9,7 +9,11 @@ function transition(g){
 
 //Devuelve el path para un punto dado
 function path(d){
-	return line(dimensions.map(function(p){return [position(p), y[p](d[p])];}));
+	return line(dimensions.map(function(p){
+		//console.log("d",d,"p",p,"d[p]",d[p])
+		//return [position(p), yD3[p](d[p])];
+		return [position(p), (Math.random()*200)+100];
+	}));
 }
 
 function brushstart(){
@@ -18,8 +22,8 @@ function brushstart(){
 
 //Maneja un brush event, aosiciando el display a las líneas foreground
 function brush(){
-	var actives = dimensions.filter(function(p){return !y[p].brush.empty();}),
-		extents = actives.map(function(p){return y[p].brush.extent();});
+	var actives = dimensions.filter(function(p){return !yD3[p].brush.empty();}),
+		extents = actives.map(function(p){return yD3[p].brush.extent();});
 	foreground.style("display", function(d){
 		return actives.every(function(p,i){
 			return extents[i][0] <= d[p] && d[p] <= extents[i][1];
@@ -62,9 +66,10 @@ function addDetalleEscena(){
 	//d3.select("#personajes-contenido-detalle-escena").append('p').text('prueba');
 
 	d3.select("#personajes-contenido-detalle-escena").selectAll('p')
-    	.data(escenas).enter()
+    	.data(_chars).enter()
 		.append("p")
-		.text("prueba");
+		.text(function(d){return d.getName()})
+		.style("color", function(d){return d.getColor().replace("0x","#");});
 
    /* .attr("cx", 0)
     .attr("cy", function(d){ return height/2; })
