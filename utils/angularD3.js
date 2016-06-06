@@ -51,6 +51,7 @@ var drawRepresentation = function(){
 			.domain([0,1])
 			.range([heightSurface,0]));
 	}));
+console.log(yD3)
 //console.log(yD3[0](1))
 // Se añaden las lineas azules en el foco
 	foreground = svg.append("g")

@@ -161,7 +161,6 @@ myApp.controller('MainCtrl', function($scope, $window){
 			}
 
 // console.log(scene.getNumEscena());
-// console.log(listChars);			
 
 			angular.forEach(_chars, function(c){
 // console.log(scene.getNumEscena()+" "+listChars[c.getName()]);			
@@ -170,6 +169,7 @@ myApp.controller('MainCtrl', function($scope, $window){
 				}
 				else{
 					var numEscena = scene.getNumEscena();
+//console.log(c.getName(), c.getFirstScene(), c.getLastScene(), numEscena)
 					if(c.getFirstScene() <= numEscena && c.getLastScene() >= numEscena){
 						scene.addChar(c.getNumber(), c.getColor(), c.getName(), false);
 					}

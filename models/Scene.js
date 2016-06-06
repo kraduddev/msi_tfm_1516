@@ -114,7 +114,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		// Obtengo los personajes de fuera de la escena
 		angular.forEach(_charsAux, function(charpointAux){
 			charpointAux.y = _margenSuperior + positions[charpointAux._num] * _pixelsPerChar;
-// console.log("charpointAux.y",charpointAux.y);			
+ //console.log("charpointAux.y",charpointAux.y);			
 		});		
 	}
 
