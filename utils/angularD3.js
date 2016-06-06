@@ -127,9 +127,15 @@ console.log(yD3)
 		    .style("stroke", "gray")
 	        .style("fill", "white")
 			.attr('cx', function(d,i){d.display(); return (d.getNextX()*2)-150;})
-			.attr('cy', function(d,i){return (Math.random()*200)+50;})
+			//.attr('cy', function(d,i){return (Math.random()*200)+50;})
+			.attr('cy', function(d){ 
+				var chars = d.getSceneChars(); 
+				var yEscena = 70;
+				var primerElemento = Object.keys(chars)[0];
+				return primerElemento == null ? yEscena : yEscena+chars[primerElemento].y;
+			})			
 			.attr('rx', 10)
-			.attr('ry', 20)
+			.attr('ry', 50)
 			.on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
 	        .on("mouseout", function(){d3.select(this).style("fill", "white");});
 
