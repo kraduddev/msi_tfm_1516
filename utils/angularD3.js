@@ -51,7 +51,6 @@ var drawRepresentation = function(){
 			.domain([0,1])
 			.range([heightSurface,0]));
 	}));
-console.log(yD3)
 //console.log(yD3[0](1))
 // Se añaden las lineas azules en el foco
 	foreground = svg.append("g")
@@ -123,21 +122,46 @@ console.log(yD3)
                 .attr("x", -8)
                 .attr("width", 16);*/
 
-		   svg.selectAll("ellipse").data(_scenes).enter().append("ellipse")
-		    .style("stroke", "gray")
-	        .style("fill", "white")
-			.attr('cx', function(d,i){d.display(); return (d.getNextX()*2)-150;})
-			//.attr('cy', function(d,i){return (Math.random()*200)+50;})
-			.attr('cy', function(d){ 
-				var chars = d.getSceneChars(); 
-				var yEscena = 70;
-				var primerElemento = Object.keys(chars)[0];
-				return primerElemento == null ? yEscena : yEscena+chars[primerElemento].y;
-			})			
-			.attr('rx', 10)
-			.attr('ry', 50)
-			.on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
-	        .on("mouseout", function(){d3.select(this).style("fill", "white");});
+
+    angular.forEach(_scenes, function(scene){
+    	scene.pintar(g);
+    }) 
+		
+		// .style("stroke", "gray")
+	 //        .style("fill", "white")
+		// 	.attr('cx', function(data,i){data.display(); return (data.getNextX()*2)-150;})
+		// 	//.attr('cy', function(d,i){return (Math.random()*200)+50;})
+		// 	.attr('cy', function(d){ 
+		// 		var chars = d.getSceneChars(); 
+		// 		var yEscena = 70;
+		// 		var primerElemento = Object.keys(chars)[0];
+		// 		return primerElemento == null ? yEscena : yEscena+chars[primerElemento].y;
+		// 	})			
+		// 	.attr('rx', 10)
+		// 	.attr('ry', 50)
+		// 	.on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
+	 //        .on("mouseout", function(){d3.select(this).style("fill", "white");});
+
+
+
+		   // svg.selectAll("ellipse").data(_scenes).enter().append("ellipse")
+		 //    .style("stroke", "gray")
+	  //       .style("fill", "white")
+			// .attr('cx', function(d,i){d.display(); return (d.getNextX()*2)-150;})
+			// //.attr('cy', function(d,i){return (Math.random()*200)+50;})
+			// .attr('cy', function(d){ 
+			// 	var chars = d.getSceneChars(); 
+			// 	var yEscena = 70;
+			// 	var primerElemento = Object.keys(chars)[0];
+			// 	return primerElemento == null ? yEscena : yEscena+chars[primerElemento].y;
+			// })			
+			// .attr('rx', 10)
+			// .attr('ry', 50)
+			// .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
+	  //       .on("mouseout", function(){d3.select(this).style("fill", "white");});
+
+
+
 
 /*
 .attr("r", _anchoEllipse)

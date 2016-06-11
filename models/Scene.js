@@ -132,7 +132,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	{
 		return getNextX() - _hSize/2; //_margenDerecho + (_numEscena-1)*_hSize + _hSize/2;
 	}
-		
+
 
 	this.display = function()
 	{
@@ -172,6 +172,44 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		{
 			label.visible = false;
 		}*/
+	}
+
+	this.pintar = function(g){
+		y=0;
+		x = _numEscena==1? _margenDerecho : _scenes[_numEscena-2].getNextX();
+
+		pintarEscena(g);
+	}
+
+	var pintarEscena = function(g){
+		if(_numChars > 0)
+		{
+			// Calculo alto rectangulo a partir de los chars
+			//var altoRect:int = _numChars * _pixelsPerChar;
+			var altoElipse = _numChars * _pixelsPerChar + _rectMargin;
+			
+			var xRect = (_hSize/2)-(_anchoRect/2);
+			var yRect = (_scenePoint + _sceneMovement) *_pixelsPerChar - _pixelsPerChar/2 + _margenSuperior;
+
+			g.filter(function(d){
+				return d == _numEscena;
+			})
+			.append("ellipse")
+			.style("stroke", "gray")
+	        .style("fill", "white")
+			.attr('cx', x)
+			//.attr('cy', function(d,i){return (Math.random()*200)+50;})
+			.attr('cy', function(){ 
+				var chars = _scenes[_numEscena-1].getSceneChars(); 
+				var yEscena = 70;
+				var primerElemento = Object.keys(chars)[0];
+				return primerElemento == null ? yEscena : yEscena+chars[primerElemento].y;
+			})			
+			.attr('rx', 10)
+			.attr('ry', 50)
+			.on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
+	        .on("mouseout", function(){d3.select(this).style("fill", "white");});		
+		}
 	}
 
 	var ellipseDisplay = function()
