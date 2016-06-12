@@ -73,6 +73,7 @@
             <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" TROLLEY " pin="0" principal="1" tipo="0" tipoEscena="NORMAL" urlImagen="" y="300">
                 <charPoint char="ROCKY" label="1" tpar="100" sentimiento="positivo" colorSentimiento="green"/>
                 <charPoint char="WOMAN" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="FATS" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/> <!-- XXXXXXXX-->
                 <accion descripcion=" Rocky is on the trolley heading to South Philly... The trolley is empty except for a thin old black WOMAN... The black Woman studies Rocky's bruised face... Rocky becomes self-conscious." duracion="16" infoExtraAccion="" parte="0" tiempoDescrip="8" sentimiento="negativo" colorSentimiento="red">
                     <charDialog acotacion="(almost apologetic)" char="ROCKY" tdialog="4" texto="I'm a fighter. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
                     <charDialog acotacion="(tired)" char="WOMAN" tdialog="4" texto="... Yo' iz an accident. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>

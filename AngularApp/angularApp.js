@@ -160,8 +160,6 @@ myApp.controller('MainCtrl', function($scope, $window){
 				});
 			}
 
-// console.log(scene.getNumEscena());
-
 			angular.forEach(_chars, function(c){
 // console.log(scene.getNumEscena()+" "+listChars[c.getName()]);			
 				if (listChars[c.getName()]){
@@ -169,7 +167,7 @@ myApp.controller('MainCtrl', function($scope, $window){
 				}
 				else{
 					var numEscena = scene.getNumEscena();
-//console.log(c.getName(), c.getFirstScene(), c.getLastScene(), numEscena)
+// console.log(c.getName(), c.getFirstScene(), c.getLastScene(), numEscena)
 					if(c.getFirstScene() <= numEscena && c.getLastScene() >= numEscena){
 						scene.addChar(c.getNumber(), c.getColor(), c.getName(), false);
 					}
@@ -247,7 +245,7 @@ myApp.controller('MainCtrl', function($scope, $window){
 		_algoritmo.setOption(1);
 
 		var individuo = _algoritmo.calcIndividuo(_chars.length, _scenes, _chars);
-// console.log(individuo);
+
 		//Realizo el cálculo inicial de posiciones
 		calcPointScenes(individuo._scenePos, _algoritmo.calcPositions(individuo._initCharPos, individuo._scenePos, _scenes));
 	};
@@ -303,7 +301,6 @@ myApp.controller('MainCtrl', function($scope, $window){
 		_lines = [];
 		for(var i=0; i<_chars.length; i++){
 			_lines[i] = new models.CharacterLine(_chars[i].getName(), _chars[i].getNumber());
-			// console.log(_lines[i].getName()+" "+_lines[i].getCharNumber());
 		} 
 
 		//Incluyo las escenas

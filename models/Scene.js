@@ -71,11 +71,10 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 	this.addChar = function (num, color, charName, visible){
 		if (visible == true){
-			_chars[num] = new models.CharPoint(charName, color, num);
-// console.log("num",num,"_chars[num]",_chars[num]);			
+			_chars[num] = new models.CharPoint(charName, color, num);		
 			_numChars++;
 		}
-		else{
+		else{		
 			_charsAux[num] = new models.CharPoint(charName, color, num);
 			_numCharsAux++;
 		}
@@ -101,20 +100,18 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	this.calcCharPoints = function(scenePoint, positions)
 	{
 		_scenePoint = scenePoint;
-// console.log("scenePoint", scenePoint);
-// console.log("positions", positions);
-// console.log("_chars",_chars);	
+
 		// Obtengo los personajes de la escena		
 		angular.forEach(_chars, function(charpoint){
-// console.log("charpoint", charpoint);				
+		
 			charpoint.y = _margenSuperior + positions[charpoint._num] * _pixelsPerChar;
-// console.log("charpoint.y",charpoint.y);
+
 		});
 		
 		// Obtengo los personajes de fuera de la escena
-		angular.forEach(_charsAux, function(charpointAux){
-			charpointAux.y = _margenSuperior + positions[charpointAux._num] * _pixelsPerChar;
- //console.log("charpointAux.y",charpointAux.y);			
+		angular.forEach(_charsAux, function(charpointAux){		
+			charpointAux.y = _margenSuperior + positions[charpointAux._num] * _pixelsPerChar;	
+			console.log(charpointAux)	
 		});		
 	}
 
@@ -197,18 +194,27 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			.append("ellipse")
 			.style("stroke", "gray")
 	        .style("fill", "white")
-			.attr('cx', x)
-			//.attr('cy', function(d,i){return (Math.random()*200)+50;})
-			.attr('cy', function(){ 
-				var chars = _scenes[_numEscena-1].getSceneChars(); 
-				var yEscena = 70;
-				var primerElemento = Object.keys(chars)[0];
-				return primerElemento == null ? yEscena : yEscena+chars[primerElemento].y;
-			})			
-			.attr('rx', 10)
-			.attr('ry', 50)
+			.attr('cx', -3) //x
+			// .attr('cy', function(){ 
+			// 	var chars = _scenes[_numEscena-1].getSceneChars(); 
+			// 	var yEscena = 70;
+			// 	var primerElemento = Object.keys(chars)[0];
+			// 	return primerElemento == null ? yEscena : yEscena+chars[primerElemento].y;
+			// })	
+			.attr('cy', function(){
+				return (yRect - _rectMargin)*2;
+			})		
+			.attr('rx', function(){
+				return _hSize-_ellipseMargin*2;
+			}) //10
+			.attr('ry', altoElipse) //50
 			.on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
-	        .on("mouseout", function(){d3.select(this).style("fill", "white");});		
+	        .on("mouseout", function(){d3.select(this).style("fill", "white");});	
+// _ellipse.graphics.drawEllipse(_ellipseMargin, //x
+// 	yRect - _rectMargin/2 , //y
+// 	_hSize-_ellipseMargin*2, //width
+// 	altoElipse); //height
+
 		}
 	}
 
@@ -222,36 +228,6 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			
 			var xRect = (_hSize/2)-(_anchoRect/2);
 			var yRect = (_scenePoint + _sceneMovement) *_pixelsPerChar - _pixelsPerChar/2 + _margenSuperior;
-			
-
-
-/*
-var g = svg.selectAll(".trait")
-      .data(traits)
-    .enter().append("svg:g")
-      .attr("class", "trait")
-      .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
-      .call(d3.behavior.drag()
-      .origin(function(d) { return {x: x(d)}; })
-      .on("dragstart", dragstart)
-      .on("drag", drag)
-      .on("dragend", dragend));
-
-*//*
-        g.append("circle")
-        .style("stroke", "gray")
-        .style("fill", "white")
-        .attr("r", _anchoEllipse)
-        .attr("cx", x*2)
-        .attr("cy", function(){return (Math.random()*_hSize)+100})
-        .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
-        .on("mouseout", function(){d3.select(this).style("fill", "white");});*/
-    	/*
-		g.append("ellipse")
-              			.attr("cx", _ellipseMargin)
-			          	.attr("cy", yRect - _rectMargin/2 )
-			         	.attr("rx", _hSize-_ellipseMargin*2)
-			         	.attr("ry", altoElipse);*/
 
 /*
 			_ellipse.graphics.clear();

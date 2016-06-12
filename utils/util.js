@@ -10,24 +10,28 @@ function transition(g){
 //Devuelve el path para un punto dado
 function path(d){
 	return line(dimensions.map(function(p){
-//console.log("d",d,"p",p,"d[p]",d[p])
-var chars=[];
-var charsAux=[];
-var yPersonaje = 0;
-angular.forEach(_scenes, function(escena){
-	if(p == escena.getNumEscena()){
-		chars = escena.getSceneChars();
-		charsAux = escena.getNoSceneChars();
-		angular.forEach(chars, function(char){
-			if (d.getName() == char._name){
-				yPersonaje = char.y;
+		//console.log("d",d,"p",p,"d[p]",d[p])
+		var chars=[];
+		var charsAux=[];
+		var yPersonaje = -150;
+		angular.forEach(_scenes, function(escena){
+			if(p == escena.getNumEscena()){
+				chars = escena.getSceneChars();
+				charsAux = escena.getNoSceneChars();
+				angular.forEach(chars, function(char){
+					if (d.getName() == char._name){
+						yPersonaje = char.y;
+					}
+				});
+				angular.forEach(charsAux, function(char){
+					if (d.getName() == char._name){
+						yPersonaje = char.y;
+					}
+				});
 			}
 		});
-	}
-});
-		return [position(p), yPersonaje+100];
-		//return [position(p), yD3[p](d[p])];
-		//return [position(p), (Math.random()*200)+100];
+ 		
+ 		return [position(p), yPersonaje+90]; //yPersonaje+100
 	}));
 }
 
