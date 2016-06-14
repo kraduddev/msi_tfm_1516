@@ -13,7 +13,7 @@ function path(d){
 		//console.log("d",d,"p",p,"d[p]",d[p])
 		var chars=[];
 		var charsAux=[];
-		var yPersonaje = -150;
+		var yPersonaje = -1000;
 		angular.forEach(_scenes, function(escena){
 			if(p == escena.getNumEscena()){
 				chars = escena.getSceneChars();
@@ -31,7 +31,7 @@ function path(d){
 			}
 		});
  		
- 		return [position(p), yPersonaje+90]; //yPersonaje+100
+ 		return [position(p), yPersonaje]; //yPersonaje+100
 	}));
 }
 

@@ -4,12 +4,44 @@
 		"selected_items":
 		[
 			[
-				"pero",
-				"personajesD"
+				"get",
+				"getName"
+			],
+			[
+				"pos",
+				"position"
 			],
 			[
 				"y",
-				"yAxis"
+				"yD3"
+			],
+			[
+				"getn",
+				"getNumEscena"
+			],
+			[
+				"dimensi",
+				"dimensions"
+			],
+			[
+				"_num",
+				"_numEscena"
+			],
+			[
+				"_anch",
+				"_anchoEllipse"
+			],
+			[
+				"selec",
+				"selectAll"
+			],
+			[
+				"getN",
+				"getNumEscena"
+			],
+			[
+				"pero",
+				"personajesD"
 			],
 			[
 				"yAx",
@@ -92,10 +124,42 @@
 	"buffers":
 	[
 		{
-			"file": "layout/vis.htm",
+			"file": "utils/angularD3.js",
 			"settings":
 			{
-				"buffer_size": 2882,
+				"buffer_size": 5154,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "utils/util.js",
+			"settings":
+			{
+				"buffer_size": 3079,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "models/Scene.js",
+			"settings":
+			{
+				"buffer_size": 7509,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "AngularApp/angularApp.js",
+			"settings":
+			{
+				"buffer_size": 9534,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "utils/config.js",
+			"settings":
+			{
+				"buffer_size": 459,
 				"line_ending": "Windows"
 			}
 		},
@@ -103,7 +167,7 @@
 			"file": "guion-vis.html",
 			"settings":
 			{
-				"buffer_size": 1694,
+				"buffer_size": 1908,
 				"line_ending": "Windows"
 			}
 		}
@@ -140,8 +204,13 @@
 	},
 	"file_history":
 	[
-		"/C/wamp/www/tfm_1516/AngularApp/angularApp.js",
+		"/C/wamp/www/tfm_1516/layout/vis.htm",
 		"/C/wamp/www/tfm_1516/guion-vis.html",
+		"/C/wamp/www/tfm_1516/style/style.css",
+		"/C/wamp/www/tfm_1516/utils/util.js",
+		"/C/Users/Eduardo/Downloads/iris.csv",
+		"/C/wamp/www/tfm_1516/utils/mid3.js",
+		"/C/wamp/www/tfm_1516/AngularApp/angularApp.js",
 		"/C/Users/Eduardo/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Eduardo/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/C/wamp/www/tfm_1516/xml_guiones/backup_guiones/Rocky_corregido-min.plt",
@@ -183,6 +252,34 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"_colorCircle",
+			"addChar",
+			"_charsAux",
+			"_chars",
+			"calcCharPoints",
+			"calcchar",
+			"math",
+			"line",
+			"yd3",
+			"yD3",
+			"dragging",
+			"position",
+			"fill",
+			"y",
+			"x",
+			"dimens",
+			"brus",
+			"trait",
+			"back",
+			"_anchoEllipse",
+			"dimension",
+			"ellipse",
+			"duracion",
+			"_actDivision",
+			"_startingPag",
+			"margenderech",
+			"numescen",
+			"line"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -190,6 +287,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"yD3",
+			"xD3"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -200,28 +299,108 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "layout/vis.htm",
+					"file": "utils/angularD3.js",
 					"settings":
 					{
-						"buffer_size": 2882,
+						"buffer_size": 5154,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								4415,
+								4415
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1008.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "utils/util.js",
+					"settings":
+					{
+						"buffer_size": 3079,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2291,
+								2291
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 779.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "models/Scene.js",
+					"settings":
+					{
+						"buffer_size": 7509,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5257,
+								5257
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2512.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "AngularApp/angularApp.js",
+					"settings":
+					{
+						"buffer_size": 9534,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5014,
+								5014
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -231,24 +410,51 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "guion-vis.html",
+					"buffer": 4,
+					"file": "utils/config.js",
 					"settings":
 					{
-						"buffer_size": 1694,
+						"buffer_size": 459,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								459,
+								459
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "guion-vis.html",
+					"settings":
+					{
+						"buffer_size": 1908,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								611,
+								611
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -296,7 +502,7 @@
 	},
 	"replace":
 	{
-		"height": 0.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":

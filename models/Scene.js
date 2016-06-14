@@ -114,7 +114,6 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		// Obtengo los personajes de fuera de la escena
 		angular.forEach(_charsAux, function(charpointAux){		
 			charpointAux.y = _margenSuperior + positions[charpointAux._num] * _pixelsPerChar;	
-			console.log(charpointAux)	
 		});		
 	}
 
@@ -187,7 +186,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			// Calculo alto rectangulo a partir de los chars
 			var altoRect = _numChars * _pixelsPerChar;
 			var altoElipse = _numChars * _pixelsPerChar + _rectMargin;
-console.log(altoRect);			
+		
 			var xRect = (_hSize/2)-(_anchoRect/2);
 			var yRect = (_scenePoint + _sceneMovement) *_pixelsPerChar - _pixelsPerChar/2 + _margenSuperior;
 
@@ -199,32 +198,29 @@ console.log(altoRect);
 			.append("ellipse")
 			.style("stroke", "gray")
 	        .style("fill", _ellipseColor)
-			.attr('cx', -3) //x
-			// .attr('cy', function(){ 
-			// 	var chars = _scenes[_numEscena-1].getSceneChars(); 
-			// 	var yEscena = 70;
-			// 	var primerElemento = Object.keys(chars)[0];
-			// 	return primerElemento == null ? yEscena : yEscena+chars[primerElemento].y;
-			// })	
-			.attr('cy', function(){
-				return (yRect - _rectMargin)*2;
-			})		
-			.attr('rx', function(){
-				return _hSize-_ellipseMargin*2;
-			}) //10
+			.attr('cx', -3) //x			
+			//.attr('cy', function(){
+			//	return (yRect - _rectMargin)*2;
+			//})
+			.attr('cy', yRect - _rectMargin/2)			
+			.attr('rx', _hSize-_ellipseMargin*2) //10
 			.attr('ry', altoElipse) //50
 			.on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
 	        .on("mouseout", function(){d3.select(this).style("fill", _ellipseColor);});	
+
+	        //_ellipse.graphics.drawEllipse(_hSize/2-_anchoEllipse/2 /*_ellipseMargin*/,yRect - _rectMargin/2 ,_anchoEllipse/*_hSize-_ellipseMargin*2*/, altoElipse);
+			/*	_ellipse.graphics.drawEllipse( _ellipseMargin //x
+					,yRect - _rectMargin/2 //y
+					,_hSize-_ellipseMargin*2 //width
+					, altoElipse);//height 
+				*/
 
 	        // Dibujar el cuadrado interior
 	        gEscena
 			.append("rect")
 			.style("fill", _rectColor)
 			.attr('x', -5) //xRect
-			//.attr('y', yRect-_rectAddedY/2)
-			.attr('y', function(){
-				return (yRect - _rectMargin)*2-20;
-			})	
+			.attr('y', yRect-_rectAddedY/2)	
 			.attr('width', _anchoRect)
 			.attr('height', altoRect)
 
@@ -239,13 +235,13 @@ console.log(altoRect);
 			// 	.attr('char', function(d){return d._name});
 
 			angular.forEach(_chars, function(char){
-console.log(_numEscena, char.y)
 				gEscena.append("circle")
 					.style("fill", char._color)
 					.attr('cx', -3) //xRect + _anchoRect/2
 					.attr('cy', char.y)
 					.attr('r', _pointSize)
-					.attr('class', char._name);
+					.attr('class', char._name)
+					.attr('title', char._name);
 			})
 
 			// 	_ellipse.graphics.drawCircle(xRect + _anchoRect/2, char.y , _pointSize);

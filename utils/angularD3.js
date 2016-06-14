@@ -11,7 +11,7 @@ var xD3 = d3.scale.ordinal()
 	yD3={},
 	dragging = {};
 
-var line = d3.svg.line().interpolate("cardinal"),
+var line = d3.svg.line().interpolate("linear"),
 	axis = d3.svg.axis().orient("left"),
 	background,
 	foreground;

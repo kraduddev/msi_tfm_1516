@@ -51,6 +51,7 @@
         </timeSlice>
         <timeSlice cabecera=" DRESSING ROOM .INT." duracion="56" letra="." numeroCabecera="2" step="2" stepReal="2" time="" sentimiento="negativo" colorSentimiento="red">
             <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" DRESSING ROOM " pin="0" principal="1" tipo="0" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="FATS" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/> <!-- AÑADIDO -->
                 <charPoint char="FIGHTER #1" label="1" tpar="100" sentimiento="positivo" colorSentimiento="green"/>
                 <charPoint char="FIGHTER #2" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
                 <charPoint char="PROMOTER" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
@@ -87,6 +88,7 @@
         </timeSlice>
         <timeSlice cabecera=" ROCKY'S APARTMENT .EXT." duracion="0" letra="." numeroCabecera="5" step="5" stepReal="5" time="" sentimiento="neutro" colorSentimiento="blue">
             <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" ROCKY'S APARTMENT " pin="0" principal="1" tipo="1" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="FIGHTER #2" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/> <!-- añadido -->
                 <charPoint char="ROCKY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
                 <accion descripcion=" A short while later, Rocky approaches his apartment located in the most deprived section of South Philly.  He kicks away the litter that has gathered against the apartment steps and enters." duracion="8" parte="0" tiempoDescrip="8" sentimiento="neutro" colorSentimiento="blue"/>
             </pointGroup>
@@ -174,6 +176,7 @@
             <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" STREET " pin="0" principal="1" tipo="1" tipoEscena="NORMAL" urlImagen="" y="300">
                 <charPoint char="ROCKY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
                 <charPoint char="ADRIAN" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <charPoint char="BLACK FIGHTER" label="1" tpar="100" sentimiento="positivo" colorSentimiento="green"/> <!-- AÑADIDO -->
                 <accion descripcion=" Later that morning Rocky passes &quot;Animal Town Pet Shop&quot; in South Philly... The shop is not very prosperous looking.  In the window hangs a sign reading &quot;Today's special -- Mixed Kittens -- $1.50&quot;... Rocky stops at this shop every morning. He stares at a litter of Lhasa Apsa puppies.  He taps the window and whistles.  He SEES a girl behind the counter and presses his face against the window and does his impression of the Hunchback of Notre Dame.  The girl nervously looks away. The girl behind the counter is ADRIAN KLEIN.  She is not very attractive, but pleasant-looking.  Thirty years old. Brown hair pulled back.  Light skinned.  She wears glasses. Rocky really stops by to flirt with Adrian, but she is so painfully shy nothing ever gets started... Rocky enters." duracion="28" parte="0" tiempoDescrip="28" sentimiento="negativo" colorSentimiento="red"/>
             </pointGroup>
         </timeSlice>
