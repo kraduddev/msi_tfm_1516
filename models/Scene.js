@@ -12,6 +12,8 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	var _ellipseMargin = 5;
 	var _margenSuperior = 30;
 	var _anchoEllipse = 25;
+	var _rectAddedY = 0;
+	var _altoRect = 0;
 
 	// guardo la página en la que empieza la escena
 	var _startingPag = currentPage;
@@ -31,15 +33,15 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 	var _pixelsPerChar = 16;
 	var _rectMargin = 10;
-	var _anchoRect = 7;//8;
+	var _anchoRect = 8;//8;
 	var _pointSize = 2;
 
 	// TODO: Cambiar el punto del scenePoint por el apropiado
 	var _scenePoint = 20;
 
-	var _circleColor = 0x252525;
-	var _ellipseColor = 0x969696;
-	var _rectColor = 0xCCCCCC;
+	var _circleColor = "#252525";
+	var _ellipseColor = "#969696";
+	var _rectColor = "#CCCCCC";
 
 	var _sceneMovement = 0;
 
@@ -70,9 +72,10 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	}
 
 	this.addChar = function (num, color, charName, visible){
-		if (visible == true){
+		if (visible == true){			
 			_chars[num] = new models.CharPoint(charName, color, num);		
 			_numChars++;
+			_altoRect = _chars.length * _pixelsPerChar;
 		}
 		else{		
 			_charsAux[num] = new models.CharPoint(charName, color, num);
@@ -182,18 +185,20 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		if(_numChars > 0)
 		{
 			// Calculo alto rectangulo a partir de los chars
-			//var altoRect:int = _numChars * _pixelsPerChar;
+			var altoRect = _numChars * _pixelsPerChar;
 			var altoElipse = _numChars * _pixelsPerChar + _rectMargin;
-			
+console.log(altoRect);			
 			var xRect = (_hSize/2)-(_anchoRect/2);
 			var yRect = (_scenePoint + _sceneMovement) *_pixelsPerChar - _pixelsPerChar/2 + _margenSuperior;
 
-			g.filter(function(d){
+			var gEscena = g.filter(function(d){
 				return d == _numEscena;
-			})
+			});
+
+			gEscena
 			.append("ellipse")
 			.style("stroke", "gray")
-	        .style("fill", "white")
+	        .style("fill", _ellipseColor)
 			.attr('cx', -3) //x
 			// .attr('cy', function(){ 
 			// 	var chars = _scenes[_numEscena-1].getSceneChars(); 
@@ -209,11 +214,57 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			}) //10
 			.attr('ry', altoElipse) //50
 			.on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
-	        .on("mouseout", function(){d3.select(this).style("fill", "white");});	
-// _ellipse.graphics.drawEllipse(_ellipseMargin, //x
-// 	yRect - _rectMargin/2 , //y
-// 	_hSize-_ellipseMargin*2, //width
-// 	altoElipse); //height
+	        .on("mouseout", function(){d3.select(this).style("fill", _ellipseColor);});	
+
+	        // Dibujar el cuadrado interior
+	        gEscena
+			.append("rect")
+			.style("fill", _rectColor)
+			.attr('x', -5) //xRect
+			//.attr('y', yRect-_rectAddedY/2)
+			.attr('y', function(){
+				return (yRect - _rectMargin)*2-20;
+			})	
+			.attr('width', _anchoRect)
+			.attr('height', altoRect)
+
+			// Dibujar puntos de personajes
+			// gEscena.selectAll("circle")
+			// 	.data(_chars)
+			// 	.enter()
+			// 	.filter(function(d){
+			// 		return d._name != null;
+			// 	})
+			// 	.append("circle")
+			// 	.attr('char', function(d){return d._name});
+
+			angular.forEach(_chars, function(char){
+console.log(_numEscena, char.y)
+				gEscena.append("circle")
+					.style("fill", char._color)
+					.attr('cx', -3) //xRect + _anchoRect/2
+					.attr('cy', char.y)
+					.attr('r', _pointSize)
+					.attr('class', char._name);
+			})
+
+			// 	_ellipse.graphics.drawCircle(xRect + _anchoRect/2, char.y , _pointSize);
+			 	
+			 	
+			// for each(char in _chars)
+			// {
+			// 	if(_colorCircle)
+			// 	{
+			// 		_ellipse.graphics.beginFill(_layoutPadre.chars[char._num].getColor());
+			// 	}
+			// 	else
+			// 	{
+			// 		_ellipse.graphics.beginFill(_circleColor);	
+			// 	}
+			// 	_ellipse.graphics.drawCircle(xRect + _anchoRect/2, char.y , _pointSize);
+			// 	_charNames[i].visible = false;
+			// 	i++;
+			// }
 
 		}
 	}
