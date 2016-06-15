@@ -19,6 +19,43 @@ var line = d3.svg.line().interpolate("linear"),
  var svg;
  var dimensions = [];
 
+ var _lineMethod = 0;
+
+var drawLines = function (){
+	switch(_lineMethod)
+	{
+		// case 1:
+		// 	drawLinesSmooth();
+		// 	break;
+		// case 4:
+		// 	drawLinesSmooth2();
+		// 	break;
+		// case 2:
+		// 	drawLinesSmooth3();
+		// 	break;
+		// case 3:
+		// 	drawLinesSmooth4();
+		// 	break;
+		case 0:
+			drawLinesNormal();
+			break;
+		// default:
+		// 	drawLinesSmooth();
+		// 	break;
+	}
+}
+
+var drawLinesNormal = function (){
+	var i = 0;
+	var numChar = 0;
+
+	for(i=0; i<_scenes.length-1;i++){
+		for(numChar=0; numChar<_chars.length;numChar++){
+			
+		}
+	}
+
+}
 
 var drawRepresentation = function(){
 
@@ -53,6 +90,7 @@ var drawRepresentation = function(){
 			); 
 	}));
 // Se añaden las lineas azules en el foco
+/*
 	foreground = svg.append("g")
 		.attr('class', 'foreground')
 		.selectAll("path")
@@ -63,7 +101,7 @@ var drawRepresentation = function(){
 		.attr("stroke-width", function(d) { return (d.getNumScenes()*5/7)+"px"; })
 		.append("svg:title")
    .text(function(d) { return d.getName(); });
-
+*/
 	// Añado las dimensiones (escenas)
 	var g = svg.selectAll(".escena")
                 .data(dimensions)
@@ -122,9 +160,14 @@ var drawRepresentation = function(){
                 .attr("x", -8)
                 .attr("width", 16);*/
 
+    // Pinto las líneas de los personajes
+    drawLines();
+
+    // Pinto las escenas
     angular.forEach(_scenes, function(scene){    	
     	scene.pintar(g);
     });
+
 		   // svg.selectAll("ellipse").data(_scenes).enter().append("ellipse")
 		 //    .style("stroke", "gray")
 	  //       .style("fill", "white")
