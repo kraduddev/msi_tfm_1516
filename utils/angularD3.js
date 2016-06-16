@@ -11,7 +11,7 @@ var xD3 = d3.scale.ordinal()
 	yD3={},
 	dragging = {};
 
-var line = d3.svg.line().interpolate("linear"),
+var line = d3.svg.line().interpolate("basis"),
 	axis = d3.svg.axis().orient("left"),
 	background,
 	foreground;
@@ -31,6 +31,9 @@ var _cutLongLines = true;
 var _maxJump = 15;
 // Contendra en cada posicion el tamanio del salto en que se encuentra
 var _charJumps = [];
+
+// path de los personajes
+var lineChar = [];
 
 var drawLines = function (){
 	switch(_lineMethod)
@@ -61,67 +64,105 @@ var drawLinesNormal = function (){
 	var numChar = 0;
 
     var pathPersonajes = [];
+    for (numChar=0; numChar<_chars.length;numChar++){
+    	pathPersonajes[numChar] = "";
+    }
 
-	for(i=0; i<_scenes.length-1;i++){
-        _scenes[i].display();
-        _scenes[i+1].display();
+    //Dibujo las líneas iniciales
+    for (numChar=0; numChar<_chars.length;numChar++){
+    	var indexPrimeraEscena = _chars[numChar].getFirstScene()-1;
+    	
+    	pathPersonajes[numChar] = "M"
+    		+(position(dimensions[indexPrimeraEscena])-_tamStartEndLine-_scenes[indexPrimeraEscena].getSize()/2)
+    		+","
+    		+ _scenes[indexPrimeraEscena].getYChar(numChar); 
+    }
+
+	for(i=0; i<_scenes.length;i++){
+        
 		for(numChar=0; numChar<_chars.length;numChar++){
 			if(_chars[numChar].getNumScenes() >= _minEscenas){
                 var thickness = 3;
                 if (_showWeights == true){
                     thickness = (parseInt(_chars[numChar].getNumScenes()) / _maxNumScenesPerChar * 10) + 1;
                 }
-                //Dibujo las líneas iniciales
-                pathPersonajes[numChar] = "M"+_scenes[_chars[numChar].getFirstScene()-1].getXValue()+","+_scenes[_chars[numChar].getFirstScene()-1].getYChar(numChar);
+                
+                if(_chars[numChar].getFirstScene()<=i+1 && _chars[numChar].getLastScene()>=i+1){
+                    if (_cutLongLines){
+                    	if(_charJumps[numChar][i]<=_maxJump){
+	                    	pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar);                    
+	                    }
+	                    else if(_charJumps[numChar][i]>_maxJump && _charJumps[numChar][i+1]==0){
+	                    	pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar);
+	                    	var c1 = svg.append("circle")
+					            .attr('cx', position(dimensions[i]))
+					            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
+					            .attr('r', 6)
+					            .attr('fill',  _chars[numChar].getColor());
 
-                if(_chars[numChar].getFirstScene()<=i+1 && _chars[numChar].getLastScene()>i+1){
-                    if(_charJumps[numChar][i]<=_maxJump){
-                        pathPersonajes[numChar] += "L"+_scenes[i].getXValue()+","+ _scenes[i].getYChar(numChar);
+					        var c2 = svg.append("circle")
+					            .attr('cx', position(dimensions[i]))
+					            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
+					            .attr('r', 4)
+					            .attr('fill',  "#FFF");   
+                    	}
+                    	else if (i>0){
+                    		if (_charJumps[numChar][i-1] == 0){
+                    			var c1 = svg.append("circle")
+						            .attr('cx', position(dimensions[i]))
+						            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
+						            .attr('r', 6)
+						            .attr('fill',  _chars[numChar].getColor());
 
-                        //moveTo
-                      /*  var lineGraph = svg.append("line")
-                            .attr('x1', _scenes[i].getXValue())
-                            .attr('y1', _scenes[i].getYChar(numChar))
-                            .attr('x2', _scenes[i+1].getXValue() + 50)
-                            .attr('y2', _scenes[i+1].getYChar(numChar))
-                        //    .attr("d", line([_scenes[i].getXValue(), _scenes[i].getYChar(numChar)]))
-                            .attr("stroke", _chars[numChar].getColor())
-                            .attr("stroke-width", 2)
-                            .attr("fill", "none");
-                        //lineTo
-//console.log( _scenes[i].getXValue(), _scenes[i].getYChar(numChar), _scenes[i+1].getXValue(), _scenes[i+1].getYChar(numChar))
-                    }
-                    else if(_charJumps[numChar][i]>_maxJump && _charJumps[numChar][i+1]==0){
-                        var lineGraph = svg.append("line")
-                            .attr('x1', _scenes[i].getXValue())
-                            .attr('y1', _scenes[i].getYChar(numChar))
-                            .attr('x2', _scenes[i+1].getXValue())
-                            .attr('y2', _scenes[i+1].getYChar(numChar))
-                            .attr("stroke", _chars[numChar].getColor())
-                            .attr("stroke-width", 2)
-                            .attr("fill", "none");
-
-                        var c1 = svg.append("circle")
-                            .attr('cx', _scenes[i].getXValue())
-                            .attr('cy', _scenes[i].getYChar(numChar))
-                            .attr('r', 6)
-                            .attr('fill',  _chars[numChar].getColor());
-
-                        var c2 = svg.append("circle")
-                            .attr('cx', _scenes[i].getXValue())
-                            .attr('cy', _scenes[i].getYChar(numChar))
-                            .attr('r', 6)
-                            .attr('fill',  "#FFF");*/
-
+						        var c2 = svg.append("circle")
+						            .attr('cx', position(dimensions[i]))
+						            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
+						            .attr('r', 4)
+						            .attr('fill',  "#FFF");  
+                    		}
+                    	}
+                    }                    
+                    else{
+                    	pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar); 
                     }
                 }
-
-                //Dibujo las líneas finales
-                pathPersonajes[numChar] += "L"+_scenes[_chars[numChar].getLastScene()-1].getXValue()+_tamStartEndLine+_scenes[_chars[numChar].getLastScene()-1].getSize()/2+","+ _scenes[_chars[numChar].getLastScene()-1].getYChar(numChar);
             }
 		}
+		
 	}
+
+    //Dibujo las líneas finales
+    for (numChar=0; numChar<_chars.length;numChar++){
+    	var indexUltimaEscena = _chars[numChar].getLastScene()-1;
+    	
+    	pathPersonajes[numChar] += "L"
+    		+(position(dimensions[indexUltimaEscena])+_tamStartEndLine+_scenes[indexUltimaEscena].getSize()/2)
+    		+","
+    		+ _scenes[indexUltimaEscena].getYChar(numChar);
+
+    	var c1 = svg.append("circle")
+            .attr('cx', (position(dimensions[indexUltimaEscena])+_tamStartEndLine+_scenes[indexUltimaEscena].getSize()/2))
+            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
+            .attr('r', 6)
+            .attr('fill',  _chars[numChar].getColor());
+
+        var c2 = svg.append("circle")
+            .attr('cx', (position(dimensions[indexUltimaEscena])+_tamStartEndLine+_scenes[indexUltimaEscena].getSize()/2))
+            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
+            .attr('r', 4)
+            .attr('fill',  "#FFF");   
+    }
+    
     console.log(pathPersonajes)
+
+    angular.forEach (_chars, function (char, i){
+    	lineChar[char.getNumber()] = svg.append("path")
+                            .attr("d", pathPersonajes[i])
+                            .attr("stroke", char.getColor())
+                            .attr("stroke-width", 2)
+                            .attr('style', 'z-index:"-9"')
+                            .attr("fill", "none");		    	                        
+    });
 }
 
 var drawRepresentation = function(){
@@ -147,8 +188,6 @@ var drawRepresentation = function(){
 	angular.forEach(_scenes, function(escena){
 		dimensions.push(escena.getNumEscena());
 	});
-	//Se extrae dimensión y se crea una escala
-	//xD3.domain([0,800]);
 
 	xD3.domain(dimensions.filter(function(d){ 
 		return (yD3[d]= d3.scale.linear()
@@ -157,7 +196,7 @@ var drawRepresentation = function(){
 			); 
 	}));
 // Se añaden las lineas azules en el foco
-	foreground = svg.append("g")
+/*	foreground = svg.append("g")
 		.attr('class', 'foreground')
 		.selectAll("path")
 		.data(_chars)
@@ -166,7 +205,7 @@ var drawRepresentation = function(){
 		.attr("style", function(d) { return "stroke:" + d.getColor() +""; })
 		.attr("stroke-width", function(d) { return (d.getNumScenes()*5/7)+"px"; })
 		.append("svg:title")
-   .text(function(d) { return d.getName(); });
+   .text(function(d) { return d.getName(); });*/
 
 	// Añado las dimensiones (escenas)
 	var g = svg.selectAll(".escena")
@@ -227,7 +266,7 @@ var drawRepresentation = function(){
                 .attr("width", 16);*/
 
     // Pinto las líneas de los personajes
-    drawLines();
+   	drawLines();
 
     // Pinto las escenas
     angular.forEach(_scenes, function(scene){    	
