@@ -254,6 +254,12 @@ myApp.controller('MainCtrl', function($scope, $window){
 	$scope.escenas = [];
 	var x2js = new X2JS(); //objeto para convertir XML a JSON
 
+	$scope.showWeights = true;
+
+	$scope.$watch('showWeights', function() {
+        _showWeights = $scope.showWeights;
+    });
+
 	d3.xml("xml_guiones/Rocky_corregido-min.plt-sent.xml", function(error, pelicula){
 		if(error) {throw error;}
 		

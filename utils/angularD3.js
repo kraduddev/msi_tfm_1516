@@ -82,10 +82,10 @@ var drawLinesNormal = function (){
         
 		for(numChar=0; numChar<_chars.length;numChar++){
 			if(_chars[numChar].getNumScenes() >= _minEscenas){
-                var thickness = 3;
-                if (_showWeights == true){
-                    thickness = (parseInt(_chars[numChar].getNumScenes()) / _maxNumScenesPerChar * 10) + 1;
-                }
+                //var thickness = 3;
+                //if (_showWeights == true){
+                //    thickness = (parseInt(_chars[numChar].getNumScenes()) / _maxNumScenesPerChar * 10) + 1;
+                //}
                 
                 if(_chars[numChar].getFirstScene()<=i+1 && _chars[numChar].getLastScene()>=i+1){
                     if (_cutLongLines){
@@ -159,8 +159,14 @@ var drawLinesNormal = function (){
     	lineChar[char.getNumber()] = svg.append("path")
                             .attr("d", pathPersonajes[i])
                             .attr("stroke", char.getColor())
-                            .attr("stroke-width", 2)
-                            .attr('style', 'z-index:"-9"')
+                            .attr("stroke-width", function(){
+                                if (!_showWeights){
+                                    return 2;
+                                }
+                                else{
+                                    return (parseInt(char.getNumScenes()) / _maxNumScenesPerChar * 10) + 1
+                                }
+                            })
                             .attr("fill", "none");		    	                        
     });
 }

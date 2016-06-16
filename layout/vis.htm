@@ -2,7 +2,10 @@
 <div id="dvEscenas">
 	<h3>ESCENAS TOTALES ({{escenas.length}})</h3>
 	<div>
-		<input type="text" placeholder="Núm. Máx. Escenas" ng-model="maxEscenas">
+		<input type="text" placeholder="Núm. Máx. Escenas" ng-model="maxEscenas" />
+		<input type="checkbox" id="showWeights" ng-model="showWeights">
+			<label>Mostrar importancia personaje</label>
+		</input>
 	</div>
 	<div>	
 		<!-- <table border="2px;">
