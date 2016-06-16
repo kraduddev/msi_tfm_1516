@@ -129,7 +129,21 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 	this.getXValue = function()
 	{
-		return getNextX() - _hSize/2; //_margenDerecho + (_numEscena-1)*_hSize + _hSize/2;
+		return this.getNextX() - _hSize/2; //_margenDerecho + (_numEscena-1)*_hSize + _hSize/2;
+	}
+
+	this.getYChar = function(num)
+	{
+		if (_chars[num] != null)
+		{
+			var char = _chars[num];
+			return char.y;
+		}
+		else
+		{
+			var charAux = _charsAux[num];
+			return charAux.y;
+		}
 	}
 
 
