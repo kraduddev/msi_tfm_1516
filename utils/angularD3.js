@@ -213,6 +213,9 @@ var drawRepresentation = function(){
 		.append("svg:title")
    .text(function(d) { return d.getName(); });*/
 
+    // Pinto las líneas de los personajes
+    drawLines();
+
 	// Añado las dimensiones (escenas)
 	var g = svg.selectAll(".escena")
                 .data(dimensions)
@@ -270,9 +273,6 @@ var drawRepresentation = function(){
                 .selectAll("rect")
                 .attr("x", -8)
                 .attr("width", 16);*/
-
-    // Pinto las líneas de los personajes
-   	drawLines();
 
     // Pinto las escenas
     angular.forEach(_scenes, function(scene){    	

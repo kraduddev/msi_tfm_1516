@@ -212,7 +212,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			.append("ellipse")
 			.style("stroke", "gray")
 	        .style("fill", _ellipseColor)
-			.attr('cx', -3) //x			
+			.attr('cx', 0) //x			
 			//.attr('cy', function(){
 			//	return (yRect - _rectMargin)*2;
 			//})
@@ -233,7 +233,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	        gEscena
 			.append("rect")
 			.style("fill", _rectColor)
-			.attr('x', -5) //xRect
+			.attr('x', -3) //xRect
 			.attr('y', yRect-_rectAddedY/2)	
 			.attr('width', _anchoRect)
 			.attr('height', altoRect)
@@ -251,7 +251,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			angular.forEach(_chars, function(char){
 				gEscena.append("circle")
 					.style("fill", char._color)
-					.attr('cx', -3) //xRect + _anchoRect/2
+					.attr('cx', 0) //xRect + _anchoRect/2
 					.attr('cy', char.y)
 					.attr('r', _pointSize)
 					.attr('class', char._name)
