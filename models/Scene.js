@@ -219,6 +219,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			.attr('cy', yRect - _rectMargin/2)			
 			.attr('rx', _hSize-_ellipseMargin*2) //10
 			.attr('ry', altoElipse) //50
+			.attr('class', _numEscena)
 			.on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
 	        .on("mouseout", function(){d3.select(this).style("fill", _ellipseColor);});	
 

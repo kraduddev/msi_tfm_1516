@@ -7,20 +7,22 @@
 	<link rel="stylesheet" href="./style/estilos.css">
 </head>
 <body ng-app="myApp" ng-controller="MainCtrl">
+
+	<div id="detalle-escena">
+        <h3>Escena {{numEscenaActual}}</h3> 
+        <div id="contenido-detalle-escena">
+        	<div id="personajes-contenido-detalle-escena">
+    			<ul>
+    				<li data-ng-repeat="c in charsEnEscena" style="color:{{c._color}}">{{c._name}}</li>
+    			</ul>
+        	</div>
+        </div>	                
+    </div>
 	
 	<chars personajes="personajes"></chars>
 	
 	<vis escenas="escenas"></vis>
 
-	<div id="detalle-escena">
-        <h3>Detalle de escena</h3>
-        <span>A continuación se muestran detalles relativos a la escena</span>
-        <div id="contenido-detalle-escena">
-        	<div id="personajes-contenido-detalle-escena">
-        		<h4>Personajes</h4>
-        	</div>
-        </div>	                
-    </div>
 <div id="parallelcoordinates"></div>
 
 	<script src="./references/jquery-2.1.4.min.js"></script>

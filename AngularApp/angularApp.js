@@ -2,6 +2,32 @@ var myApp = angular.module('myApp', []);
 
 myApp.controller('MainCtrl', function($scope, $window){
 
+	$(document).ready(function(){
+
+		$(document).on("click",'ellipse',function(e) {		
+		    $('#detalle-escena').lightbox_me({
+		        centered: true, 
+		        onLoad: function() { 
+		            $('#detalle-escena').find('input:first').focus()
+		            }
+		        });
+		    e.preventDefault();
+		    addDetalleEscena($(this).attr('class'));
+		});
+
+	});
+
+	//se añaden los datos del detalle de la escena para representarlo
+	var addDetalleEscena = function(numEscena){
+		$scope.$apply(function(){
+			$scope.numEscenaActual = numEscena;
+			$scope.charsEnEscena = [];
+			angular.forEach(_scenes[numEscena-1].getSceneChars(), function(c){
+				if (c != null) $scope.charsEnEscena.push(c);
+			});
+		});
+	}
+
 	var createCharacters = function (personajes){
 		var i = 0; 
 		angular.forEach(personajes, function(p){		

@@ -81,24 +81,23 @@ function seleccionarPersonajes(){
 }
 
 //se añaden los datos del detalle de la escena para representarlo
-function addDetalleEscena(){
+function addDetalleEscena(numEscena){
 	//d3.select("#personajes-contenido-detalle-escena").append('p').text('prueba');
 
 	d3.select("#personajes-contenido-detalle-escena").selectAll('p')
-    	.data(_chars).enter()
-		.append("p")
+    	.data(_chars).enter().append("p")
+    	.filter(function(d){
+    		angular.forEach(_scenes, function(scene){
+    			if (scene.getNumEscena() == numEscena){
+    				angular.forEach(scene.getSceneChars(), function(char){
+    					console.log(char._name == d.getName(), char._name, d.getName())
+    					return char._name == d.getName();
+    				});
+    			}
+    		});
+    	})
 		.text(function(d){return d.getName()})
 		.style("color", function(d){return d.getColor().replace("0x","#");});
-
-   /* .attr("cx", 0)
-    .attr("cy", function(d){ return height/2; })
-    .attr("rx", function(d){
-    		var duracion = d.getAttribute("duracion");
-    		return duracion==0?5:duracion;
-    	})
-    .attr("ry", 17)
-    .attr("fill", function(d){return d.getAttribute("colorSentimiento");});*/
-
 }
 
 var obtenerPersonajesPrincipales = function (lasEscenas, losPersonajes, maxPersonajes){
@@ -161,6 +160,7 @@ var obtenerPersonajesPrincipales = function (lasEscenas, losPersonajes, maxPerso
 
 }
 
+/*
 $(document).ready(function(){
 
 	$(document).on("click",'ellipse',function(e) {		
@@ -171,7 +171,7 @@ $(document).ready(function(){
 	            }
 	        });
 	    e.preventDefault();
-	    addDetalleEscena();
+	    addDetalleEscena($(this).attr('class'));
 	});
 
-});
+});*/
