@@ -8,16 +8,17 @@
 </head>
 <body ng-app="myApp" ng-controller="MainCtrl">
 
-	<div id="detalle-escena">
-		<div class="cuadrado" style ="background:{{colorSentEscenaActual}}"></div> 	
+	<div id="detalle-escena" style="background:{{colorSentEscenaActual}}; opacity:0.98;">
+		<!-- <div class="cuadrado" style ="background:{{colorSentEscenaActual}}"></div> 	-->
         <h3>Escena {{numEscenaActual}}</h3> 
         <div id="contenido-detalle-escena">
+        	<div id="lugar-escena">{{lugarEscenaActual}}</div>
         	<div id="personajes-contenido-detalle-escena">
     			<ul>
-    				<li data-ng-repeat="c in charsEnEscena" style="color:{{c._color}}">
+    				<li class="liPersonaje" data-ng-repeat="c in charsEnEscena" style="color:{{c._color}}; background:{{c._colorSent}}">
     					{{c._name}}
-    					<div class="{{c._sent}}"></div>
-    					<div class="cuadrado" style ="background:{{c._colorSent}}"></div> 		
+    					<!--<div class="{{c._sent}}"></div>
+    					<div class="cuadrado" style ="background:{{c._colorSent}}"></div> -->		
 					</li>
     			</ul>
         	</div>

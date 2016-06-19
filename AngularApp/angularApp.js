@@ -34,6 +34,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 		$scope.$apply(function(){
 			$scope.numEscenaActual = numEscena;
 			$scope.colorSentEscenaActual = _scenes[numEscena-1].getColorSent();
+			$scope.lugarEscenaActual = _scenes[numEscena-1].getLugar();
 			$scope.charsEnEscena = [];
 			angular.forEach(_scenes[numEscena-1].getSceneChars(), function(c){
 				if (c != null) $scope.charsEnEscena.push(c);
@@ -171,7 +172,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 				_sceneMaxLength = sceneLength;
 			}
 
-			scene = new models.Scene(this, escena._step, _scenes, escena.pointGroup._name, sceneLength, currentLength/_scenesTotalLength * numPagsScript, null, escena._sentimiento, escena._colorSentimiento);
+			scene = new models.Scene(this, escena._step, _scenes, escena.pointGroup._name, sceneLength, currentLength/_scenesTotalLength * numPagsScript, null, escena._sentimiento, escena._colorSentimiento, escena.pointGroup._name);
 
 			// si encuentro EXT
 			if(escena._cabecera.indexOf(".EXT.") >= 0){

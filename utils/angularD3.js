@@ -17,6 +17,8 @@ var line = d3.svg.line().interpolate("basis"),
 	foreground;
  
 var svg;
+var divTitle;
+var divTitleChar;
 var dimensions = [];
 
 var _lineMethod = 0;
@@ -168,7 +170,24 @@ var drawLinesNormal = function (){
                                     return (parseInt(char.getNumScenes()) / _maxNumScenesPerChar * 10) + 1
                                 }
                             })
-                            .attr("fill", "none");		    	                        
+                            .attr("fill", "none")
+                            .attr('title', char.getName())
+                            .on("mouseover", function(){
+                                divTitleChar.transition()
+                                    .duration(200)
+                                    .style("background", char.getColor)
+                                    .style("width", 75+"px")
+                                    .style("height", 30+"px")
+                                    .style("opacity", .9);
+                                divTitleChar.html(char.getName()) 
+                                .style("left", (d3.event.pageX) + "px")
+                                .style("top", (d3.event.pageY - 28) + "px");    
+                            })
+                            .on("mouseout", function(){
+                                divTitleChar.transition()
+                                    .duration(500)
+                                    .style("opacity", 0);   
+                            }); 		    	                        
     });
 }
 
@@ -182,6 +201,13 @@ var drawRepresentation = function(){
 		        	};
     widthSurface = 800 - marginSurface.left - marginSurface.right,
     heightSurface = 400 - marginSurface.top - margin.bottom;
+
+    divTitle = d3.select("body").append("div")  
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+    divTitleChar = d3.select("body").append("div")  
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
 
     svg = d3.select("#parallelcoordinates")
             .append("svg")

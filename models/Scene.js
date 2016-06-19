@@ -1,6 +1,6 @@
 var models = models || {};
 
-models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength, currentPage, ultimaEscena, sent, colorSent){
+models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength, currentPage, ultimaEscena, sent, colorSent, lugar){
 	// al principio no hay personajes
 	var _numChars = 0;
 	var _numCharsAux = 0;
@@ -17,10 +17,12 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 	var _sent = "";
 	var _colorSent = "#000000";
+	var _lugar = "";
 
 	_sent = sent;
 	_colorSent = colorSent;
-	
+	_lugar = lugar;
+
 	// guardo la página en la que empieza la escena
 	var _startingPag = currentPage;
 
@@ -83,6 +85,10 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 	this.getColorSent = function(){
 		return _colorSent;
+	}
+
+	this.getLugar = function(){
+		return _lugar;
 	}
 
 	this.addChar = function (num, color, charName, visible, sent, colorSent){
@@ -234,8 +240,21 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			.attr('rx', _hSize-_ellipseMargin*2) //10
 			.attr('ry', altoElipse) //50
 			.attr('class', _numEscena)
-			.on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
-	        .on("mouseout", function(){d3.select(this).style("fill", _ellipseColor);});	
+			.on("mouseover", function(){
+				d3.select(this).style("fill", "aliceblue");
+				divTitle.transition()
+					.duration(200)
+					.style("opacity", .9);
+				divTitle.html("Escena "+ _numEscena + "<br/>" + _lugar) 
+				.style("left", (d3.event.pageX) + "px")
+				.style("top", (d3.event.pageY - 28) + "px");	
+			})
+	        .on("mouseout", function(){
+	        	d3.select(this).style("fill", _ellipseColor);
+	        	divTitle.transition()
+	        		.duration(500)
+	        		.style("opacity", 0);	
+	        });	
 
 	        //_ellipse.graphics.drawEllipse(_hSize/2-_anchoEllipse/2 /*_ellipseMargin*/,yRect - _rectMargin/2 ,_anchoEllipse/*_hSize-_ellipseMargin*2*/, altoElipse);
 			/*	_ellipse.graphics.drawEllipse( _ellipseMargin //x
