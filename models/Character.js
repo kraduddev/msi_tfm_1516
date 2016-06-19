@@ -1,9 +1,11 @@
 var models = models || {};
 
-models.Character = function(name, color, number){
-	var _color = "0xFFFFFF";
+models.Character = function(name, color, number, sent, colorSent){
+	var _color = "#FFFFFF";
 	var _name = "No_Name";
 	var _number = 0;
+	var _sent = "";
+	var _colorSent = "#000000"
 	var _firstScene = -1;
 	var _lastScene = -1;
 	var _startLabel;
@@ -14,6 +16,8 @@ models.Character = function(name, color, number){
 	_name = name;
 	_color = color;
 	_number = number;
+	_sent = sent;
+	_colorSent = colorSent;
 
 	this.getNumber = function(){
 		return _number;
@@ -69,5 +73,15 @@ models.Character = function(name, color, number){
 	this.getColor = function()
 	{
 		return _color;
+	}
+	
+	this.getSent = function()
+	{
+		return _sent;
+	}
+
+	this.getColorSent = function()
+	{
+		return _colorSent;
 	}
 }

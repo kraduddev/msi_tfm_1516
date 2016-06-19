@@ -9,21 +9,28 @@
 <body ng-app="myApp" ng-controller="MainCtrl">
 
 	<div id="detalle-escena">
+		<div class="cuadrado" style ="background:{{colorSentEscenaActual}}"></div> 	
         <h3>Escena {{numEscenaActual}}</h3> 
         <div id="contenido-detalle-escena">
         	<div id="personajes-contenido-detalle-escena">
     			<ul>
-    				<li data-ng-repeat="c in charsEnEscena" style="color:{{c._color}}">{{c._name}}</li>
+    				<li data-ng-repeat="c in charsEnEscena" style="color:{{c._color}}">
+    					{{c._name}}
+    					<div class="{{c._sent}}"></div>
+    					<div class="cuadrado" style ="background:{{c._colorSent}}"></div> 		
+					</li>
     			</ul>
         	</div>
         </div>	                
     </div>
 	
-	<chars personajes="personajes"></chars>
-	
+<!-- 	<chars personajes="personajes"></chars> -->
+	<input type="checkbox" id="showWeights" name="showWeights" ng-model="showWeights">
+		<label for="showWeights">Mostrar importancia personaje</label>
+	</input>
 	<vis escenas="escenas"></vis>
 
-<div id="parallelcoordinates"></div>
+	<div id="parallelcoordinates"></div>
 
 	<script src="./references/jquery-2.1.4.min.js"></script>
 	<script src="./references/jquery.lightbox_me.js"></script>	

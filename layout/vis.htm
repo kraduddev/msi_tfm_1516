@@ -1,39 +1,10 @@
 
 <div id="dvEscenas">
-	<h3>ESCENAS TOTALES ({{escenas.length}})</h3>
+<!-- 	<h3>ESCENAS TOTALES ({{escenas.length}})</h3>
 	<div>
-		<input type="text" placeholder="Núm. Máx. Escenas" ng-model="maxEscenas" />
-		<input type="checkbox" id="showWeights" ng-model="showWeights">
-			<label>Mostrar importancia personaje</label>
-		</input>
-	</div>
+		<input type="text" placeholder="Núm. Máx. Escenas" ng-model="maxEscenas" />		
+	</div> -->
 	<div>	
-		<!-- <table border="2px;">
-			<thead>
-				<thead>Cabecera</thead>
-				<thead>Duración</thead>
-				<thead>Letra</thead>
-				<thead>Nº Cabecera</thead>
-				<thead>Step</thead>
-				<thead>Step Real</thead>
-				<thead>Time</thead>
-				<thead>Sentimiento</thead>
-				<thead>Color Sentimiento</thead>
-			</thead>
-			<tbody>
-				<tr ng-repeat="escena in escenas | limitTo:maxEscenas" style="background: {{escena._colorSentimiento}}">
-					<td>{{escena._cabecera}}</td>
-					<td>{{escena._duracion}}</td>
-					<td>{{escena._letra}}</td>
-					<td>{{escena._numeroCabecera}}</td>
-					<td>{{escena._step}}</td>
-					<td>{{escena._stepReal}}</td>
-					<td>{{escena._time}}</td>
-					<td>{{escena._sentimiento}}</td>
-					<td>{{escena._colorSentimiento}}</td>
-				</tr>
-			</tbody>
-		</table> -->
 		<ul style="display:none">
 			<li ng-repeat="escena in escenas | limitTo: maxEscenas">
 			{{escena._step}}) {{escena._cabecera}}

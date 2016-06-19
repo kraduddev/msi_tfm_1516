@@ -21,7 +21,7 @@ var dimensions = [];
 
 var _lineMethod = 0;
 var _minEscenas = 0;
-var _showWeights = true;
+var _showWeights = false;
 var _maxNumScenesPerChar = MAX_VALUE;
 var _tamStartEndLine = 10;
 
@@ -34,6 +34,7 @@ var _charJumps = [];
 
 // path de los personajes
 var lineChar = [];
+var pathPersonajes = [];
 
 var drawLines = function (){
 	switch(_lineMethod)
@@ -62,8 +63,7 @@ var drawLines = function (){
 var drawLinesNormal = function (){
 	var i = 0;
 	var numChar = 0;
-
-    var pathPersonajes = [];
+    
     for (numChar=0; numChar<_chars.length;numChar++){
     	pathPersonajes[numChar] = "";
     }
@@ -153,14 +153,15 @@ var drawLinesNormal = function (){
             .attr('fill',  "#FFF");   
     }
     
-    console.log(pathPersonajes)
+    // console.log(pathPersonajes)
 
     angular.forEach (_chars, function (char, i){
     	lineChar[char.getNumber()] = svg.append("path")
                             .attr("d", pathPersonajes[i])
+                            .attr('class', char.getNumber())
                             .attr("stroke", char.getColor())
-                            .attr("stroke-width", function(){
-                                if (!_showWeights){
+                            .attr("stroke-width", function(){ 
+                                if (_showWeights == false){
                                     return 2;
                                 }
                                 else{

@@ -1,6 +1,6 @@
 var models = models || {};
 
-models.CharPoint = function(name, color, num){
+models.CharPoint = function(name, color, num, sent, colorSent){
 
 	this.y = 0;
 	//this._color = "0x22EE00";
@@ -8,6 +8,8 @@ models.CharPoint = function(name, color, num){
 	this._color = color;
 	this._num = num;
 	this._name = name;
+	this._sent = sent;
+	this._colorSent = colorSent;
 
 // console.log(_color, _num, _name, y);
 

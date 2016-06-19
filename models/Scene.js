@@ -1,6 +1,6 @@
 var models = models || {};
 
-models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength, currentPage, ultimaEscena){
+models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength, currentPage, ultimaEscena, sent, colorSent){
 	// al principio no hay personajes
 	var _numChars = 0;
 	var _numCharsAux = 0;
@@ -15,6 +15,12 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	var _rectAddedY = 0;
 	var _altoRect = 0;
 
+	var _sent = "";
+	var _colorSent = "#000000";
+
+	_sent = sent;
+	_colorSent = colorSent;
+	
 	// guardo la página en la que empieza la escena
 	var _startingPag = currentPage;
 
@@ -71,9 +77,17 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		return _numEscena;
 	}
 
-	this.addChar = function (num, color, charName, visible){
+	this.getSent = function(){
+		return _sent;
+	}
+
+	this.getColorSent = function(){
+		return _colorSent;
+	}
+
+	this.addChar = function (num, color, charName, visible, sent, colorSent){
 		if (visible == true){			
-			_chars[num] = new models.CharPoint(charName, color, num);		
+			_chars[num] = new models.CharPoint(charName, color, num, sent, colorSent);		
 			_numChars++;
 			_altoRect = _chars.length * _pixelsPerChar;
 		}

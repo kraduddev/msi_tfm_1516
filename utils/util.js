@@ -90,7 +90,6 @@ function addDetalleEscena(numEscena){
     		angular.forEach(_scenes, function(scene){
     			if (scene.getNumEscena() == numEscena){
     				angular.forEach(scene.getSceneChars(), function(char){
-    					console.log(char._name == d.getName(), char._name, d.getName())
     					return char._name == d.getName();
     				});
     			}
@@ -160,18 +159,18 @@ var obtenerPersonajesPrincipales = function (lasEscenas, losPersonajes, maxPerso
 
 }
 
-/*
-$(document).ready(function(){
 
-	$(document).on("click",'ellipse',function(e) {		
-	    $('#detalle-escena').lightbox_me({
-	        centered: true, 
-	        onLoad: function() { 
-	            $('#detalle-escena').find('input:first').focus()
-	            }
-	        });
-	    e.preventDefault();
-	    addDetalleEscena($(this).attr('class'));
-	});
+// $(document).ready(function(){
 
-});*/
+// 	$(document).on("click",'ellipse',function(e) {		
+// 	    $('#detalle-escena').lightbox_me({
+// 	        centered: true, 
+// 	        onLoad: function() { 
+// 	            $('#detalle-escena').find('input:first').focus()
+// 	            }
+// 	        });
+// 	    e.preventDefault();
+// 	    addDetalleEscena($(this).attr('class'));
+// 	});
+
+// });

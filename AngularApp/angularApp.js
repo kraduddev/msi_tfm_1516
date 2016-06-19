@@ -1,7 +1,8 @@
 var myApp = angular.module('myApp', []);
 
-myApp.controller('MainCtrl', function($scope, $window){
+myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 
+	// reaccion cuando se pincha en una escena
 	$(document).ready(function(){
 
 		$(document).on("click",'ellipse',function(e) {		
@@ -17,10 +18,22 @@ myApp.controller('MainCtrl', function($scope, $window){
 
 	});
 
+	// reaccion cuando se pincha en una línea de personaje
+	$(document).ready(function(){
+
+		$(document).on("click",'path',function(e) {		
+		    e.preventDefault();
+		    console.log("personaje",$(this).attr('class'))
+		    // addDetalleEscena($(this).attr('class'));
+		});
+
+	});
+
 	//se añaden los datos del detalle de la escena para representarlo
 	var addDetalleEscena = function(numEscena){
 		$scope.$apply(function(){
 			$scope.numEscenaActual = numEscena;
+			$scope.colorSentEscenaActual = _scenes[numEscena-1].getColorSent();
 			$scope.charsEnEscena = [];
 			angular.forEach(_scenes[numEscena-1].getSceneChars(), function(c){
 				if (c != null) $scope.charsEnEscena.push(c);
@@ -32,7 +45,7 @@ myApp.controller('MainCtrl', function($scope, $window){
 		var i = 0; 
 		angular.forEach(personajes, function(p){		
 			if(p.hasOwnProperty('_name')){ 
-				_chars.push(new models.Character(p._name, p._color, i));
+				_chars.push(new models.Character(p._name, p._color, i, p._sentimiento, p._colorSentimiento));
 				_charToNumber[p._name] = i; 
 			}
 			i++;
@@ -158,7 +171,7 @@ myApp.controller('MainCtrl', function($scope, $window){
 				_sceneMaxLength = sceneLength;
 			}
 
-			scene = new models.Scene(this, escena._step, _scenes, escena.pointGroup._name, sceneLength, currentLength/_scenesTotalLength * numPagsScript);
+			scene = new models.Scene(this, escena._step, _scenes, escena.pointGroup._name, sceneLength, currentLength/_scenesTotalLength * numPagsScript, null, escena._sentimiento, escena._colorSentimiento);
 
 			// si encuentro EXT
 			if(escena._cabecera.indexOf(".EXT.") >= 0){
@@ -189,7 +202,7 @@ myApp.controller('MainCtrl', function($scope, $window){
 			angular.forEach(_chars, function(c){
 // console.log(scene.getNumEscena()+" "+listChars[c.getName()]);			
 				if (listChars[c.getName()]){
-					scene.addChar(c.getNumber(), c.getColor(), c.getName(), true);
+					scene.addChar(c.getNumber(), c.getColor(), c.getName(), true, c.getSent(), c.getColorSent());
 				}
 				else{
 					var numEscena = scene.getNumEscena();
@@ -280,10 +293,26 @@ myApp.controller('MainCtrl', function($scope, $window){
 	$scope.escenas = [];
 	var x2js = new X2JS(); //objeto para convertir XML a JSON
 
-	$scope.showWeights = true;
+	$scope.showWeights = false;
 
 	$scope.$watch('showWeights', function() {
         _showWeights = $scope.showWeights;
+
+        //modifico el ancho de la línea del personaje
+        angular.forEach (_chars, function (char, i){
+    	lineChar[char.getNumber()]
+    		.transition()
+    		.duration(500)
+    		.ease("linear")
+            .attr("stroke-width", function(){ 
+                if (_showWeights == false){
+                    return 2;
+                }
+                else{
+                    return (parseInt(char.getNumScenes()) / _maxNumScenesPerChar * 10) + 1
+                }
+            });		    	                        
+    	});
     });
 
 	d3.xml("xml_guiones/Rocky_corregido-min.plt-sent.xml", function(error, pelicula){
@@ -321,7 +350,6 @@ myApp.controller('MainCtrl', function($scope, $window){
 		$scope.escenas = x2js.xml_str2json(escenasXML);
 		$scope.escenas = $scope.escenas.escenas.timeSlice;
 		if (debug) {console.log($scope.escenas)};
-
 
 		//Obtengo los personajes
 		createCharacters($scope.personajes);
@@ -372,6 +400,7 @@ myApp.directive('chars', function(){
 myApp.directive('vis', function(){
 	function link(scope, el, attr){		
 	}
+
 	return{
 		link: link,
 		restrict: 'E',
