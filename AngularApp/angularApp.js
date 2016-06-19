@@ -2,9 +2,9 @@ var myApp = angular.module('myApp', []);
 
 myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 
-	// reaccion cuando se pincha en una escena
+	
 	$(document).ready(function(){
-
+		// reaccion cuando se pincha en una escena
 		$(document).on("click",'ellipse',function(e) {		
 		    $('#detalle-escena').lightbox_me({
 		        centered: true, 
@@ -13,20 +13,15 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 		            }
 		        });
 		    e.preventDefault();
-		    addDetalleEscena($(this).attr('class'));
+		    addDetalleEscena($(this).attr('title'));
 		});
 
-	});
-
-	// reaccion cuando se pincha en una línea de personaje
-	$(document).ready(function(){
-
+		// reaccion cuando se pincha en una línea de personaje
 		$(document).on("click",'path',function(e) {		
 		    e.preventDefault();
 		    console.log("personaje",$(this).attr('class'))
 		    // addDetalleEscena($(this).attr('class'));
 		});
-
 	});
 
 	//se añaden los datos del detalle de la escena para representarlo
@@ -296,6 +291,8 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 
 	$scope.showWeights = false;
 	$scope.showAxis = true;
+	$scope.showSceneNumber = true;
+	$scope.showSceneLength = false;
 
 	// mostrar importancia personaje
 	$scope.$watch('showWeights', function() {
@@ -327,16 +324,57 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 		        	.transition()
 		    		.duration(500)
 		    		.ease("linear")
-	        		.style('display', 'none');
+		    		.style('display', 'none');
 	        }
 	        else{
 	        	g.selectAll(".domain")
 	        		.transition()
 		    		.duration(500)
 		    		.ease("linear")
-	        		.style('display', 'block');
+		    		.style('display', 'block');
 	        }
 		}
+    });
+
+    // mostrar numero de escenas
+	$scope.$watch('showSceneNumber', function() {
+        _showSceneNumber = $scope.showSceneNumber;
+        if (g != null){
+	        if (!_showSceneNumber){
+	        	g.selectAll(".sceneNumber")
+		        	.transition()
+		    		.duration(300)
+		    		.ease("linear")
+		    		.style('font', '0px sans-serif');
+	        }
+	        else{
+	        	g.selectAll(".sceneNumber")
+	        		.transition()
+		    		.duration(300)
+		    		.ease("linear")
+		    		.style('font', '10px sans-serif');
+	        }
+		}
+    });
+
+    // mostrar longitud de escenas
+	$scope.$watch('showSceneLength', function() {
+        _showSceneLength = $scope.showSceneLength;
+
+        if (!_showSceneLength){
+        /*	g.selectAll("ellipse")
+	        	.transition()
+	    		.duration(500)
+	    		.ease("linear")
+	    		.attr('rx', 35-5*2); //_hSize-_ellipseMargin*2	    	
+        }
+        else{
+        	g.selectAll("ellipse")
+        		.transition()
+	    		.duration(500)
+	    		.ease("linear")
+	    		.attr('rx', 100);*/
+        }
     });
 
 	d3.xml("xml_guiones/Rocky_corregido-min.plt-sent.xml", function(error, pelicula){

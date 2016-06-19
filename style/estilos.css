@@ -131,3 +131,12 @@
     border-radius: 8px;     
     pointer-events: none;     
 }
+
+#option-container {    
+    margin-bottom: 25px;
+    background: lightsteelblue;  
+    -webkit-border-radius: 6px;
+    border: 1px solid #536376;
+    -webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
+    -moz-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;  
+}

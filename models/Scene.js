@@ -218,6 +218,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		if(_numChars > 0)
 		{
 			// Calculo alto rectangulo a partir de los chars
+			
 			var altoRect = _numChars * _pixelsPerChar;
 			var altoElipse = _numChars * _pixelsPerChar + _rectMargin;
 		
@@ -228,7 +229,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 				return d == _numEscena;
 			});
 
-			gEscena
+			var ellipse = gEscena
 			.append("ellipse")
 			.style("stroke", "gray")
 	        .style("fill", _ellipseColor)
@@ -239,7 +240,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			.attr('cy', yRect - _rectMargin/2)			
 			.attr('rx', _hSize-_ellipseMargin*2) //10
 			.attr('ry', altoElipse) //50
-			.attr('class', _numEscena)
+			.attr('title', _numEscena)
 			.on("mouseover", function(){
 				d3.select(this).style("fill", "aliceblue");
 				divTitle.transition()
@@ -256,13 +257,6 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	        		.style("opacity", 0);	
 	        });	
 
-	        //_ellipse.graphics.drawEllipse(_hSize/2-_anchoEllipse/2 /*_ellipseMargin*/,yRect - _rectMargin/2 ,_anchoEllipse/*_hSize-_ellipseMargin*2*/, altoElipse);
-			/*	_ellipse.graphics.drawEllipse( _ellipseMargin //x
-					,yRect - _rectMargin/2 //y
-					,_hSize-_ellipseMargin*2 //width
-					, altoElipse);//height 
-				*/
-
 	        // Dibujar el cuadrado interior
 	        gEscena
 			.append("rect")
@@ -272,15 +266,6 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			.attr('width', _anchoRect)
 			.attr('height', altoRect)
 
-			// Dibujar puntos de personajes
-			// gEscena.selectAll("circle")
-			// 	.data(_chars)
-			// 	.enter()
-			// 	.filter(function(d){
-			// 		return d._name != null;
-			// 	})
-			// 	.append("circle")
-			// 	.attr('char', function(d){return d._name});
 
 			angular.forEach(_chars, function(char){
 				gEscena.append("circle")
@@ -290,28 +275,10 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 					.attr('r', _pointSize)
 					.attr('class', char._name)
 					.attr('title', char._name);
-			})
-
-			// 	_ellipse.graphics.drawCircle(xRect + _anchoRect/2, char.y , _pointSize);
-			 	
-			 	
-			// for each(char in _chars)
-			// {
-			// 	if(_colorCircle)
-			// 	{
-			// 		_ellipse.graphics.beginFill(_layoutPadre.chars[char._num].getColor());
-			// 	}
-			// 	else
-			// 	{
-			// 		_ellipse.graphics.beginFill(_circleColor);	
-			// 	}
-			// 	_ellipse.graphics.drawCircle(xRect + _anchoRect/2, char.y , _pointSize);
-			// 	_charNames[i].visible = false;
-			// 	i++;
-			// }
-
+			});
 		}
 	}
+
 
 	var ellipseDisplay = function()
 	{

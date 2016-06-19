@@ -15,6 +15,8 @@ var line = d3.svg.line().interpolate("basis"),
 	axis = d3.svg.axis().orient("left"),
 	background,
 	foreground;
+
+var zoom = d3.behavior.zoom();
  
 var svg;
 var divTitle;
@@ -22,12 +24,20 @@ var divTitleChar;
 var g;
 var dimensions = [];
 
+var drag = d3.behavior.drag()
+    .origin(function(d) { return d; })
+    .on("dragstart", dragstarted)
+    .on("drag", dragged)
+    .on("dragend", dragended);
+
 var _lineMethod = 0;
 var _minEscenas = 0;
 var _maxNumScenesPerChar = MAX_VALUE;
 var _tamStartEndLine = 10;
 var _showWeights = false;
 var _showAxis = true;
+var _showSceneNumber = true;
+var _showSceneLength = false;
 
 var _cutLongLines = true;
 
@@ -39,6 +49,22 @@ var _charJumps = [];
 // path de los personajes
 var lineChar = [];
 var pathPersonajes = [];
+
+function dragstarted(d) {
+  d3.event.sourceEvent.stopPropagation();
+  d3.select(this).classed("dragging", true);
+}
+
+function dragged(d) {
+    console.log( d3.event.pageX + "px",  d3.event.pageY + "px")
+    d3.select(this)
+        .attr("cx", d3.event.pageX + "px")
+        .attr("cy", d3.event.pageY + "px");
+}
+
+function dragended(d) {
+  d3.select(this).classed("dragging", false);
+}
 
 var drawLines = function (){
 	switch(_lineMethod)
@@ -217,7 +243,12 @@ var drawRepresentation = function(){
             .attr("height", heightSurface + marginSurface.top + marginSurface.bottom)
             .attr("class", "parallelCoordinates")
             .append("g")
-            .attr("transform", "translate(" + marginSurface.left + "," + marginSurface.top + ")");
+            .attr("transform", "translate(" + marginSurface.left + "," + marginSurface.top + ")")
+            .call(zoom
+                .on("zoom", function(){
+                    svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+                }))
+            .append('g');
  
 	
 	angular.forEach(_scenes, function(escena){
@@ -291,6 +322,7 @@ var drawRepresentation = function(){
                 .append("text")
                 .attr("text-anchor", "middle")
                 .attr("y", -9)
+                .attr('class', 'sceneNumber')
                 .text(function(d){ return "Escena "+(parseInt(d));});
 
  

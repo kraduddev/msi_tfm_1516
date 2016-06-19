@@ -26,12 +26,20 @@
     </div>
 	
 <!-- 	<chars personajes="personajes"></chars> -->
+<div id="option-container">
 	<input type="checkbox" id="showWeights" name="showWeights" ng-model="showWeights">
 		<label for="showWeights">Mostrar importancia personaje</label>
 	</input>
 	<input type="checkbox" id="showAxis" name="showAxis" ng-model="showAxis">
 		<label for="showAxis">Mostrar ejes</label>
 	</input>
+	<input type="checkbox" id="showSceneNumber" name="showSceneNumber" ng-model="showSceneNumber">
+		<label for="showSceneNumber">Mostrar número de escena</label>
+	</input>
+	<input type="checkbox" id="showSceneLength" name="showSceneLength" ng-model="showSceneLength" ng-disabled="true">
+		<label for="showSceneLength">Mostrar longitud escena</label>
+	</input>
+</div>
 
 	<vis escenas="escenas"></vis>
 	<div id="parallelcoordinates"></div>
