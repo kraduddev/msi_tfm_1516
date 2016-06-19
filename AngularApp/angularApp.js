@@ -295,7 +295,9 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 	var x2js = new X2JS(); //objeto para convertir XML a JSON
 
 	$scope.showWeights = false;
+	$scope.showAxis = true;
 
+	// mostrar importancia personaje
 	$scope.$watch('showWeights', function() {
         _showWeights = $scope.showWeights;
 
@@ -314,6 +316,27 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
                 }
             });		    	                        
     	});
+    });
+
+	// mostrar ejes
+	$scope.$watch('showAxis', function() {
+        _showAxis = $scope.showAxis;
+        if (g != null){
+	        if (!_showAxis){
+	        	g.selectAll(".domain")
+		        	.transition()
+		    		.duration(500)
+		    		.ease("linear")
+	        		.style('display', 'none');
+	        }
+	        else{
+	        	g.selectAll(".domain")
+	        		.transition()
+		    		.duration(500)
+		    		.ease("linear")
+	        		.style('display', 'block');
+	        }
+		}
     });
 
 	d3.xml("xml_guiones/Rocky_corregido-min.plt-sent.xml", function(error, pelicula){

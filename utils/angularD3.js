@@ -19,13 +19,15 @@ var line = d3.svg.line().interpolate("basis"),
 var svg;
 var divTitle;
 var divTitleChar;
+var g;
 var dimensions = [];
 
 var _lineMethod = 0;
 var _minEscenas = 0;
-var _showWeights = false;
 var _maxNumScenesPerChar = MAX_VALUE;
 var _tamStartEndLine = 10;
+var _showWeights = false;
+var _showAxis = true;
 
 var _cutLongLines = true;
 
@@ -244,7 +246,7 @@ var drawRepresentation = function(){
     drawLines();
 
 	// Añado las dimensiones (escenas)
-	var g = svg.selectAll(".escena")
+	g = svg.selectAll(".escena")
                 .data(dimensions)
                 .enter().append("g")
                 .attr("class", "escena")
