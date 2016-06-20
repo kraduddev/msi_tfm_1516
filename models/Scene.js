@@ -229,7 +229,12 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 				return d == _numEscena;
 			});
 
-			var ellipse = gEscena
+			var escenaGroup = gEscena.append("g")
+				.attr('class', 'escena-group');
+
+			var cy = yRect - _rectMargin/2;
+
+			var ellipse = escenaGroup
 			.append("ellipse")
 			.style("stroke", "gray")
 	        .style("fill", _ellipseColor)
@@ -237,7 +242,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			//.attr('cy', function(){
 			//	return (yRect - _rectMargin)*2;
 			//})
-			.attr('cy', yRect - _rectMargin/2)			
+			.attr('cy', cy)			
 			.attr('rx', _hSize-_ellipseMargin*2) //10
 			.attr('ry', altoElipse) //50
 			.attr('title', _numEscena)
@@ -255,10 +260,10 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	        	divTitle.transition()
 	        		.duration(500)
 	        		.style("opacity", 0);	
-	        });	
+	        })	        
 
 	        // Dibujar el cuadrado interior
-	        gEscena
+	        escenaGroup
 			.append("rect")
 			.style("fill", _rectColor)
 			.attr('x', -3) //xRect
@@ -268,7 +273,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 
 			angular.forEach(_chars, function(char){
-				gEscena.append("circle")
+				escenaGroup.append("circle")
 					.style("fill", char._color)
 					.attr('cx', 0) //xRect + _anchoRect/2
 					.attr('cy', char.y)
@@ -276,6 +281,24 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 					.attr('class', char._name)
 					.attr('title', char._name);
 			});
+
+			escenaGroup.call(d3.behavior.drag()
+	        	.origin(function(d) { return d; })
+			    .on("dragstart", function (d) {
+				  d3.event.sourceEvent.stopPropagation();
+				  d3.select(this).classed("dragging", true);
+				})
+			    .on("drag", function (d) {
+				    console.log(d3.event.dx ,(yRect - _rectMargin/2)+d3.event.dy )
+		            d3.select(this).attr("transform", function(d,i){
+		            	cy += d3.event.dy;
+		                return "translate(" + [0, cy] + ")"
+		            });
+				})
+			    .on("dragend", function (d) {
+				  d3.select(this).classed("dragging", false);
+				}
+			));	
 		}
 	}
 

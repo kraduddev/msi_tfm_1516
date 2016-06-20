@@ -293,6 +293,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 	$scope.showAxis = true;
 	$scope.showSceneNumber = true;
 	$scope.showSceneLength = false;
+	$scope.showScenes = true;
 
 	// mostrar importancia personaje
 	$scope.$watch('showWeights', function() {
@@ -375,6 +376,27 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 	    		.ease("linear")
 	    		.attr('rx', 100);*/
         }
+    });
+
+    // mostrar escenas
+    $scope.$watch('showScenes', function() {
+        _showScenes = $scope.showScenes;
+        if (g != null){
+	        if (!_showScenes){
+	        	g.selectAll(".escena-group")
+		        	.transition()
+		    		.duration(300)
+		    		.ease("linear")
+		    		.style('visibility', 'hidden');
+	        }
+	        else{
+	        	g.selectAll(".escena-group")
+	        		.transition()
+		    		.duration(300)
+		    		.ease("linear")
+		    		.style('visibility', 'visible');
+	        }
+		}
     });
 
 	d3.xml("xml_guiones/Rocky_corregido-min.plt-sent.xml", function(error, pelicula){

@@ -38,6 +38,7 @@ var _showWeights = false;
 var _showAxis = true;
 var _showSceneNumber = true;
 var _showSceneLength = false;
+var _showScenes = true;
 
 var _cutLongLines = true;
 
@@ -56,10 +57,10 @@ function dragstarted(d) {
 }
 
 function dragged(d) {
-    console.log( d3.event.pageX + "px",  d3.event.pageY + "px")
+    console.log( d)
     d3.select(this)
-        .attr("cx", d3.event.pageX + "px")
-        .attr("cy", d3.event.pageY + "px");
+        .attr("cx", d3.event.dx)
+        .attr("cy", d3.event.dy);
 }
 
 function dragended(d) {
