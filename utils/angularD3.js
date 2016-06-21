@@ -3,8 +3,8 @@ var widthSurface = 0;
 var heightSurface = 0;
 
 var margin = {top:30, right:10, bottom:10, left:10},
-	width = 800 - margin.left - margin.right,
-	height = 400 - margin.top - margin.bottom;
+	width = 2600 - margin.left - margin.right,
+	height = 1100 - margin.top - margin.bottom;
 
 var xD3 = d3.scale.ordinal()
 	.rangePoints([0, width], 1),
@@ -23,6 +23,7 @@ var divTitle;
 var divTitleChar;
 var g;
 var dimensions = [];
+var ellipse = [];
 
 var drag = d3.behavior.drag()
     .origin(function(d) { return d; })
@@ -35,12 +36,12 @@ var _minEscenas = 0;
 var _maxNumScenesPerChar = MAX_VALUE;
 var _tamStartEndLine = 10;
 var _showWeights = false;
-var _showAxis = true;
+var _showAxis = false;
 var _showSceneNumber = true;
 var _showSceneLength = false;
 var _showScenes = true;
 
-var _cutLongLines = true;
+var _cutLongLines = false;
 
 // Saltos en las lineas de personaje
 var _maxJump = 15;
@@ -94,6 +95,8 @@ var drawLines = function (){
 var drawLinesNormal = function (){
 	var i = 0;
 	var numChar = 0;
+
+    var colorOriginalEllipse; 
     
     for (numChar=0; numChar<_chars.length;numChar++){
     	pathPersonajes[numChar] = "";
@@ -111,21 +114,19 @@ var drawLinesNormal = function (){
 
 	for(i=0; i<_scenes.length;i++){
         
-		for(numChar=0; numChar<_chars.length;numChar++){
+		for(numChar=0; numChar<_chars.length;numChar++){ 
 			if(_chars[numChar].getNumScenes() >= _minEscenas){
-                //var thickness = 3;
-                //if (_showWeights == true){
-                //    thickness = (parseInt(_chars[numChar].getNumScenes()) / _maxNumScenesPerChar * 10) + 1;
-                //}
                 
                 if(_chars[numChar].getFirstScene()<=i+1 && _chars[numChar].getLastScene()>=i+1){
-                    if (_cutLongLines){
+                    if (_cutLongLines){ 
                     	if(_charJumps[numChar][i]<=_maxJump){
-	                    	pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar);                    
+                            if (_scenes[i].getYChar(numChar) != 0){
+	                    	  pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar);                    
+                            }
 	                    }
 	                    else if(_charJumps[numChar][i]>_maxJump && _charJumps[numChar][i+1]==0){
 	                    	pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar);
-	                    	var c1 = svg.append("circle")
+	                    /*	var c1 = svg.append("circle")
 					            .attr('cx', position(dimensions[i]))
 					            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
 					            .attr('r', 6)
@@ -135,9 +136,9 @@ var drawLinesNormal = function (){
 					            .attr('cx', position(dimensions[i]))
 					            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
 					            .attr('r', 4)
-					            .attr('fill',  "#FFF");   
+					            .attr('fill',  "#FFF");   */
                     	}
-                    	else if (i>0){
+                    	/*else if (i>0){
                     		if (_charJumps[numChar][i-1] == 0){
                     			var c1 = svg.append("circle")
 						            .attr('cx', position(dimensions[i]))
@@ -151,10 +152,12 @@ var drawLinesNormal = function (){
 						            .attr('r', 4)
 						            .attr('fill',  "#FFF");  
                     		}
-                    	}
+                    	}*/
                     }                    
                     else{
-                    	pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar); 
+                        if (_scenes[i].getYChar(numChar) != 0){
+                    	   pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar); 
+                        }
                     }
                 }
             }
@@ -210,12 +213,55 @@ var drawLinesNormal = function (){
                                     .style("opacity", .9);
                                 divTitleChar.html(char.getName()) 
                                 .style("left", (d3.event.pageX) + "px")
-                                .style("top", (d3.event.pageY - 28) + "px");    
+                                .style("top", (d3.event.pageY - 28) + "px");   
+                            
+                                // mostramos sentimiento del personaje en las escenas donde interviene
+                                // en el resto, se muestra en gris
+                                angular.forEach(ellipse, function(e){
+                                    e.transition()
+                                        .duration(500)
+                                        .ease("linear")
+                                        .style('stroke', "gray")
+                                        .style('stroke-width', '2px');
+                                });
+                                angular.forEach(_scenes, function(escena){                                    
+                                    if (ellipse[escena.getNumEscena()] != null){                                    
+                                        if (escena.charVisible(char.getNumber())){
+                                            var colorSent; 
+                                            angular.forEach(escena.getSceneChars(), function (cEnEscena){
+                                                if(cEnEscena._name == char.getName()){                                                         
+                                                    colorSent = cEnEscena._colorSent;
+                                                }
+                                            });
+                                            ellipse[escena.getNumEscena()].transition()
+                                                .duration(500)
+                                                .ease("linear")
+                                                .style('fill', _colorEllipsePersonaje)
+                                                .style('stroke', colorSent)
+                                                .style('stroke-width', '4px');
+
+                                        }
+                                    }
+                                });
                             })
                             .on("mouseout", function(){
                                 divTitleChar.transition()
                                     .duration(500)
+                                    .ease("linear")
                                     .style("opacity", 0);   
+
+                                // el borde de la escena vuelve a tener el sentimiento de la escena
+                                angular.forEach(_scenes, function(escena){                                    
+                                    if (ellipse[escena.getNumEscena()] != null){    
+                                        var colorSent = escena.getColorSent(); 
+                                        ellipse[escena.getNumEscena()].transition()
+                                            .duration(500)
+                                            .ease("linear")
+                                            .style('fill', _colorOriginalEllipse)
+                                            .style('stroke', colorSent)
+                                            .style('stroke-width', '4px');
+                                    }
+                                });
                             }); 		    	                        
     });
 }
@@ -228,8 +274,8 @@ var drawRepresentation = function(){
 			            bottom: 10,
 			            left: 10
 		        	};
-    widthSurface = 800 - marginSurface.left - marginSurface.right,
-    heightSurface = 400 - marginSurface.top - margin.bottom;
+    widthSurface = 2600 - marginSurface.left - marginSurface.right,
+    heightSurface = 1100 - marginSurface.top - margin.bottom;
 
     divTitle = d3.select("body").append("div")  
         .attr("class", "tooltip")               
@@ -324,8 +370,15 @@ var drawRepresentation = function(){
                 .attr("text-anchor", "middle")
                 .attr("y", -9)
                 .attr('class', 'sceneNumber')
-                .text(function(d){ return "Escena "+(parseInt(d));});
+                .text(function(d){ return (parseInt(d));});
 
+    g.selectAll(".domain")
+                    .transition()
+                    .duration(500)
+                    .ease("linear")
+                    .style('display', function(){
+                        return _showAxis == true ? "block" : "none";
+                    });
  
           /*  g.append("g")
                 .attr("class", "brush")

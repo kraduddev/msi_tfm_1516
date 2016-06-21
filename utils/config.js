@@ -22,3 +22,5 @@ var numPagsScript = 1;
 var _pixelsPerChar = 16;
 var _algoritmo;
 
+var _colorOriginalEllipse;
+var _colorEllipsePersonaje = "#DCF8F4";

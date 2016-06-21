@@ -49,6 +49,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 	var _circleColor = "#252525";
 	var _ellipseColor = "#969696";
+	_colorOriginalEllipse = _ellipseColor;
 	var _rectColor = "#CCCCCC";
 
 	var _sceneMovement = 0;
@@ -162,7 +163,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		else
 		{
 			var charAux = _charsAux[num];
-			return charAux.y;
+			return charAux == null ? 0 :charAux.y;
 		}
 	}
 
@@ -234,42 +235,55 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 			var cy = yRect - _rectMargin/2;
 
-			var ellipse = escenaGroup
-			.append("ellipse")
-			.style("stroke", "gray")
-	        .style("fill", _ellipseColor)
-			.attr('cx', 0) //x			
-			//.attr('cy', function(){
-			//	return (yRect - _rectMargin)*2;
-			//})
-			.attr('cy', cy)			
-			.attr('rx', _hSize-_ellipseMargin*2) //10
-			.attr('ry', altoElipse) //50
-			.attr('title', _numEscena)
-			.on("mouseover", function(){
-				d3.select(this).style("fill", "aliceblue");
-				divTitle.transition()
-					.duration(200)
-					.style("opacity", .9);
-				divTitle.html("Escena "+ _numEscena + "<br/>" + _lugar) 
-				.style("left", (d3.event.pageX) + "px")
-				.style("top", (d3.event.pageY - 28) + "px");	
-			})
-	        .on("mouseout", function(){
-	        	d3.select(this).style("fill", _ellipseColor);
-	        	divTitle.transition()
-	        		.duration(500)
-	        		.style("opacity", 0);	
-	        })	        
+//_ellipse.graphics.drawEllipse(_hSize/2-_anchoEllipse/2 /*_ellipseMargin*/
+//	,yRect - _rectMargin/2 
+//	,_anchoEllipse/*_hSize-_ellipseMargin*2*/
+//	, altoElipse);
+
+//_ellipse.graphics.drawEllipse(/*_hSize/2-_anchoEllipse/2*/ _ellipseMargin
+//	,yRect - _rectMargin/2 
+//	,/*_anchoEllipse*/_hSize-_ellipseMargin*2
+//	, altoElipse);
+				
+
+			ellipse[_numEscena] = escenaGroup
+				.append("ellipse")
+				//.style("stroke", "gray")
+				.style('stroke', _colorSent)
+				.style('stroke-width', '4px')
+		        .style("fill", _ellipseColor)
+				.attr('cx', 0) //x			
+				//.attr('cy', function(){
+				//	return (yRect - _rectMargin)*2;
+				//})
+				.attr('cy', cy+( altoElipse/2))			
+				.attr('rx', _hSize-_ellipseMargin*2) //10
+				.attr('ry', altoElipse/2) //50
+				.attr('title', _numEscena)
+				.on("mouseover", function(){
+					d3.select(this).style("fill", "aliceblue");
+					divTitle.transition()
+						.duration(200)
+						.style("opacity", .9);
+					divTitle.html("Escena "+ _numEscena + "<br/>" + _lugar) 
+					.style("left", (d3.event.pageX) + "px")
+					.style("top", (d3.event.pageY - 28) + "px");	
+				})
+		        .on("mouseout", function(){
+		        	d3.select(this).style("fill", _ellipseColor);
+		        	divTitle.transition()
+		        		.duration(500)
+		        		.style("opacity", 0);	
+		        })	        
 
 	        // Dibujar el cuadrado interior
 	        escenaGroup
-			.append("rect")
-			.style("fill", _rectColor)
-			.attr('x', -3) //xRect
-			.attr('y', yRect-_rectAddedY/2)	
-			.attr('width', _anchoRect)
-			.attr('height', altoRect)
+				.append("rect")
+				.style("fill", _rectColor)
+				.attr('x', -3) //xRect
+				.attr('y', yRect-_rectAddedY/2)	
+				.attr('width', _anchoRect)
+				.attr('height', altoRect)
 
 
 			angular.forEach(_chars, function(char){
@@ -282,7 +296,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 					.attr('title', char._name);
 			});
 
-			escenaGroup.call(d3.behavior.drag()
+			/*escenaGroup.call(d3.behavior.drag()
 	        	.origin(function(d) { return d; })
 			    .on("dragstart", function (d) {
 				  d3.event.sourceEvent.stopPropagation();
@@ -298,7 +312,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			    .on("dragend", function (d) {
 				  d3.select(this).classed("dragging", false);
 				}
-			));	
+			));	*/
 		}
 	}
 

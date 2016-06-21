@@ -50,29 +50,11 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 		//Obtengo la primera y última escena de cada personaje
 		angular.forEach($scope.escenas, function(escena){
 			
-			// sólo tengo un personaje en la escena
-			if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length == null){
-			
-				var charNum = _charToNumber[escena.pointGroup.charPoint._char];
-				//Sumo uno al número de escenas del personaje
-				if (_chars[charNum] != null){
-					_chars[charNum].addScene();
-
-					//Si no tiene primera escena, se la establezco
-					if(!_chars[charNum].hasFirstScene()){
-						_chars[charNum].setFirstScene(parseInt(escena._step));
-					}
-					//Actualizo la última escena obtenido
-					_chars[charNum].setLastScene(parseInt(escena._step));
-				}	
-			}
-
-			// tengo varios personajes en la escena
-			else if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length != null){
-
-				angular.forEach(escena.pointGroup.charPoint, function(charPoint){
+			if (escena.hasOwnProperty('pointGroup')){	
+				// sólo tengo un personaje en la escena
+				if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length == null){
 				
-					var charNum = _charToNumber[charPoint._char];
+					var charNum = _charToNumber[escena.pointGroup.charPoint._char];
 					//Sumo uno al número de escenas del personaje
 					if (_chars[charNum] != null){
 						_chars[charNum].addScene();
@@ -83,8 +65,28 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 						}
 						//Actualizo la última escena obtenido
 						_chars[charNum].setLastScene(parseInt(escena._step));
-					}				
-				});
+					}	
+				}
+
+				// tengo varios personajes en la escena
+				else if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length != null){
+
+					angular.forEach(escena.pointGroup.charPoint, function(charPoint){
+					
+						var charNum = _charToNumber[charPoint._char];
+						//Sumo uno al número de escenas del personaje
+						if (_chars[charNum] != null){
+							_chars[charNum].addScene();
+
+							//Si no tiene primera escena, se la establezco
+							if(!_chars[charNum].hasFirstScene()){
+								_chars[charNum].setFirstScene(parseInt(escena._step));
+							}
+							//Actualizo la última escena obtenido
+							_chars[charNum].setLastScene(parseInt(escena._step));
+						}				
+					});
+				}
 			}		
 		});
 
@@ -122,15 +124,17 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 		// Calculo el valor total de la longitud de la película
 		angular.forEach(escenas, function(escena){
 			_scenesTotalLength += 2; //Sumo el encabezado de la escena
-			angular.forEach(escena.pointGroup.accion, function(accion){
-				text = accion._descripcion; 
-				if (text != null){
-					text.length % 60 == 0 
-						? _scenesTotalLength += text.length / 60 
-						: _scenesTotalLength += text.length / 40 + 1;
-					_scenesTotalLength += 2; //Sumo el nombre del char				
-				}
-			});
+			if (escena.hasOwnProperty('pointGroup')){
+				angular.forEach(escena.pointGroup.accion, function(accion){
+					text = accion._descripcion; 
+					if (text != null){
+						text.length % 60 == 0 
+							? _scenesTotalLength += text.length / 60 
+							: _scenesTotalLength += text.length / 40 + 1;
+						_scenesTotalLength += 2; //Sumo el nombre del char				
+					}
+				});
+			}
 		});
 
 		width = 0 ;
@@ -139,25 +143,27 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 		angular.forEach(escenas, function(escena){
 			var sceneLength = 0;
 			sceneLength += 2;
-			angular.forEach(escena.pointGroup.accion, function(accion){
-				if (text != null){
-					text = accion._descripcion;
-					text.length % 60 == 0
-						? sceneLength += text.length / 60
-						: sceneLength += text.length / 60 + 1;
-					sceneLength += 1;
+			if (escena.hasOwnProperty('pointGroup')){
+				angular.forEach(escena.pointGroup.accion, function(accion){
+					if (text != null){
+						text = accion._descripcion;
+						text.length % 60 == 0
+							? sceneLength += text.length / 60
+							: sceneLength += text.length / 60 + 1;
+						sceneLength += 1;
 
-					angular.forEach(accion.charDialog, function(dialog){
-						text = dialog._texto;
-						if (text != null){
-							text.length % 40 == 0
-								? sceneLength += text.length / 40
-								: sceneLength += text.length / 40 + 1;
-							sceneLength += 2; //Sumo nombre del char
-						}
-					});
-				}
-			});
+						angular.forEach(accion.charDialog, function(dialog){
+							text = dialog._texto;
+							if (text != null){
+								text.length % 40 == 0
+									? sceneLength += text.length / 40
+									: sceneLength += text.length / 40 + 1;
+								sceneLength += 2; //Sumo nombre del char
+							}
+						});
+					}
+				});
+			}
 
 			if (_sceneMinLength > sceneLength){
 				_sceneMinLength = sceneLength;
@@ -167,7 +173,16 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 				_sceneMaxLength = sceneLength;
 			}
 
-			scene = new models.Scene(this, escena._step, _scenes, escena.pointGroup._name, sceneLength, currentLength/_scenesTotalLength * numPagsScript, null, escena._sentimiento, escena._colorSentimiento, escena.pointGroup._name);
+			scene = new models.Scene(this
+				, escena._step
+				, _scenes
+				, escena.hasOwnProperty('pointGroup') ? escena.pointGroup._name : "" 
+				, sceneLength
+				, currentLength/_scenesTotalLength * numPagsScript
+				, null
+				, escena._sentimiento
+				, escena._colorSentimiento
+				, escena.hasOwnProperty('pointGroup') ? escena.pointGroup._name : "" );
 
 			// si encuentro EXT
 			if(escena._cabecera.indexOf(".EXT.") >= 0){
@@ -184,30 +199,33 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 
 			//Obtengo la lista de personajes que aparecen en esta escena
 			//sólo tengo un personaje en la escena
-			if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length == null){
-				listChars[escena.pointGroup.charPoint._char] = true;
-			}
+			
+			if (escena.hasOwnProperty('pointGroup')){
+				if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length == null){
+					listChars[escena.pointGroup.charPoint._char] = true;
+				}
 
-			// tengo varios personajes en la escena
-			if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length != null){
-				angular.forEach(escena.pointGroup.charPoint, function(c){
-					listChars[c._char] = true;
+				// tengo varios personajes en la escena
+				if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length != null){
+					angular.forEach(escena.pointGroup.charPoint, function(c){
+						listChars[c._char] = true;
+					});
+				}
+
+				angular.forEach(_chars, function(c){
+	// console.log(scene.getNumEscena()+" "+listChars[c.getName()]);			
+					if (listChars[c.getName()]){
+						scene.addChar(c.getNumber(), c.getColor(), c.getName(), true, c.getSent(), c.getColorSent());
+					}
+					else{
+						var numEscena = scene.getNumEscena();
+	// console.log(c.getName(), c.getFirstScene(), c.getLastScene(), numEscena)
+						if(c.getFirstScene() <= numEscena && c.getLastScene() >= numEscena){
+							scene.addChar(c.getNumber(), c.getColor(), c.getName(), false);
+						}
+					}
 				});
 			}
-
-			angular.forEach(_chars, function(c){
-// console.log(scene.getNumEscena()+" "+listChars[c.getName()]);			
-				if (listChars[c.getName()]){
-					scene.addChar(c.getNumber(), c.getColor(), c.getName(), true, c.getSent(), c.getColorSent());
-				}
-				else{
-					var numEscena = scene.getNumEscena();
-// console.log(c.getName(), c.getFirstScene(), c.getLastScene(), numEscena)
-					if(c.getFirstScene() <= numEscena && c.getLastScene() >= numEscena){
-						scene.addChar(c.getNumber(), c.getColor(), c.getName(), false);
-					}
-				}
-			});
 
 			_scenes.push(scene);
 			width = width + scene.getSize();
@@ -230,7 +248,8 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 			var jumpSize = 0;
 			for (var i=0; i<_scenes.length;i++){  //console.log(_scenes[i])
 				if(i < c.getFirstScene()-1 || i>c.getLastScene()-1){
-					v[i] = -1;
+					//v[i] = -1;
+					v[i] = v[i-1] + 1;
 				}
 				else if(_scenes[i].charVisible(c.getNumber())){
 					v[i] = 0;
@@ -252,7 +271,8 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 				// }
 				else{
 					// Esta es medio de un salto, cogemos el valor ya calculado
-					v[i] = v[i-1];
+					//v[i] = v[i-1];
+					v[i] = v[i-1] + 1;
 				}
 			}
 			_charJumps.push(v);
@@ -290,7 +310,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 	var x2js = new X2JS(); //objeto para convertir XML a JSON
 
 	$scope.showWeights = false;
-	$scope.showAxis = true;
+	$scope.showAxis = false;
 	$scope.showSceneNumber = true;
 	$scope.showSceneLength = false;
 	$scope.showScenes = true;
@@ -399,7 +419,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 		}
     });
 
-	d3.xml("xml_guiones/Rocky_corregido-min.plt-sent.xml", function(error, pelicula){
+	d3.xml("xml_guiones/Rocky_corregido.plt-sent.xml", function(error, pelicula){
 		if(error) {throw error;}
 		
 		$scope.pelicula = pelicula;

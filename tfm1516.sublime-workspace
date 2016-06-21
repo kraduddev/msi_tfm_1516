@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"esce",
+				"escenaGroup"
+			],
+			[
+				"MAR",
+				"margin-bottom"
+			],
+			[
+				"chars",
+				"charsEnEscena"
+			],
+			[
+				"getN",
+				"getName"
+			],
+			[
+				"_",
+				"_name"
+			],
+			[
+				"sho",
+				"showWeights"
+			],
+			[
+				"_s",
+				"_showWeights"
+			],
+			[
+				"path",
+				"pathPersonajes"
+			],
+			[
+				"getNu",
+				"getNumScenes"
+			],
+			[
 				"get",
 				"getName"
 			],
@@ -34,10 +70,6 @@
 			[
 				"selec",
 				"selectAll"
-			],
-			[
-				"getN",
-				"getNumEscena"
 			],
 			[
 				"pero",
@@ -127,7 +159,7 @@
 			"file": "utils/angularD3.js",
 			"settings":
 			{
-				"buffer_size": 5154,
+				"buffer_size": 12823,
 				"line_ending": "Windows"
 			}
 		},
@@ -135,7 +167,7 @@
 			"file": "utils/util.js",
 			"settings":
 			{
-				"buffer_size": 3079,
+				"buffer_size": 4539,
 				"line_ending": "Windows"
 			}
 		},
@@ -143,7 +175,7 @@
 			"file": "models/Scene.js",
 			"settings":
 			{
-				"buffer_size": 7509,
+				"buffer_size": 9032,
 				"line_ending": "Windows"
 			}
 		},
@@ -151,15 +183,15 @@
 			"file": "AngularApp/angularApp.js",
 			"settings":
 			{
-				"buffer_size": 9534,
+				"buffer_size": 13656,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "utils/config.js",
+			"file": "layout/vis.htm",
 			"settings":
 			{
-				"buffer_size": 459,
+				"buffer_size": 2129,
 				"line_ending": "Windows"
 			}
 		},
@@ -167,7 +199,15 @@
 			"file": "guion-vis.html",
 			"settings":
 			{
-				"buffer_size": 1908,
+				"buffer_size": 3043,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "style/estilos.css",
+			"settings":
+			{
+				"buffer_size": 2430,
 				"line_ending": "Windows"
 			}
 		}
@@ -204,8 +244,11 @@
 	},
 	"file_history":
 	[
-		"/C/wamp/www/tfm_1516/layout/vis.htm",
 		"/C/wamp/www/tfm_1516/guion-vis.html",
+		"/C/wamp/www/tfm_1516/xml_guiones/Rocky_corregido-min.plt-sent.xml",
+		"/C/wamp/www/tfm_1516/utils/config.js",
+		"/C/wamp/www/tfm_1516/style/estilos.css",
+		"/C/wamp/www/tfm_1516/layout/vis.htm",
 		"/C/wamp/www/tfm_1516/style/style.css",
 		"/C/wamp/www/tfm_1516/utils/util.js",
 		"/C/Users/Eduardo/Downloads/iris.csv",
@@ -252,6 +295,24 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"dragstarted",
+			"yrect",
+			"targetG",
+			"_ellipseMargin",
+			"showSceneNumber",
+			"domain",
+			"_pixelsPerChar",
+			"altoElipse",
+			"_showAxis",
+			"showAxis",
+			"_showAxis",
+			"weight",
+			"ellipse",
+			";\n",
+			"chars",
+			"addDetalleEscena",
+			"_maxJump",
+			"LINE",
 			"_colorCircle",
 			"addChar",
 			"_charsAux",
@@ -299,7 +360,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -307,24 +368,25 @@
 					"file": "utils/angularD3.js",
 					"settings":
 					{
-						"buffer_size": 5154,
+						"buffer_size": 12823,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4415,
-								4415
+								907,
+								907
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1008.0,
+						"translation.y": 457.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -334,15 +396,15 @@
 					"file": "utils/util.js",
 					"settings":
 					{
-						"buffer_size": 3079,
+						"buffer_size": 4539,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2291,
-								2291
+								2266,
+								2266
 							]
 						],
 						"settings":
@@ -350,7 +412,7 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 779.0,
+						"translation.y": 385.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -360,15 +422,15 @@
 					"file": "models/Scene.js",
 					"settings":
 					{
-						"buffer_size": 7509,
+						"buffer_size": 9032,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5257,
-								5257
+								6672,
+								6672
 							]
 						],
 						"settings":
@@ -377,7 +439,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2512.0,
+						"translation.y": 3646.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -387,15 +449,15 @@
 					"file": "AngularApp/angularApp.js",
 					"settings":
 					{
-						"buffer_size": 9534,
+						"buffer_size": 13656,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5014,
-								5014
+								11035,
+								11035
 							]
 						],
 						"settings":
@@ -404,30 +466,31 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 5070.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "utils/config.js",
+					"file": "layout/vis.htm",
 					"settings":
 					{
-						"buffer_size": 459,
+						"buffer_size": 2129,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								459,
-								459
+								409,
+								409
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -440,15 +503,15 @@
 					"file": "guion-vis.html",
 					"settings":
 					{
-						"buffer_size": 1908,
+						"buffer_size": 3043,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								611,
-								611
+								1440,
+								1440
 							]
 						],
 						"settings":
@@ -457,7 +520,35 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 168.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "style/estilos.css",
+					"settings":
+					{
+						"buffer_size": 2430,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1826,
+								1826
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1404.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -471,7 +562,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 32.0
 	},
 	"layout":
 	{
