@@ -248,31 +248,24 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 			var jumpSize = 0;
 			for (var i=0; i<_scenes.length;i++){  //console.log(_scenes[i])
 				if(i < c.getFirstScene()-1 || i>c.getLastScene()-1){
-					//v[i] = -1;
-					v[i] = v[i-1] + 1;
+					v[i] = -1;
+					//v[i] = v[i-1] + 1;
 				}
 				else if(_scenes[i].charVisible(c.getNumber())){
 					v[i] = 0;
 				}
-				// else if(i>0 && _scenes[i-1].charVisible(c.getNumber())){
-				// 	//Calcular
-				// 	jumpSize = 0;
-					
-				// 	var j = i;				
-				// 	while (!_scenes[j].charVisible(c.getNumber())){
-				// 		jumpSize++;
-				// 		j++;
-				// 	}
-
-				// 	// for (var j = i; !_scenes[j].charVisible(c.getNumber()); j++){
-				// 	// 	jumpSize++;
-				// 	// }
-				// 	v[i] = jumpSize;
-				// }
+			 	else if(_scenes[i-1].charVisible(c.getNumber())){
+				 	//Calcular
+				 	jumpSize = 0;					
+				 	for (var j = i; !_scenes[j].charVisible(c.getNumber()); j++){
+				 	 	jumpSize++;
+				 	}
+				 	v[i] = jumpSize;
+				}
 				else{
 					// Esta es medio de un salto, cogemos el valor ya calculado
-					//v[i] = v[i-1];
-					v[i] = v[i-1] + 1;
+					v[i] = v[i-1];
+					//v[i] = v[i-1] + 1;
 				}
 			}
 			_charJumps.push(v);
@@ -314,6 +307,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 	$scope.showSceneNumber = true;
 	$scope.showSceneLength = false;
 	$scope.showScenes = true;
+	$scope.showCutLines = true;
 
 	// mostrar importancia personaje
 	$scope.$watch('showWeights', function() {
@@ -416,6 +410,14 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 		    		.ease("linear")
 		    		.style('visibility', 'visible');
 	        }
+		}
+    });
+
+    // mostrar cortes
+    $scope.$watch('showCutLines', function() {
+        _cutLongLines = $scope.showCutLines;
+        if (g != null){
+	        drawLines();
 		}
     });
 

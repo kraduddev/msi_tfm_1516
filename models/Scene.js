@@ -154,16 +154,17 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 	}
 
 	this.getYChar = function(num)
-	{
+	{ 
+//console.log(num, _chars[num], _charsAux[num])
 		if (_chars[num] != null)
 		{
 			var char = _chars[num];
-			return char.y;
+			return char == null ? 0 : char.y; // TODO
 		}
 		else
 		{
 			var charAux = _charsAux[num];
-			return charAux == null ? 0 :charAux.y;
+			return charAux == null ? 0 :charAux.y; // TODO
 		}
 	}
 
@@ -257,7 +258,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 				//	return (yRect - _rectMargin)*2;
 				//})
 				.attr('cy', cy+( altoElipse/2))			
-				.attr('rx', _hSize-_ellipseMargin*2) //10
+				.attr('rx', _hSize-_ellipseMargin*4) //_hSize-_ellipseMargin*2
 				.attr('ry', altoElipse/2) //50
 				.attr('title', _numEscena)
 				.on("mouseover", function(){

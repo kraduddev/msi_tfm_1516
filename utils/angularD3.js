@@ -41,10 +41,10 @@ var _showSceneNumber = true;
 var _showSceneLength = false;
 var _showScenes = true;
 
-var _cutLongLines = false;
+var _cutLongLines = true;
 
 // Saltos en las lineas de personaje
-var _maxJump = 15;
+var _maxJump = 12;
 // Contendra en cada posicion el tamanio del salto en que se encuentra
 var _charJumps = [];
 
@@ -125,34 +125,40 @@ var drawLinesNormal = function (){
                             }
 	                    }
 	                    else if(_charJumps[numChar][i]>_maxJump && _charJumps[numChar][i+1]==0){
-	                    	pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar);
-	                    /*	var c1 = svg.append("circle")
-					            .attr('cx', position(dimensions[i]))
-					            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
-					            .attr('r', 6)
-					            .attr('fill',  _chars[numChar].getColor());
+                         //   if(_scenes[i].getYChar(numChar) != 0){
+    	                    	pathPersonajes[numChar] += "M"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar);
+                               // pathPersonajes[numChar] += "M"+position(dimensions[i+1])+","+ _scenes[i].getYChar(numChar);
+	                   	        var c1 = svg.append("circle")
+    					            .attr('cx', position(dimensions[i]))
+    					            .attr('cy', _scenes[i].getYChar(numChar))
+    					            .attr('r', 6)
+    					            .attr('fill',  _chars[numChar].getColor());
 
-					        var c2 = svg.append("circle")
-					            .attr('cx', position(dimensions[i]))
-					            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
-					            .attr('r', 4)
-					            .attr('fill',  "#FFF");   */
+    					        var c2 = svg.append("circle")
+    					            .attr('cx', position(dimensions[i]))
+    					            .attr('cy', _scenes[i].getYChar(numChar))
+    					            .attr('r', 4)
+    					            .attr('fill',  "#FFF");  
+                           // } 
                     	}
-                    	/*else if (i>0){
+                    	else if (i>0){
                     		if (_charJumps[numChar][i-1] == 0){
-                    			var c1 = svg.append("circle")
-						            .attr('cx', position(dimensions[i]))
-						            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
-						            .attr('r', 6)
-						            .attr('fill',  _chars[numChar].getColor());
+                              //  if(_scenes[i].getYChar(numChar) != 0){
+                                 //  pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar);
+                        			var c1 = svg.append("circle")
+    						            .attr('cx', position(dimensions[i]))
+    						            .attr('cy', _scenes[i].getYChar(numChar))
+    						            .attr('r', 6)
+    						            .attr('fill',  _chars[numChar].getColor());
 
-						        var c2 = svg.append("circle")
-						            .attr('cx', position(dimensions[i]))
-						            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
-						            .attr('r', 4)
-						            .attr('fill',  "#FFF");  
+    						        var c2 = svg.append("circle")
+    						            .attr('cx', position(dimensions[i]))
+    						            .attr('cy', _scenes[i].getYChar(numChar))
+    						            .attr('r', 4)
+    						            .attr('fill',  "#FFF");  
+                              //  }
                     		}
-                    	}*/
+                    	}
                     }                    
                     else{
                         if (_scenes[i].getYChar(numChar) != 0){
