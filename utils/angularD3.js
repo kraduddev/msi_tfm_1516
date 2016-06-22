@@ -40,6 +40,7 @@ var _showAxis = false;
 var _showSceneNumber = true;
 var _showSceneLength = false;
 var _showScenes = true;
+var _showActDivision = true;
 
 var _cutLongLines = true;
 

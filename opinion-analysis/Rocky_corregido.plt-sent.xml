@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<script numPages="134">
+    <chars>
+        <char color="0xA4A4A4" name="BLACK FIGHTER" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0xDF0101" name="CORNERMAN" narrador="0" sentimiento="neutro" colorSentimiento="blue"/>
+        <char color="0xF6CECE" name="ROCKY" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0xDF7401" name="FAN" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0x868A08" name="ANNOUNCER" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0xF7FE2E" name="FIGHTER #1" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0x5FB404" name="FIGHTER #2" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x81F781" name="PROMOTER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x088A4B" name="WOMAN" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x0101DF" name="MAFIA #1" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x2EFEF7" name="FATS" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x7401DF" name="ADRIAN" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0xB404AE" name="CUSTOMER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0xFF0080" name="OWNER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x0B615E" name="GAZZO" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0x00FF00" name="BODYGUARD" narrador="0" sentimiento="neutro" colorSentimiento="blue"/>
+        <char color="0xF67439" name="RUDY" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x5FAAAAA" name="MIKE" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x81BBBC" name="FIGHTER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x00AABB" name="MICKEY" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x01DAAF" name="DIPPER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0xABCDEF" name="TRAINER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0xA4A4A4" name="PAULIE" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0xDF0101" name="ANDY" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0xF6CECE" name="COMMENTATOR" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0xDF7401" name="APOLLO" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x868A08" name="CHIPPED TOOTH" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0xF7FE2E" name="YOUNG MAN #2" narrador="0" sentimiento="neutro" colorSentimiento="blue"/>
+        <char color="0x5FB404" name="MARIE" narrador="0" sentimiento="neutro" colorSentimiento="blue"/>
+        <char color="0x81F781" name="LAWYER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x088A4B" name="JERGENS" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x0101DF" name="CLEANER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x2EFEF7" name="SECRETARY" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0x7401DF" name="REPORTER #2" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0xB404AE" name="REPORTER #3" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0xFF0080" name="REPORTER #1" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0xA4A4A4" name="JOSE" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0xDF0101" name="BOY" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0xF6CECE" name="REPORTER" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0xDF7401" name="CAMERAMAN" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0x868A08" name="SOUND MAN" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0xF7FE2E" name="BUSINESSMAN #3" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x5FB404" name="BENNY" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x81F781" name="MAYOR" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x088A4B" name="COMMENTATOR #1" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x0101DF" name="COMMENTATOR #2" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0x2EFEF7" name="DEMPSEY" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x7401DF" name="FRAZIER" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+        <char color="0xB404AE" name="REFEREE" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0xFF0080" name="DOCTOR" narrador="0" sentimiento="negativo" colorSentimiento="red"/>
+        <char color="0x0B615E" name="ANOTHER ANGLE" narrador="0" sentimiento="positivo" colorSentimiento="green"/>
+    </chars>
+    <vis height="1100" width="2600">
+        <timeSlice cabecera=" BLUE DOOR FIGHT CLUB .INT." duracion="15" letra="." numeroCabecera="1" step="1" stepReal="1" time="" sentimiento="negativo" colorSentimiento="red">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" BLUE DOOR FIGHT CLUB " pin="0" principal="1" tipo="0" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="BLACK FIGHTER" label="1" tpar="100" sentimiento="positivo" colorSentimiento="green"/>
+                <charPoint char="CORNERMAN" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="FAN" label="1" tpar="100" sentimiento="positivo" colorSentimiento="green"/>
+                <charPoint char="ANNOUNCER" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="FIGHTER" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <accion descripcion=" The boxing ring is extra small to insure constant battle. The lights overhead have barely enough wattage to see who is fighting. In the ring are two heavyweights, one white the other black. The white fighter is ROCKY BALBOA.  He is thirty years old. His face is scarred and thick around the nose... His black hair shines and hangs in his eyes.  Rocky fights in a plodding, machine-like style.  The BLACK FIGHTER dances and bangs combinations into Rocky's face with great accuracy. But the punches do not even cause Rocky to blink... He grins at his opponent and keeps grinding ahead. The people at ringside sit on folding chairs and clamor for blood... They lean out of their seats and heckle the fighters. In the thick smoke they resemble spectres.  Everyone is hustling bets... The action is even heavier in the balcony. A housewife yells for somebody to cover a two dollar bet. The BELL RINGS and the fighters return to their corner... Somebody heaves a beer can into the ring. The Black Fighter spits something red in a bucket and sneers across the ring at Rocky." duracion="48" infoExtraAccion="" parte="0" tiempoDescrip="42" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="(to cornerman)" char="BLACK FIGHTER" tdialog="6" texto="... I'm gonna bust his head wide open! " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+                <accion descripcion=" In Rocky's corner he is being assisted by a shriveled, balding CORNERMAN, who is an employee of the club... He works on Rocky without any enthusiasm." duracion="18" infoExtraAccion="" parte="1" tiempoDescrip="10" sentimiento="neutro" colorSentimiento="blue">
+                    <charDialog acotacion="(lackluster)" char="CORNERMAN" tdialog="6" texto="... Ya waltzin' -- Give the suckers some action. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="Hey -- " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Ya movin' like a bum -- Want some advice --" duracion="10" infoExtraAccion="" parte="2" tiempoDescrip="8" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="... Just gimme the water. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" A FIGHT FAN rushes up to Rocky... He is sixty-five, with yellow teeth and wearing sunglasses." duracion="24" infoExtraAccion="" parte="3" tiempoDescrip="12" sentimiento="neutro" colorSentimiento="blue">
+                    <charDialog acotacion="" char="FAN" tdialog="6" texto="Should I bet the fight don't go the distance -- Ya feel strong? " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="Absolutely. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="CORNERMAN" tdialog="2" texto="... Ya want some good advice? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="... I just want the mouthpiece. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" The BELL RINGS... Rocky makes the sign of the cross.  The fighters engage in battle.  The other fighter grabs Rocky in a clinch and purposely butts him... The butt opens a bleeding cut on the corner of Rocky's eye. Rocky becomes furious over the foul and drives a flurry into the man's body... Rocky slams the man on the jaw and the fighter is out for the night.  The fans throw rubbish into the ring.  Rocky ignores it. The fans loudly go about collecting bets.  The referee does not bother to even count the fighter out and drags him under the ropes where he is placed on a stretcher.  Two new fighters enter the ring.  Rocky slips on a tattered robe. Embroidered clumsily on the back is, &quot;The Italian Stallion.&quot;" duracion="34" infoExtraAccion="" parte="4" tiempoDescrip="28" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="ANNOUNCER" tdialog="6" texto="Winner, Rocky Balboa -- Next a six rounder between local lightweights. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Without pomp Rocky climbs out of the ring and bums a cigarette from a spectator... The fighter on the stretcher passes behind him.  He watches for a moment and continues up the aisle... Before he even reaches the rear of the club the BELL RINGS and the next fight has already begun... Rocky fades into the darkness of the rear of the club. THE TITLE CREDITS END:" duracion="14" parte="5" tiempoDescrip="14" sentimiento="neutro" colorSentimiento="blue"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" DRESSING ROOM .INT." duracion="56" letra="." numeroCabecera="2" step="2" stepReal="2" time="" sentimiento="negativo" colorSentimiento="red">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" DRESSING ROOM " pin="0" principal="1" tipo="0" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="FIGHTER #1" label="1" tpar="100" sentimiento="positivo" colorSentimiento="green"/>
+                <charPoint char="FIGHTER #2" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="PROMOTER" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <accion descripcion=" Rocky has nearly completed dressing and reaches into his locker for his hat... Also in the dingy room are ten other fighters... Two taped fighters talk shop in the corner." duracion="24" infoExtraAccion="" parte="0" tiempoDescrip="12" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="FIGHTER #1" tdialog="6" texto="... Tomorrow me an' my woman are gonna tip on down to Atlantic City, man. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="FIGHTER #2" tdialog="2" texto="... It's cold, Bro'. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="FIGHTER #1" tdialog="4" texto="... That's right, I got the city to myself... " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+                <accion descripcion=" Another paces nervously... Two other fighters shadowbox and spit nervously on the floor. A young pug combs his hair and listens to a portable RADIO that is BLASTING MUSIC. The fighter that Rocky has just defeated is drinking a beer and joking with three other fighters... Some of the fighters are smoking.  The room is cloudy. A short man of fifty enters.  He is dressed in a sweater buttoned over a t-shirt." duracion="22" infoExtraAccion="" parte="1" tiempoDescrip="20" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="PROMOTER" tdialog="2" texto="...Balboa!? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Rocky raises his head.  The promoter steps over." duracion="10" infoExtraAccion="" parte="2" tiempoDescrip="2" sentimiento="neutro" colorSentimiento="blue">
+                    <charDialog acotacion="(continuing)" char="PROMOTER" tdialog="8" texto="... Twenty bucks for the locker an' cornerman -- Two bucks for the towel an' " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" shower, seven for tax -- The house owes ya, sixty-one dollars. The man peels off the money and departs... Rocky closes his locker, nods to the defeated fighter, and leaves." duracion="10" parte="3" tiempoDescrip="10" sentimiento="negativo" colorSentimiento="red"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" TROLLEY .INT." duracion="16" letra="." numeroCabecera="3" step="3" stepReal="3" time="" sentimiento="negativo" colorSentimiento="red">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" TROLLEY " pin="0" principal="1" tipo="0" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="positivo" colorSentimiento="green"/>
+                <charPoint char="WOMAN" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <accion descripcion=" Rocky is on the trolley heading to South Philly... The trolley is empty except for a thin old black WOMAN... The black Woman studies Rocky's bruised face... Rocky becomes self-conscious." duracion="16" infoExtraAccion="" parte="0" tiempoDescrip="8" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="(almost apologetic)" char="ROCKY" tdialog="4" texto="I'm a fighter. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="(tired)" char="WOMAN" tdialog="4" texto="... Yo' iz an accident. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" STREET .EXT." duracion="0" letra="." numeroCabecera="4" step="4" stepReal="4" time="" sentimiento="positivo" colorSentimiento="green">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" STREET " pin="0" principal="1" tipo="1" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <accion descripcion=" Rocky exits the trolley and walks down the block... He waves at a pair of high-heeled hookers and they wave back. Rocky passes a sleeping wino curled in front of a dirty bookstore.  Rocky drags the man into a protective passageway. Further down the street, Rocky pauses in front of the sees a sad, huge dog sitting in the window.  He mumbles to the dog and continues to the corner." duracion="16" parte="0" tiempoDescrip="16" sentimiento="positivo" colorSentimiento="green"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" ROCKY'S APARTMENT .EXT." duracion="0" letra="." numeroCabecera="5" step="5" stepReal="5" time="" sentimiento="neutro" colorSentimiento="blue">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" ROCKY'S APARTMENT " pin="0" principal="1" tipo="1" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <accion descripcion=" A short while later, Rocky approaches his apartment located in the most deprived section of South Philly.  He kicks away the litter that has gathered against the apartment steps and enters." duracion="8" parte="0" tiempoDescrip="8" sentimiento="neutro" colorSentimiento="blue"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" ROCKY'S HALLWAY .INT." duracion="0" letra="." numeroCabecera="6" step="6" stepReal="6" time="" sentimiento="neutro" colorSentimiento="blue">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" ROCKY'S HALLWAY " pin="0" principal="1" tipo="0" tipoEscena="NORMAL" urlImagen="" y="300">
+                <accion descripcion=" The narrow hallway is painted olive brown.  A single light bulb illuminates the gloomy corridor." duracion="4" parte="0" tiempoDescrip="4" sentimiento="neutro" colorSentimiento="blue"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" ROCKY'S APARTMENT .INT." duracion="18" letra="." numeroCabecera="7" step="7" stepReal="7" time="" sentimiento="positivo" colorSentimiento="green">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" ROCKY'S APARTMENT " pin="0" principal="1" tipo="0" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="positivo" colorSentimiento="green"/>
+                <accion descripcion=" Rocky enters.  The one-room apartment is drab, with a curling boxing poster of Rocky Marciano tacked on the wall... Nailed against the far wall is a mattress.  The mattress is used as a punching bag.  Stuffing spills out of the center. Rocky drops his coat on the floor.  He puts on a pair of glasses.  He crosses to a small turtle bowl... He lifts the creatures." duracion="18" infoExtraAccion="" parte="0" tiempoDescrip="16" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="...Look who's home. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+                <accion descripcion=" Rocky starts to boil a pan of water on his hot plate, then places an old 45 RPM record on a battered phonograph.  The record is a tune, &quot;ALL IN THE GAME.&quot; hairbrush.  Using it like a microphone, he mimes to the record.  He assumes the posture of a famous singer crooning to thousands of adoring fans... He then switches into a bullish fighting stance and throws several punches. The water boils.  Rocky soaks his badly-swollen hands." duracion="18" parte="1" tiempoDescrip="18" sentimiento="neutro" colorSentimiento="blue"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" SUNRISE OF PHILADELPHIA SKYLINE .EXT." duracion="0" letra="." numeroCabecera="8" step="8" stepReal="8" time="" sentimiento="positivo" colorSentimiento="green">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" SUNRISE OF PHILADELPHIA SKYLINE " pin="0" principal="1" tipo="1" tipoEscena="NORMAL" urlImagen="" y="300">
+                <accion descripcion=" We SEE the jagged skyline, highlighted by the towering figure of William Penn that rises above the dawn haze as it sits majestically above City Hall..." duracion="6" parte="0" tiempoDescrip="6" sentimiento="positivo" colorSentimiento="green"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" DOCKS .EXT." duracion="36" letra="." numeroCabecera="9" step="9" stepReal="9" time="" sentimiento="negativo" colorSentimiento="red">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" DOCKS " pin="0" principal="1" tipo="1" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="MAFIA #1" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="positivo" colorSentimiento="green"/>
+                <accion descripcion=" Rocky is walking along the waterfront... He has a bandaid over one eye.  He looks at the rugged stevedores going about their business... He stuffs his hands in his cheap wool jacket and approaches a ship being unloaded. Rocky passes two thick Mafia types leaning against a parked car.  These men look like blood drinkers." duracion="22" infoExtraAccion="" parte="0" tiempoDescrip="18" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="MAFIA #1" tdialog="2" texto="Yo, Rock -- How's your Boss? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="Real good. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+                <accion descripcion=" Fightin' again?" duracion="14" infoExtraAccion="" parte="1" tiempoDescrip="6" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="Yeah, here an' there. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="MAFIA #1" tdialog="6" texto="Mebbe we make sum money togather soon... Give ya boss my best. " vozPersonaje="" sentimiento="neutro" olor-sentimiento="blue"/>
+                </accion>
+                <accion descripcion=" Rocky shrugs and moves away... He nears a heavy man working the crane.  The heavy man looks frightened... He stops the crane and hurries into the ship's hole.  Rocky dashes up the gangplank." duracion="8" parte="2" tiempoDescrip="8" sentimiento="negativo" colorSentimiento="red"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" SHIP .INT." duracion="174" letra="." numeroCabecera="10" step="10" stepReal="10" time="" sentimiento="positivo" colorSentimiento="green">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" SHIP " pin="0" principal="1" tipo="0" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="FATS" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <charPoint char="GAZZO" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <accion descripcion=" The man enters the ship's hole and runs past tons of stacked crates and coffee beans. Rocky sprints after him... He lunges and flings the man by the neck against the wall of stacked cargo." duracion="40" infoExtraAccion="" parte="0" tiempoDescrip="16" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="(terror-filled)" char="FATS" tdialog="6" texto="Don't hit the face!  Not the face!! " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="4" texto="Mr. Gazzo wants the two hundred now! " vozPersonaje="" sentimiento="neutro" olor-sentimiento="blue"/>
+                    <charDialog acotacion="" char="FATS" tdialog="4" texto="Honest to God I'm broke -- Gimme a break. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="4" texto="Mr. Gazzo says I should get two hundred or break the thumb. " vozPersonaje="" sentimiento="neutro" olor-sentimiento="blue"/>
+                    <charDialog acotacion="" char="FATS" tdialog="6" texto="Please, I need my hands to work -- Christ, don't bust my thumbs. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" At wits' end the man picks up a large metal hook used by stevedores.  Rocky remains cool." duracion="8" infoExtraAccion="" parte="1" tiempoDescrip="6" sentimiento="neutro" colorSentimiento="blue">
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="Goin' fishin'? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" The man drops the hook." duracion="22" infoExtraAccion="" parte="2" tiempoDescrip="8" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="What's ya name again? " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="FATS" tdialog="2" texto="Bob. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="10" texto="Look, Bob, if ya wanna dance, ya gotta pay the band -- If ya borrow, ya gotta pay the man... Me, I ain't emotionally involved. " vozPersonaje="" sentimiento="neutro" olor-sentimiento="blue"/>
+                </accion>
+                <accion descripcion=" Rocky's determined expression strikes home.  The fat man quickly fumbles through his pockets and hands over a small wad of bills." duracion="30" infoExtraAccion="" parte="3" tiempoDescrip="16" sentimiento="neutro" colorSentimiento="blue">
+                    <charDialog acotacion="(continuing; counting)" char="ROCKY" tdialog="4" texto="A hundred an' thirty. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="FATS" tdialog="2" texto="That's it, I'm broke. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="That's it? -- Completely? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="FATS" tdialog="2" texto="That's it. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="What about for food an' stuff? " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="FATS" tdialog="2" texto="You have my food in ya hand. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+                <accion descripcion=" Rocky looks almost sympathetically into the fat man's flushed expression." duracion="34" infoExtraAccion="" parte="4" tiempoDescrip="12" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="" char="ROCKY" tdialog="4" texto="... The juice is climbin' every week. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="FATS" tdialog="6" texto="I know the juice is climbin' -- I been workin' six months just to pay the damn interest. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="Ya still light seventy. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="FATS" tdialog="10" texto="Waits! -- Be smart.  Ya don't have to break nothin' -- Here, take my coat, it's worth fifty-sixty dollars.  It's yours. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" The man quickly removes his coat and extends it..." duracion="20" infoExtraAccion="" parte="5" tiempoDescrip="2" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="(continuing)" char="FATS" tdialog="18" texto="See, ya a smart guy, Gazzo's don't have to know nuthin'. I'll go tape up the hand like ya broke my thumb.  Gazzo won't be wise to nothin' -- Be a smart guy, keep the coat, we'll fake like ya broke the hand. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" The man extends his coat again... Rocky suddenly grabs the man's thumb and bends him to his knees." duracion="10" infoExtraAccion="" parte="6" tiempoDescrip="4" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="(almost a whisper)" char="FATS" tdialog="6" texto="No - no - no - Please - Please - Please don't... " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Rocky releases the man who remains almost in shock.  The thumb is fine." duracion="10" infoExtraAccion="" parte="7" tiempoDescrip="6" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="" char="ROCKY" tdialog="4" texto="...That's what coulda happened. (walks off.) " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" STREET .EXT." duracion="0" letra="." numeroCabecera="11" step="11" stepReal="11" time="" sentimiento="negativo" colorSentimiento="red">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" STREET " pin="0" principal="1" tipo="1" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <charPoint char="ADRIAN" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <accion descripcion=" Later that morning Rocky passes &quot;Animal Town Pet Shop&quot; in South Philly... The shop is not very prosperous looking.  In the window hangs a sign reading &quot;Today's special -- Mixed Kittens -- $1.50&quot;... Rocky stops at this shop every morning. He stares at a litter of Lhasa Apsa puppies.  He taps the window and whistles.  He SEES a girl behind the counter and presses his face against the window and does his impression of the Hunchback of Notre Dame.  The girl nervously looks away. The girl behind the counter is ADRIAN KLEIN.  She is not very attractive, but pleasant-looking.  Thirty years old. Brown hair pulled back.  Light skinned.  She wears glasses. Rocky really stops by to flirt with Adrian, but she is so painfully shy nothing ever gets started... Rocky enters." duracion="28" parte="0" tiempoDescrip="28" sentimiento="negativo" colorSentimiento="red"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" PET SHOP .INT." duracion="188" letra="." numeroCabecera="12" step="12" stepReal="12" time="" sentimiento="negativo" colorSentimiento="red">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" PET SHOP " pin="0" principal="1" tipo="0" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="ADRIAN" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="CUSTOMER" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="OWNER" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <accion descripcion="" duracion="30" infoExtraAccion="" parte="0" tiempoDescrip="8" sentimiento="neutro" colorSentimiento="blue">
+                    <charDialog acotacion="" char="ADRIAN" tdialog="4" texto="... Could you take the puppy out -- " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="CUSTOMER" tdialog="2" texto="It can breathe. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ADRIAN" tdialog="2" texto="Please - " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="CUSTOMER" tdialog="14" texto="Please, nothin' - I paid for this dog and can do whatever I want with it - I can throw it through the window if I want - Now give me my two dollars back before I do throw it through the window. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Rocky walks over to her, stares hard in her face and snatches the bag out of her hand.  He removes the puppy and hands it to Adrian." duracion="10" infoExtraAccion="" parte="1" tiempoDescrip="8" sentimiento="neutro" colorSentimiento="blue">
+                    <charDialog acotacion="" char="CUSTOMER" tdialog="2" texto="Get away from me - Give me that! " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Rocky takes a couple dollars out of his pocket and hands it to the lady... She nervously exits." duracion="28" infoExtraAccion="" parte="2" tiempoDescrip="14" sentimiento="neutro" colorSentimiento="blue">
+                    <charDialog acotacion="" char="ROCKY" tdialog="4" texto="... How's the turtle food this week? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ADRIAN" tdialog="2" texto="... Fine. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="Me, I'm kinda aggravated. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ADRIAN" tdialog="2" texto="... I'm sorry. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="4" texto="Ain't your fault - Here's the problem. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Adrian nods... Though charmed, she is slightly intimidated." duracion="14" infoExtraAccion="" parte="3" tiempoDescrip="4" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="ROCKY" tdialog="10" texto="The last food I got here had more moths than flies -- An' the moths get caught in my turtle's throat -- That makes them cough -- " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" The OWNER, a squat woman of forty, steps out of the back and waves at Rocky." duracion="24" infoExtraAccion="" parte="4" tiempoDescrip="4" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="(continuing)" char="ROCKY" tdialog="20" texto="Yo, Gloria -- I was talkin' about the turtle food -- Like I was sayin', the moths get caught in the turtle's throat an' makes 'em cough... (coughs) A little cough an' I gotta smack 'em on the shell -- An' whatta think they get? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Adrian shrugs." duracion="14" infoExtraAccion="" parte="5" tiempoDescrip="6" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="(continuing)" char="ROCKY" tdialog="6" texto="I smack 'em hard on the shell an' they get... What? " vozPersonaje="" sentimiento="neutro" olor-sentimiento="blue"/>
+                    <charDialog acotacion="" char="ADRIAN" tdialog="2" texto="... I don't know. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Shell-shocked! Both the Owner and Adrian smile." duracion="14" infoExtraAccion="" parte="6" tiempoDescrip="8" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="" char="OWNER" tdialog="4" texto="Startin' with the bad jokes early today, huh. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="Inventin' jokes ain't easy. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Rocky steps over to a large cage at the rear of the shop... Inside is a huge dog." duracion="12" infoExtraAccion="" parte="7" tiempoDescrip="6" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="(continuing)" char="ROCKY" tdialog="4" texto="How's Butkus this mornin'? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="OWNER" tdialog="2" texto="Ain't had time to check 'em. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Rocky opens the cage and the large dog jumps out and looks very happy." duracion="8" infoExtraAccion="" parte="8" tiempoDescrip="6" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="Yo, Butkus -- Dead.  Play dead. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" The dog plays dead." duracion="34" infoExtraAccion="" parte="9" tiempoDescrip="10" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="...What kinda dog is this again? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="OWNER" tdialog="2" texto="Bullmastiff. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="4" texto="The owner was suppose to pick him up three weeks ago. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="OWNER" tdialog="16" texto="We're not responsible for animals left over thirty days - We board it ain't a animal shelter, Y'know. ...Adrian, I want you to clean all those cat cages downstairs, they're a mess. (Adrian nods.) " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Rocky waves goodbye to Adrian and exits the shop." duracion="2" parte="10" tiempoDescrip="2" sentimiento="positivo" colorSentimiento="green"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera="LEHIGH ST. TRAIN TRESTLE .EXT." duracion="2" letra="." numeroCabecera="13" step="13" stepReal="13" time="" sentimiento="negativo" colorSentimiento="red">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name="" pin="0" principal="1" tipo="-1" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <charPoint char="GAZZO" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <accion descripcion=" Gazzo picks up Rocky." duracion="2" parte="0" tiempoDescrip="2" sentimiento="negativo" colorSentimiento="red"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" GAZZO'S CAR .INT. MOVING " duracion="102" letra="." numeroCabecera="14" step="14" stepReal="14" time="" sentimiento="negativo" colorSentimiento="red">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" GAZZO'S CAR " pin="0" principal="1" tipo="0" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <charPoint char="GAZZO" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <charPoint char="BODYGUARD" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <accion descripcion=" MR. GAZZO and his YOUNG BODY GUARD sit in the front seat... Rocky is in the back seat." duracion="20" infoExtraAccion="" parte="0" tiempoDescrip="6" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="" char="ROCKY" tdialog="8" texto="He only had a hundred an' thirty. -- I think he's good for the rest next week, Mr. Gazzo. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="(patiently)" char="GAZZO" tdialog="6" texto="Sure, Rocky, Bob's good for it... " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+                <accion descripcion=" Gazzo hands Rocky a twenty." duracion="14" infoExtraAccion="" parte="1" tiempoDescrip="6" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="GAZZO" tdialog="6" texto="Tomorrow collect from Del Rio -- He's late three weeks. How'd you do last night? " vozPersonaje="" sentimiento="neutro" olor-sentimiento="blue"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="... Fine. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+                <accion descripcion=" Gazzo's Bodyguard looks at Rocky's bruised face in the mirror and smiles." duracion="18" infoExtraAccion="" parte="2" tiempoDescrip="10" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="" char="BODYGUARD" tdialog="2" texto="Did ya get the license number? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="Of wa? " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="" char="BODYGUARD" tdialog="4" texto="... Of the truck that run over your face. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Gazzo steps out of the car and beckons to Rocky." duracion="40" infoExtraAccion="" parte="3" tiempoDescrip="8" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="" char="GAZZO" tdialog="12" texto="Yo Rock.  Did I give you a job this mornin?  How come ya didn't break this guy's thumb like I asked ya?  When ya don't do what ya are told, it makes me look bad, kid. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="8" texto="I figure if I break the thumb this guy gets thrown outta his job and can't pay nothin no more. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="GAZZO" tdialog="12" texto="It don't matter.  It's my reputation.  These guys think they can get off light.  It's bad for my reputation -- It's bad for business.  See ya killer. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Gazzo gets into his car." duracion="10" infoExtraAccion="" parte="4" tiempoDescrip="2" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="(to Bodyguard)" char="GAZZO" tdialog="4" texto="... The Rock's a good kid. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                    <charDialog acotacion="(emotionless)" char="BODYGUARD" tdialog="4" texto="... A meatbag. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+                <accion descripcion=" They pull away." duracion="2" parte="5" tiempoDescrip="2" sentimiento="negativo" colorSentimiento="red"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" GYM .EXT." duracion="26" letra="." numeroCabecera="15" step="15" stepReal="15" time="" sentimiento="negativo" colorSentimiento="red">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" GYM " pin="0" principal="1" tipo="1" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="RUDY" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <charPoint char="GAZZO" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <charPoint char="APOLLO" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <accion descripcion=" Gazzo drives off and Rocky strolls across the street to Goldmill's Gym.  On the way he passes several familiar people and exchanges waves... Out front is a young Irishman who runs a soft pretzel stand... His name is RUDY.  It is apparent from his face he was a prize fighter... He is blind and mentally defective." duracion="26" infoExtraAccion="" parte="0" tiempoDescrip="18" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="RUDY" tdialog="2" texto="...See the fight last night? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="RUDY" tdialog="2" texto="Nah, I was fightin' myself. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="RUDY" tdialog="4" texto="Apollo Creed beat the bum to pieces. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera="GYM .EXT" duracion="58" letra="." numeroCabecera="16" step="16" stepReal="16" time="" sentimiento="negativo" colorSentimiento="red">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name="" pin="0" principal="1" tipo="-1" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="FIGHTER #1" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="FIGHTER #2" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="MICKEY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <charPoint char="FIGHTER" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <accion descripcion=" Mickey's Gym is surrounded by bars and a couple of greasy spoons.  Out front a crowd of young Blacks talk and jive among themselves.  Two winos lean against the entrance. Rocky enters the gym... The place is nearly full.  The MEASURED BEAT of SKIP ROPES and THROBBING SPEED BAGS makes the room come alive, like it was a mindless piece of machinery.  Over the loudspeaker MUSIC by the Isley Brothers BLARES out... The music adds a background to the CLANG of the AUTOMATIC TIMERS, SNORTING SPARRING PARTNERS and the THUDDING of HEAVY BAGS. The room is divided -- Fifty percent Black -- thirty-five percent Latin -- ten percent white -- five percent other. As Rocky walks through the gym many of the FIGHTERS pause to wave and yell greetings." duracion="38" infoExtraAccion="" parte="0" tiempoDescrip="32" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="FIGHTER #1" tdialog="4" texto="Hey, hear ya knocked Spider Rice out in the sixth? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="The third -- Shoulda seen it. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Rocky passes another FIGHTER punching the heavy bag." duracion="14" infoExtraAccion="" parte="1" tiempoDescrip="6" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="(removes glove)" char="FIGHTER #2" tdialog="4" texto="Hey, Rock, touch my hand. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="2" texto="How come? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="FIGHTER #2" tdialog="2" texto="C'mon, it's important. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+                <accion descripcion=" Rocky touches the Fighter's bare hand." duracion="6" infoExtraAccion="" parte="2" tiempoDescrip="2" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="(continuing)" char="FIGHTER #2" tdialog="4" texto="Can ya tell I just whacked-off? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" Rocky smiles and moves away." duracion="2" parte="3" tiempoDescrip="2" sentimiento="positivo" colorSentimiento="green"/>
+            </pointGroup>
+        </timeSlice>
+        <timeSlice cabecera=" DRESSING ROOM .INT." duracion="88" letra="." numeroCabecera="17" step="17" stepReal="17" time="" sentimiento="negativo" colorSentimiento="red">
+            <pointGroup ambiente="-1" dummy="1" indiceAsignado="-1" name=" DRESSING ROOM " pin="0" principal="1" tipo="0" tipoEscena="NORMAL" urlImagen="" y="300">
+                <charPoint char="ROCKY" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="MIKE" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="FIGHTER" label="1" tpar="100" sentimiento="negativo" colorSentimiento="red"/>
+                <charPoint char="MICKEY" label="1" tpar="100" sentimiento="neutro" colorSentimiento="blue"/>
+                <accion descripcion=" The dressing room is lined with dented lockers.  Wooden benches stretch across the room.  On the wall is a sign that reads, &quot;NO KISSING.&quot; Rocky goes to his locker.  He tries to open it but fails. He leans his ear against the lock and rolls the tumblers. Still it does not open.  He shakes the lock forcefully, no luck... Rocky is flustered and sits on a bench to ponder the situation. After a moment of deep thought, Rocky stands, seizes the bench and smashes open the lock.  Opening the door Rocky is taken aback when he sees a set of very flashy clothes." duracion="26" infoExtraAccion="" parte="0" tiempoDescrip="22" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="(mumbling)" char="ROCKY" tdialog="4" texto="... These ain't my clothes. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" He sees a picture of several black girls taped on the inside of the door." duracion="8" infoExtraAccion="" parte="1" tiempoDescrip="4" sentimiento="positivo" colorSentimiento="green">
+                    <charDialog acotacion="(continuing)" char="ROCKY" tdialog="4" texto="... These ain't my pictures. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" A short powerful man of thirty-five enters.  His hair looks like it has been shaped with hedge clippers.  His name is MIKE." duracion="30" infoExtraAccion="" parte="2" tiempoDescrip="14" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="ROCKY" tdialog="4" texto="Yo, Mike -- What's happenin' here? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="MIKE" tdialog="2" texto="It ain't your locker no more. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="ROCKY" tdialog="4" texto="Whatta ya talkin' about it ain't my locker no more? " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="MIKE" tdialog="6" texto="Listen, I'm with you -- But ya gotta talk to Mickey -- I put ya stuff in the bag over there. " vozPersonaje="" sentimiento="positivo" colorSentimiento="green"/>
+                </accion>
+                <accion descripcion=" Rocky looks at his belongings crammed in a wilted shopping bag and follows Mike across the room... Mike leans his head into the shower room.  Two Latin fighters are lathering up." duracion="24" infoExtraAccion="" parte="3" tiempoDescrip="10" sentimiento="negativo" colorSentimiento="red">
+                    <charDialog acotacion="" char="FIGHTER" tdialog="4" texto="...Hey, Peanut, gimme some soap, Man. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="(irate)" char="MIKE" tdialog="8" texto="Hey, Nobody -- Yeah, you, Nobody -- You don't call me Peanut. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                    <charDialog acotacion="" char="FIGHTER" tdialog="2" texto="Peanut, gimme some soap. " vozPersonaje="" sentimiento="negativo" colorSentimiento="red"/>
+                </accion>
+                <accion descripcion=" The fighters laugh.  Inflamed, Mike removes a bar of soap from his pocket and hurls it at the insulting fighter.  It hits just above the man's head.  The fighters are shocked into silence. Mike turns and exits with Rocky... The fighters curse them loudly in Spanish." duracion="12" parte="4" tiempoDescrip="12" sentimiento="neutro" colorSentimiento="blue"/>
+            </pointGroup>
+        </timeSlice>
+        
+       
+       
+        
+       
+        
+        
+        
+    </vis>
+</script>

@@ -11,9 +11,10 @@
   	echo "El fichero ha sido cargado en el servidor correctamente.<br>";
   	$nom=$_FILES['archivo']['name'];
   	//echo "<img src=\"$nom\">";
-  	echo $nom;
+  	echo "<div id='guion'><span>".$nom."</span></div>";
 
-  	echo '<a href="../guion-vis.html">Generar visualización</a>';
+  	//echo '<a href="../guion-vis.html">Generar visualización</a>';
+  	echo "<input type='submit' id='loadVis' value='Cargar seleccionado'>";
 
 
 	$pelicula = new SimpleXMLElement($nom, null, true);
@@ -258,11 +259,27 @@
 
 	// --> Se genera el nuevo XML
 	$nombreFichero = explode(".xml", $nom);
-	$nuevoNombreFichero = $nombreFichero[0]."-sent.xml";
+	$nuevoNombreFichero = "../xml_guiones/".$nombreFichero[0]."-sent.xml";
 	$pelicula->asXML($nuevoNombreFichero);
 ?>
 
-
+	<script src="../references/jquery-2.1.4.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$( "#loadVis" ).on( "click", function() {
+				if ($('#guion span').text() != null){
+				  	if (typeof(Storage) !== "undefined") {
+				  		var nombreFichero = $('#guion span').text() + "-sent.xml"
+					    localStorage.setItem("sharedGuion", nombreFichero);
+					} 
+					window.location = "../guion-vis.html";
+				}
+				else{
+					alert("No ha seleccionado ninguno.")
+				}
+			});
+		});
+	</script>
 </body>
 </html>
 </html>

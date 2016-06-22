@@ -1,7 +1,6 @@
 var myApp = angular.module('myApp', []);
 
 myApp.controller('MainCtrl', function($scope, $window, $rootScope){
-
 	
 	$(document).ready(function(){
 		// reaccion cuando se pincha en una escena
@@ -308,6 +307,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 	$scope.showSceneLength = false;
 	$scope.showScenes = true;
 	$scope.showCutLines = true;
+	$scope.showActDivision = true;
 
 	// mostrar importancia personaje
 	$scope.$watch('showWeights', function() {
@@ -421,7 +421,40 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 		}
     });
 
-	d3.xml("xml_guiones/Rocky_corregido.plt-sent.xml", function(error, pelicula){
+    // mostrar división de actos
+    $scope.$watch('showActDivision', function() {
+        _showActDivision = $scope.showActDivision;
+        if (g != null){
+        /*	if (_showActDivision){
+		        if(this._startingPag<=30 && this._scenes[this.numEscena]._startingPag>30 || this._startingPag>=30 && this._startingPag<31){
+					showShadow();
+				}
+				
+				if(this._startingPag<=60 && this._scenes[this.numEscena]._startingPag>60 || this._startingPag>=60 && this._startingPag<61){
+					showShadow();
+				}
+				
+				
+				if(this._startingPag<=90 && this._scenes[this.numEscena]._startingPag>90 || this._startingPag>=90 && this._startingPag<91){
+					showShadow();
+				}
+			}
+			else{
+				angular.forEach(_scenes, function(scene){
+					clearShadow();
+				});				
+			}*/
+		}
+    });
+
+	var _nombreGuion;
+	(function (global) {
+	    _nombreGuion = localStorage.getItem("sharedGuion");
+	}(window));
+	
+	var _directorioGuion = "xml_guiones/"+_nombreGuion;
+
+	d3.xml(_directorioGuion, function(error, pelicula){
 		if(error) {throw error;}
 		
 		$scope.pelicula = pelicula;
