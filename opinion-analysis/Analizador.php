@@ -4,8 +4,11 @@
 </head>
 <body>
 <?php
-
+	
 	include './bayesian-opinion-mining.php';
+	include './Util.php';
+
+	error_reporting(E_ERROR);
 
   	copy($_FILES['archivo']['tmp_name'],$_FILES['archivo']['name']);
   	echo "El fichero ha sido cargado en el servidor correctamente.<br>";
@@ -18,6 +21,11 @@
 
 
 	$pelicula = new SimpleXMLElement($nom, null, true);
+
+	// colores base
+	$colorNegativo = "#FF0000"; 
+	$colorPositivo = "#00FF00";
+	$util = new Util();
 
 
 	//PERSONAJES 
@@ -39,6 +47,10 @@
 	$contEscenas=1;
 	$contAcciones = 1;
 
+	// Aañado las 2 variables para quedarme con el coeficiente de sentimiento
+	$contadorParcial = 0;
+	$valorSentimientoParcial = 0.0;
+
 	//recorremos las acciones de las escenas y añadimos un nuevo atributo por cada una con el valor devuelto por el analizador
 	foreach ($pelicula->vis->timeSlice as $timeSlice):
 	 	//echo "Escena $contEscenas \n";
@@ -48,11 +60,15 @@
 	 		$sentences = explode(".", $doc);
 
 	 		$score = array('pos' => 0, 'neg' => 0);
-			foreach($sentences as $sentence) {
+	 		
+			foreach($sentences as $sentence) {					
 			        if(strlen(trim($sentence))) {
+			        		$contadorParcial++;
 			                $class = $op->classify($sentence);
-			      //          echo "Classifying: \"" . trim($sentence) . "\" as " . key($class) . "\n"; //var_dump($class);
+			              //  echo "Classifying: \"" . trim($sentence) . "\" as " . key($class) . "\n"; var_dump($class);
 			                $score[$class]++;
+
+			                $valorSentimientoParcial += ($class['pos'] - $class['neg']);
 
 			                if (key($class) == 'pos'){
 			                	$valorSentimiento++;
@@ -66,21 +82,29 @@
 			//var_dump($score); 
 			
 			// se añade el sentimiento global de la accion
-			if ($valorSentimiento > 0)
+			$accion->addAttribute('valorSentimiento', $valorSentimientoParcial);	
+			$color = $util->hex_color_mod($colorPositivo, $valorSentimientoParcial);
+			$accion->addAttribute('colorSentimiento',$color);
+			if ($valorSentimientoParcial > 0) //if ($valorSentimiento > 0)
 			{
 				$accion->addAttribute('sentimiento','positivo');
-				$accion->addAttribute('colorSentimiento','green');	
+			//	$accion->addAttribute('colorSentimiento','green');					
+							
 			}
-			else if ($valorSentimiento < 0){
+			else if ($valorSentimientoParcial < 0){ //else if ($valorSentimiento < 0){
 				$accion->addAttribute('sentimiento','negativo');
-				$accion->addAttribute('colorSentimiento','red');
+			//	$accion->addAttribute('colorSentimiento','red');
+
 			}
-			else{
+			/*else{
 				$accion->addAttribute('sentimiento','neutro');
 				$accion->addAttribute('colorSentimiento','blue');
-			}
+var_dump("por aqui no debería entrar");
+			}*/
 
 			$valorSentimiento = 0; 
+			$contadorParcial = 0;
+	 		$valorSentimientoParcial = 0.0;
 
 	 		$contAcciones++;
 	 	endforeach;
@@ -111,6 +135,8 @@
 				      //          echo "Classifying: \"" . trim($sentence) . "\" as " . key($class) . "\n"; //var_dump($class);
 				                $score[$class]++;
 
+				                $valorSentimientoParcial += ($class['pos'] - $class['neg']);
+
 				                if (key($class) == 'pos'){
 				                	$valorSentimiento++;
 				                }else{
@@ -123,21 +149,26 @@
 
 				
 				// se añade el sentimiento global del diálogo
-				if ($valorSentimiento > 0)
+				$charDialog->addAttribute('valorSentimiento', $valorSentimientoParcial);	
+				$color = $util->hex_color_mod($colorPositivo, $valorSentimientoParcial);
+				$charDialog->addAttribute('colorSentimiento',$color);	
+				if ($valorSentimientoParcial > 0)
 				{
 					$charDialog->addAttribute('sentimiento','positivo');	
-					$charDialog->addAttribute('colorSentimiento','green');	
+				//	$charDialog->addAttribute('colorSentimiento','green');	
 				}
-				else if ($valorSentimiento < 0){
+				else if ($valorSentimientoParcial < 0){
 					$charDialog->addAttribute('sentimiento','negativo');
-					$charDialog->addAttribute('colorSentimiento','red');	
+				//	$charDialog->addAttribute('colorSentimiento','red');	
 				}
-				else{
+				/*else{
 					$charDialog->addAttribute('sentimiento','neutro');
 					$charDialog->addAttribute('olor-sentimiento','blue');
-				}
+				}*/
 
-				$valorSentimiento = 0; 
+				$valorSentimiento = 0;
+				$contadorParcial = 0;
+	 			$valorSentimientoParcial = 0.0; 
 				$contDialogos++;
 	 		endforeach;
 
@@ -159,6 +190,8 @@
 	 				$tPersonajeDialogo = $charDialog->attributes()['char'];
 	 				if (strcmp($tPersonaje, $tPersonajeDialogo) == 0){ // si el personaje del dialogo es el mismo que el que estoy recorriendo
 	 					$tSentimiento = $charDialog->attributes()['sentimiento'];//acutalizo el sentimiento general del personaje con el que transmite la escena
+	 					$vSentimiento = $charDialog->attributes()['valorSentimiento'];
+	 					$valorSentimientoParcial += sscanf($vSentimiento, "%f")[0];
 	 					if(strcmp($tSentimiento, 'positivo')== 0){
 	 						$sentimientoParcial++;
 	 					}
@@ -168,19 +201,24 @@
 	 				}
 	 			endforeach;
 	 		endforeach;
-	 		if ($sentimientoParcial > 0)
+	 		$charPoint->addAttribute('valorSentimiento', $valorSentimientoParcial);	
+	 		$color = $util->hex_color_mod($colorPositivo, $valorSentimientoParcial);
+	 		$charPoint->addAttribute('colorSentimiento', $color);
+	 		if ($valorSentimientoParcial > 0)
 			{
 				$charPoint->addAttribute('sentimiento','positivo');	
-				$charPoint->addAttribute('colorSentimiento','green');	
+				//$charPoint->addAttribute('colorSentimiento','green');	
 			}
-			else if ($sentimientoParcial < 0){
+			else if ($valorSentimientoParcial < 0){
 				$charPoint->addAttribute('sentimiento','negativo');
-				$charPoint->addAttribute('colorSentimiento','red');
+			//	$charPoint->addAttribute('colorSentimiento','red');
 			}
-			else{
+			/*else{
 				$charPoint->addAttribute('sentimiento','neutro');
 				$charPoint->addAttribute('colorSentimiento','blue');
-			}
+			}*/
+			$contadorParcial = 0;
+			$valorSentimientoParcial = 0.0;
 		endforeach;
 	endforeach;
 
@@ -195,7 +233,10 @@
 	 			foreach ($accion->charDialog as $charDialog): // por cada dialogo
 	 				$tPersonajeDialogo = $charDialog->attributes()['char'];
 	 				if (strcmp($tPersonaje, $tPersonajeDialogo) == 0){ // si el personaje del dialogo es el mismo que el que estoy recorriendo
-	 					$tSentimiento = $charDialog->attributes()['sentimiento'];//acutalizo el sentimiento general del personaje con el que transmite la escena
+	 					$tSentimiento = $charDialog->attributes()['sentimiento'];//actualizo el sentimiento general del personaje con el que transmite la escena
+	 					$vSentimiento = $charDialog->attributes()['valorSentimiento'];
+	 					$valorSentimientoParcial += sscanf($vSentimiento, "%f")[0];
+	 					$contadorParcial++;
 	 					if(strcmp($tSentimiento, 'positivo')== 0){
 	 						$sentimientoParcial++;
 	 					}
@@ -206,19 +247,24 @@
 	 			endforeach;
 	 		endforeach;	
 	 	endforeach;
-	 	if ($sentimientoParcial > 0)
+	 	$char->addAttribute('valorSentimiento', $valorSentimientoParcial);	
+	 	$color = $util->hex_color_mod($colorPositivo, $valorSentimientoParcial);
+	 	$char->addAttribute('colorSentimiento',$color);
+	 	if ($valorSentimientoParcial > 0)
 		{
 			$char->addAttribute('sentimiento','positivo');	
-			$char->addAttribute('colorSentimiento','green');
+		//	$char->addAttribute('colorSentimiento','green');
 		}
-		else if ($sentimientoParcial < 0){
+		else if ($valorSentimientoParcial < 0){
 			$char->addAttribute('sentimiento','negativo');
-			$char->addAttribute('colorSentimiento','red');
+		//	$char->addAttribute('colorSentimiento','red');
 		}
-		else{
+		/*else{
 			$char->addAttribute('sentimiento','neutro');
 			$char->addAttribute('colorSentimiento','blue');
-		}
+		}*/
+		$contadorParcial = 0;
+		$valorSentimientoParcial = 0.0;
 	endforeach;
 
 // --> AÑADIR SENTIMIENTO A CADA ESCENA
@@ -226,6 +272,9 @@
 		$sentimientoParcial = 0;
 		foreach ($timeSlice->pointGroup->charPoint as $charPoint): //por cada personaje
 			$tSentimiento = $charPoint->attributes()['sentimiento'];
+			$vSentimiento = $charPoint->attributes()['valorSentimiento'];
+			$valorSentimientoParcial += sscanf($vSentimiento, "%f")[0];
+			$contadorParcial++;
 			if(strcmp($tSentimiento, 'positivo') == 0){
 				$sentimientoParcial++;
 			}
@@ -235,6 +284,9 @@
 		endforeach;
 		foreach ($timeSlice->pointGroup->accion as $accion): //por cada acción
 			$tSentimiento = $accion->attributes()['sentimiento'];
+			$vSentimiento = $accion->attributes()['valorSentimiento'];
+			$valorSentimientoParcial += sscanf($vSentimiento, "%f")[0];
+			$contadorParcial++;
 			if(strcmp($tSentimiento, 'positivo')== 0){
 				$sentimientoParcial++;
 			}
@@ -242,19 +294,24 @@
 				$sentimientoParcial--;
 			}
 		endforeach;
-		if ($sentimientoParcial > 0)
+		$timeSlice->addAttribute('valorSentimiento', $sentimientoParcial);	
+		$color = $util->hex_color_mod($colorPositivo, $valorSentimientoParcial);
+		$timeSlice->addAttribute('colorSentimiento',$color);
+		if ($valorSentimientoParcial > 0)
 		{
 			$timeSlice->addAttribute('sentimiento','positivo');	
-			$timeSlice->addAttribute('colorSentimiento','green');
+		//	$timeSlice->addAttribute('colorSentimiento','green');
 		}
-		else if ($sentimientoParcial < 0){
+		else if ($valorSentimientoParcial < 0){
 			$timeSlice->addAttribute('sentimiento','negativo');
-			$timeSlice->addAttribute('colorSentimiento','red');
+		//	$timeSlice->addAttribute('colorSentimiento','red');
 		}
-		else{
+		/*else{
 			$timeSlice->addAttribute('sentimiento','neutro');
 			$timeSlice->addAttribute('colorSentimiento','blue');
-		}
+		}*/
+		$contadorParcial = 0;
+		$valorSentimientoParcial = 0.0;
 	endforeach;
 
 	// --> Se genera el nuevo XML
