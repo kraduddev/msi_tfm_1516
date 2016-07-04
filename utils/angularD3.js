@@ -2,9 +2,10 @@ var marginSurface = {};
 var widthSurface = 0;
 var heightSurface = 0;
 
-var margin = {top:30, right:10, bottom:10, left:10},
-	width = 2600 - margin.left - margin.right,
-	height = 1100 - margin.top - margin.bottom;
+var margin = {top:30, right:100, bottom:100, left:100};
+var	width = 5650;// $(window).width() - margin.left - margin.right;
+var	height = 1102; //$(window).height() - margin.top - margin.bottom;
+var proporcion = width / height;
 
 var xD3 = d3.scale.ordinal()
 	.rangePoints([0, width], 1),
@@ -42,7 +43,7 @@ var _showSceneLength = false;
 var _showScenes = true;
 var _showActDivision = true;
 
-var _cutLongLines = true;
+var _cutLongLines = false;
 
 // Saltos en las lineas de personaje
 var _maxJump = 12;
@@ -52,6 +53,45 @@ var _charJumps = [];
 // path de los personajes
 var lineChar = [];
 var pathPersonajes = [];
+
+d3.select(window).on('resize', resize); 
+
+function resize() {
+    $( "svg" ).empty();
+    $( "svg" ).remove();
+    $( ".tooltip" ).empty();
+    $( ".tooltip" ).remove();
+    reset();
+    drawRepresentation();
+}
+
+var reset = function(){
+    margin = {top:30, right:100, bottom:100, left:100},
+    width = $(window).width() - margin.left - margin.right,
+    height = $(window).height() - margin.top - margin.bottom;
+    proporcion = width / height;
+
+    if (width / _scenes.length < 50){
+        width = _scenes.length * 50;
+        height = height * proporcion;
+    }
+
+    xD3 = d3.scale.ordinal()
+    .rangePoints([0, width], 1),
+    yD3={},
+    dragging = {};
+
+    svg = null;
+    divTitle = null;
+    divTitleChar = null;
+    g = null;
+    dimensions = [];
+    ellipse = [];
+
+   // _charJumps = [];
+    lineChar = [];
+    pathPersonajes = [];
+}
 
 function dragstarted(d) {
   d3.event.sourceEvent.stopPropagation();
@@ -229,7 +269,8 @@ var drawLinesNormal = function (){
                                         .duration(500)
                                         .ease("linear")
                                         .style('stroke', "gray")
-                                        .style('stroke-width', '2px');
+                                        .style('stroke-width', '2px')
+                                        .style('opacity', 0.1);
                                 });
                                 angular.forEach(_scenes, function(escena){                                    
                                     if (ellipse[escena.getNumEscena()] != null){                                    
@@ -250,6 +291,17 @@ var drawLinesNormal = function (){
                                         }
                                     }
                                 });
+
+                                //atenuamos el resto de personajes
+                                angular.forEach(lineChar, function(l){
+                                    if (l.attr('title') != char.getName()){
+                                        l.transition()
+                                        .duration(500)
+                                        .ease("linear")
+                                        .style('opacity', 0.1);
+                                    }
+                                });
+
                             })
                             .on("mouseout", function(){
                                 divTitleChar.transition()
@@ -266,8 +318,17 @@ var drawLinesNormal = function (){
                                             .ease("linear")
                                             .style('fill', _colorOriginalEllipse)
                                             .style('stroke', colorSent)
-                                            .style('stroke-width', '4px');
+                                            .style('stroke-width', '4px')
+                                            .style('opacity', 1);
                                     }
+                                });
+
+                                //las líneas de personajes vuelven a tener su opacidad original
+                                angular.forEach(lineChar, function(l){
+                                    l.transition()
+                                    .duration(500)
+                                    .ease("linear")
+                                    .style('opacity', 1);
                                 });
                             }); 		    	                        
     });
@@ -277,12 +338,19 @@ var drawRepresentation = function(){
 
 	marginSurface = {
 			            top: 30,
-			            right: 10,
-			            bottom: 10,
-			            left: 10
+			            right: 100,
+			            bottom: 100,
+			            left: 100
 		        	};
-    widthSurface = 2600 - marginSurface.left - marginSurface.right,
-    heightSurface = 1100 - marginSurface.top - margin.bottom;
+    widthSurface = isNaN(width) ? $(window).width() - marginSurface.left - marginSurface.right : width,
+    heightSurface = isNaN(height) ? $(window).height() - marginSurface.top - marginSurface.bottom : height;
+
+    proporcion = widthSurface / heightSurface;
+    if (widthSurface / _scenes.length < 50){
+        widthSurface = _scenes.length * 50;
+        heightSurface = heightSurface * proporcion;
+    }
+console.log(widthSurface, heightSurface)
 
     divTitle = d3.select("body").append("div")  
         .attr("class", "tooltip")               
@@ -290,7 +358,6 @@ var drawRepresentation = function(){
     divTitleChar = d3.select("body").append("div")  
         .attr("class", "tooltip")               
         .style("opacity", 0);
-
     svg = d3.select("#parallelcoordinates")
             .append("svg")
             .attr("width", widthSurface + marginSurface.right + marginSurface.left)
@@ -316,7 +383,7 @@ var drawRepresentation = function(){
 			); 
 	}));
 // Se añaden las lineas azules en el foco
-/*	foreground = svg.append("g")
+/*	foreground = svg.append("g") 
 		.attr('class', 'foreground')
 		.selectAll("path")
 		.data(_chars)
@@ -326,6 +393,7 @@ var drawRepresentation = function(){
 		.attr("stroke-width", function(d) { return (d.getNumScenes()*5/7)+"px"; })
 		.append("svg:title")
    .text(function(d) { return d.getName(); });*/
+
 
     // Pinto las líneas de los personajes
     drawLines();

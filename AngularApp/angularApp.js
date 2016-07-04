@@ -32,6 +32,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 			$scope.charsEnEscena = [];
 			angular.forEach(_scenes[numEscena-1].getSceneChars(), function(c){
 				if (c != null) $scope.charsEnEscena.push(c);
+console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1].getSceneChars())
 			});
 		});
 	}
@@ -39,7 +40,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 	var createCharacters = function (personajes){
 		var i = 0; 
 		angular.forEach(personajes, function(p){		
-			if(p.hasOwnProperty('_name')){ 
+			if(p.hasOwnProperty('_name')){ 		
 				_chars.push(new models.Character(p._name, p._color, i, p._sentimiento, p._colorSentimiento));
 				_charToNumber[p._name] = i; 
 			}
@@ -210,11 +211,28 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 						listChars[c._char] = true;
 					});
 				}
-
-				angular.forEach(_chars, function(c){
-	// console.log(scene.getNumEscena()+" "+listChars[c.getName()]);			
+				angular.forEach(_chars, function(c){		
 					if (listChars[c.getName()]){
-						scene.addChar(c.getNumber(), c.getColor(), c.getName(), true, c.getSent(), c.getColorSent());
+
+						// obtengo el sentimiento del personaje
+						var sent = null;
+						var colorSent = null;
+						if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length == null){
+							sent = escena.pointGroup.charPoint._sentimiento;
+							colorSent = escena.pointGroup.charPoint._colorSentimiento;
+						}
+
+						// tengo varios personajes en la escena
+						if (escena.pointGroup.hasOwnProperty('charPoint') && escena.pointGroup.charPoint.length != null){
+							angular.forEach(escena.pointGroup.charPoint, function(cEscena){
+								if (cEscena._char == c.getName()){
+									sent = cEscena._sentimiento;
+									colorSent = cEscena._colorSentimiento;
+								}
+							});
+						}
+
+						scene.addChar(c.getNumber(), c.getColor(), c.getName(), true, sent, colorSent);
 					}
 					else{
 						var numEscena = scene.getNumEscena();
@@ -306,8 +324,9 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 	$scope.showSceneNumber = true;
 	$scope.showSceneLength = false;
 	$scope.showScenes = true;
-	$scope.showCutLines = true;
+	$scope.showCutLines = false;
 	$scope.showActDivision = true;
+	$scope.nombrePelicula = localStorage.getItem("sharedGuion").replace(".plt-sent.xml","");
 
 	// mostrar importancia personaje
 	$scope.$watch('showWeights', function() {
@@ -455,7 +474,12 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 	var _directorioGuion = "xml_guiones/"+_nombreGuion;
 
 	d3.xml(_directorioGuion, function(error, pelicula){
-		if(error) {throw error;}
+		if(error) {
+			//throw error; 
+			//alert(JSON.parse(error.responseText));
+			alert ("El guión no tiene un formato adecuado para visualizarse.")
+			return;
+		}
 		
 		$scope.pelicula = pelicula;
 		var personajes = d3.select(pelicula).selectAll("char")[0];	

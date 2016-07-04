@@ -24,3 +24,8 @@ var _algoritmo;
 
 var _colorOriginalEllipse;
 var _colorEllipsePersonaje = "#DCF8F4";
+
+//configuracion _colores
+var _colorPositivoAbsoluto = "#00FF00"; //verde
+var _colorNegativoAbsoluto = "#FF0000"; //rojo
+var _colorNeutroAbsoluto = "#0000FF"; //azul

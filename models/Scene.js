@@ -54,6 +54,9 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 	var _sceneMovement = 0;
 
+	// Mostrar sombra de acto
+	var _actDivision = false; // -> he definido la variable en angularD3.js
+
 	this.getNumVisibleChar = function(){
 		return _numChars;
 	}
@@ -168,6 +171,23 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		}
 	}
 
+	var showShadow = function()
+	{
+		escenaGroup
+				.attr('class', 'actDivison')
+				.append("rect")
+				.style("fill", "#000000")
+				.style('opacity', 0.1)
+				.attr('x', x) //xRect
+				.attr('y', y)
+				.attr('width', _hSize)
+				.attr('height', height)
+	}
+
+	var clearShadow = function()
+	{
+
+	}
 
 	this.display = function()
 	{
@@ -213,6 +233,22 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		y=0;
 		x = _numEscena==1? _margenDerecho : _scenes[_numEscena-2].getNextX();
 
+		if(_actDivision)
+		{
+			if(_startingPag<=30 && _scenes[this.numEscena]._startingPag>30 || _startingPag>=30 && _startingPag<31){
+				showShadow();
+			}
+			
+			if(_startingPag<=60 && _scenes[this.numEscena]._startingPag>60 || _startingPag>=60 && _startingPag<61){
+				showShadow();
+			}
+			
+			
+			if(_startingPag<=90 && _scenes[this.numEscena]._startingPag>90 || _startingPag>=90 && _startingPag<91){
+				showShadow();
+			}
+		}
+
 		pintarEscena(g);
 	}
 
@@ -231,10 +267,15 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 				return d == _numEscena;
 			});
 
+			var cy = yRect - _rectMargin/2;
+			
 			var escenaGroup = gEscena.append("g")
+				.attr('transform', function(){
+					return "translate(0, "+ cy+")";
+				})
 				.attr('class', 'escena-group');
 
-			var cy = yRect - _rectMargin/2;
+			
 
 //_ellipse.graphics.drawEllipse(_hSize/2-_anchoEllipse/2 /*_ellipseMargin*/
 //	,yRect - _rectMargin/2 
@@ -246,7 +287,18 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 //	,/*_anchoEllipse*/_hSize-_ellipseMargin*2
 //	, altoElipse);
 				
+/*
 
+if (b)
+				{
+					scene.hSize = Number(scene.sceneLength)/_sceneMinLength*20;
+				}
+				else
+				{
+					scene.hSize = 35;
+				}
+
+*/
 			ellipse[_numEscena] = escenaGroup
 				.append("ellipse")
 				//.style("stroke", "gray")
@@ -257,7 +309,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 				//.attr('cy', function(){
 				//	return (yRect - _rectMargin)*2;
 				//})
-				.attr('cy', cy+( altoElipse/2))			
+				.attr('cy', ( altoElipse/2))			
 				.attr('rx', _hSize-_ellipseMargin*4) //_hSize-_ellipseMargin*2
 				.attr('ry', altoElipse/2) //50
 				.attr('title', _numEscena)
@@ -282,38 +334,43 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 				.append("rect")
 				.style("fill", _rectColor)
 				.attr('x', -3) //xRect
-				.attr('y', yRect-_rectAddedY/2)	
+				.attr('y', yRect - _rectAddedY/2 - cy)
+			//	.attr('y', yRect-_rectAddedY/2)	
 				.attr('width', _anchoRect)
 				.attr('height', altoRect)
 
-
+			// dibujar los puntos de personaje en la escena
 			angular.forEach(_chars, function(char){
 				escenaGroup.append("circle")
 					.style("fill", char._color)
 					.attr('cx', 0) //xRect + _anchoRect/2
-					.attr('cy', char.y)
+					.attr('cy', char.y-cy)
 					.attr('r', _pointSize)
 					.attr('class', char._name)
 					.attr('title', char._name);
 			});
 
-			/*escenaGroup.call(d3.behavior.drag()
-	        	.origin(function(d) { return d; })
-			    .on("dragstart", function (d) {
+			escenaGroup.call(d3.behavior.drag()
+	        	.origin(Object)
+		  		.on("dragstart", function (d) {
 				  d3.event.sourceEvent.stopPropagation();
 				  d3.select(this).classed("dragging", true);
 				})
-			    .on("drag", function (d) {
-				    console.log(d3.event.dx ,(yRect - _rectMargin/2)+d3.event.dy )
+			    .on("drag", function (d) { 
 		            d3.select(this).attr("transform", function(d,i){
 		            	cy += d3.event.dy;
-		                return "translate(" + [0, cy] + ")"
-		            });
+		                return "translate(" + [0, cy] + ")";
+		            });     				
 				})
 			    .on("dragend", function (d) {
+//console.log(yInicial, yFinal);
 				  d3.select(this).classed("dragging", false);
+				  // movemos también la línea de los personajes que intervienen en la escena
+				  angular.forEach(pathPersonajes, function(path){
+				  	//	path.replace()	
+				  });
 				}
-			));	*/
+			));	
 		}
 	}
 

@@ -4,6 +4,78 @@
 		"selected_items":
 		[
 			[
+				"xD",
+				"xD3"
+			],
+			[
+				"widh",
+				"widthSurface"
+			],
+			[
+				"hei",
+				"heightSurface"
+			],
+			[
+				"wid",
+				"widthSurface"
+			],
+			[
+				"nomb",
+				"nombreGuion"
+			],
+			[
+				"guion",
+				"guion-vis"
+			],
+			[
+				"_show",
+				"_showActDivision"
+			],
+			[
+				"gets",
+				"getNumEscena"
+			],
+			[
+				"_char",
+				"_charJumps"
+			],
+			[
+				"cha",
+				"charPoint"
+			],
+			[
+				"has",
+				"hasOwnProperty"
+			],
+			[
+				"_",
+				"_step"
+			],
+			[
+				"ea",
+				"ease"
+			],
+			[
+				"getScen",
+				"getNumEscena"
+			],
+			[
+				"getNU",
+				"getNumEscena"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"getN",
+				"getNumEscena"
+			],
+			[
+				"_color",
+				"_colorSent"
+			],
+			[
 				"esce",
 				"escenaGroup"
 			],
@@ -14,14 +86,6 @@
 			[
 				"chars",
 				"charsEnEscena"
-			],
-			[
-				"getN",
-				"getName"
-			],
-			[
-				"_",
-				"_name"
 			],
 			[
 				"sho",
@@ -159,8 +223,8 @@
 			"file": "utils/angularD3.js",
 			"settings":
 			{
-				"buffer_size": 12823,
-				"line_ending": "Windows"
+				"buffer_size": 18876,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -175,7 +239,7 @@
 			"file": "models/Scene.js",
 			"settings":
 			{
-				"buffer_size": 9032,
+				"buffer_size": 10105,
 				"line_ending": "Windows"
 			}
 		},
@@ -183,7 +247,7 @@
 			"file": "AngularApp/angularApp.js",
 			"settings":
 			{
-				"buffer_size": 13656,
+				"buffer_size": 15350,
 				"line_ending": "Windows"
 			}
 		},
@@ -199,15 +263,31 @@
 			"file": "guion-vis.html",
 			"settings":
 			{
-				"buffer_size": 3043,
+				"buffer_size": 3437,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "style/estilos.css",
+			"file": "utils/config.js",
 			"settings":
 			{
-				"buffer_size": 2430,
+				"buffer_size": 525,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "opinion-analysis/Analizador.php",
+			"settings":
+			{
+				"buffer_size": 9137,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index.php",
+			"settings":
+			{
+				"buffer_size": 1676,
 				"line_ending": "Windows"
 			}
 		}
@@ -244,10 +324,13 @@
 	},
 	"file_history":
 	[
-		"/C/wamp/www/tfm_1516/guion-vis.html",
+		"/C/wamp/www/tfm_1516/xml_guiones/IMPAVIDO.plt-sent.xml",
+		"/C/wamp/www/tfm_1516/index.php",
+		"/C/wamp/www/tfm_1516/xml_guiones/Rocky_corregido.plt-sent.xml",
 		"/C/wamp/www/tfm_1516/xml_guiones/Rocky_corregido-min.plt-sent.xml",
-		"/C/wamp/www/tfm_1516/utils/config.js",
 		"/C/wamp/www/tfm_1516/style/estilos.css",
+		"/C/wamp/www/tfm_1516/utils/config.js",
+		"/C/wamp/www/tfm_1516/guion-vis.html",
 		"/C/wamp/www/tfm_1516/layout/vis.htm",
 		"/C/wamp/www/tfm_1516/style/style.css",
 		"/C/wamp/www/tfm_1516/utils/util.js",
@@ -285,7 +368,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 92.0,
 		"where_history":
 		[
 		]
@@ -295,6 +378,54 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"xd3",
+			"_cutLongLines",
+			"width",
+			"escenagroup",
+			"&",
+			"&#",
+			"&#x201D;",
+			"&#x201C;",
+			"&#xB4;",
+			"&#xFC;",
+			"&#xC9;",
+			"&#xD1;",
+			"&#xC1;",
+			"&#xA1;",
+			"&#xBF;",
+			"&#xFA;",
+			"&quot;",
+			"&#xE9;",
+			"&#xF1;",
+			"&#x2013;",
+			"&#x2026;",
+			"&#xF3;",
+			"&#xED;",
+			"&#xE1;",
+			"&#xD3;",
+			"&#xCD;",
+			"neutro",
+			"\"MIKE\"",
+			"5FAAAAA",
+			"#5FAAAAA",
+			"drawlines",
+			"\"fighter\"",
+			"fighter",
+			"_ellipseMargin",
+			"_hSize",
+			"anchoellipse",
+			"scene",
+			"_cutLongLines",
+			"_maxJump",
+			"_cutLongLines",
+			"escena",
+			"domain",
+			"showAxis",
+			"heightSurface",
+			"parallelcoordinates",
+			"_ellipseColor",
+			"charVisible",
+			"_anchoEllipse",
 			"dragstarted",
 			"yrect",
 			"targetG",
@@ -348,6 +479,23 @@
 		"regex": false,
 		"replace_history":
 		[
+			"'",
+			"ü",
+			"E",
+			"Ñ",
+			"A",
+			"¡",
+			"¿",
+			"U",
+			"'",
+			"e",
+			"ñ",
+			"",
+			"o",
+			"i",
+			"a",
+			"O",
+			"I",
 			"yD3",
 			"xD3"
 		],
@@ -360,7 +508,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -368,15 +516,15 @@
 					"file": "utils/angularD3.js",
 					"settings":
 					{
-						"buffer_size": 12823,
+						"buffer_size": 18876,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								907,
-								907
+								9343,
+								9343
 							]
 						],
 						"settings":
@@ -386,7 +534,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 457.0,
+						"translation.y": 4262.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -412,7 +560,7 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 385.0,
+						"translation.y": 343.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -422,15 +570,15 @@
 					"file": "models/Scene.js",
 					"settings":
 					{
-						"buffer_size": 9032,
+						"buffer_size": 10105,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6672,
-								6672
+								6486,
+								6486
 							]
 						],
 						"settings":
@@ -439,7 +587,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3646.0,
+						"translation.y": 3223.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -449,15 +597,15 @@
 					"file": "AngularApp/angularApp.js",
 					"settings":
 					{
-						"buffer_size": 13656,
+						"buffer_size": 15350,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11035,
-								11035
+								9188,
+								9188
 							]
 						],
 						"settings":
@@ -466,7 +614,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5070.0,
+						"translation.y": 4161.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -503,15 +651,15 @@
 					"file": "guion-vis.html",
 					"settings":
 					{
-						"buffer_size": 3043,
+						"buffer_size": 3437,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1440,
-								1440
+								1098,
+								1098
 							]
 						],
 						"settings":
@@ -520,35 +668,87 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 168.0,
+						"translation.y": 42.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"file": "style/estilos.css",
+					"file": "utils/config.js",
 					"settings":
 					{
-						"buffer_size": 2430,
+						"buffer_size": 525,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1826,
-								1826
+								76,
+								76
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1404.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "opinion-analysis/Analizador.php",
+					"settings":
+					{
+						"buffer_size": 9137,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8284,
+								8284
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2043.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "index.php",
+					"settings":
+					{
+						"buffer_size": 1676,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1066,
+								1066
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 84.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -610,11 +810,11 @@
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"show_minimap": true,
 	"show_open_files": false,
