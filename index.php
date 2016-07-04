@@ -26,7 +26,7 @@
 		        	//echo "<a href='./guion-vis.html'>".$archivo."</a> <br />";
 		    		
 		        	echo 	"<input type='radio' name='guion' value='".$archivo."' id='".$archivo."'>
-								<label for='".$archivo."'>".$archivo."</label>
+								<label for='".$archivo."'>".str_replace(".plt-sent.xml","",$archivo)."</label>
 							</input> <br/>";
 
 		    	}
