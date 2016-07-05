@@ -54,6 +54,9 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 	var _sceneMovement = 0;
 
+	var escenaGroup;	
+	var gEscena;
+
 	// Mostrar sombra de acto
 	var _actDivision = false; // -> he definido la variable en angularD3.js
 
@@ -173,15 +176,15 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 	var showShadow = function()
 	{
-		escenaGroup
-				.attr('class', 'actDivison')
-				.append("rect")
+console.log("showShadow")
+		gEscena.select(".axis").append("rect")
+				.attr('class', 'actDivison')				
 				.style("fill", "#000000")
 				.style('opacity', 0.1)
-				.attr('x', x) //xRect
-				.attr('y', y)
+				.attr('x', -17) //xRect
+				.attr('y', -20)
 				.attr('width', _hSize)
-				.attr('height', height)
+				.attr('height', function(){ return height+50;})
 	}
 
 	var clearShadow = function()
@@ -194,8 +197,8 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		y=0;
 		x = _numEscena==1? _margenDerecho : _scenes[_numEscena-2].getNextX();
 		//_margenDerecho + (_numEscena-1)*_hSize;
-		
-		/*if(_actDivision)
+	/*
+		if(_actDivision)
 		{
 			if(this._startingPag<=30 && this._scenes[this.numEscena]._startingPag>30 || this._startingPag>=30 && this._startingPag<31){
 				showShadow();
@@ -229,27 +232,30 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		}*/
 	}
 
-	this.pintar = function(g){
+	this.pintar = function(g, numEscena){
 		y=0;
-		x = _numEscena==1? _margenDerecho : _scenes[_numEscena-2].getNextX();
+		x = _numEscena==1 ? _margenDerecho : _scenes[_numEscena-2].getNextX();
 
-		if(_actDivision)
+		pintarEscena(g);
+
+		if(_showActDivision)
 		{
-			if(_startingPag<=30 && _scenes[this.numEscena]._startingPag>30 || _startingPag>=30 && _startingPag<31){
+//console.log(_numEscena, _startingPag, numEscena);				
+			if(/*_startingPag<=30 && _scenes[numEscena]._startingPag>30 || */_startingPag>=30 && _startingPag<31){
 				showShadow();
 			}
 			
-			if(_startingPag<=60 && _scenes[this.numEscena]._startingPag>60 || _startingPag>=60 && _startingPag<61){
+			if(/*_startingPag<=60 && _scenes[numEscena]._startingPag>60 ||*/ _startingPag>=60 && _startingPag<61){
 				showShadow();
 			}
 			
 			
-			if(_startingPag<=90 && _scenes[this.numEscena]._startingPag>90 || _startingPag>=90 && _startingPag<91){
+			if(/*_startingPag<=90 && _scenes[this.numEscena]._startingPag>90 || */_startingPag>=90 && _startingPag<91){
 				showShadow();
 			}
 		}
 
-		pintarEscena(g);
+		
 	}
 
 	var pintarEscena = function(g){
@@ -263,13 +269,13 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 			var xRect = (_hSize/2)-(_anchoRect/2);
 			var yRect = (_scenePoint + _sceneMovement) *_pixelsPerChar - _pixelsPerChar/2 + _margenSuperior;
 
-			var gEscena = g.filter(function(d){
+			gEscena = g.filter(function(d){
 				return d == _numEscena;
 			});
 
 			var cy = yRect - _rectMargin/2;
 			
-			var escenaGroup = gEscena.append("g")
+			escenaGroup = gEscena.append("g")
 				.attr('transform', function(){
 					return "translate(0, "+ cy+")";
 				})

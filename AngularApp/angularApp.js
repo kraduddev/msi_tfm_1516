@@ -120,7 +120,6 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 		var scene;
 
 		_scenesTotalLength = 0;
-
 		// Calculo el valor total de la longitud de la película
 		angular.forEach(escenas, function(escena){
 			_scenesTotalLength += 2; //Sumo el encabezado de la escena
@@ -128,42 +127,55 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 				angular.forEach(escena.pointGroup.accion, function(accion){
 					text = accion._descripcion; 
 					if (text != null){
-						text.length % 60 == 0 
-							? _scenesTotalLength += text.length / 60 
-							: _scenesTotalLength += text.length / 40 + 1;
-						_scenesTotalLength += 2; //Sumo el nombre del char				
+						_scenesTotalLength += text.length % 60 == 0 
+							? text.length / 60 
+							: text.length / 60 + 1;		
+						_scenesTotalLength += 1; // sumo la nueva linea de parrafo						
+									
+						angular.forEach(accion.charDialog, function(dialog){
+							text = dialog._texto;
+							if (text != null){
+								_scenesTotalLength +=text.length % 40 == 0
+									?  text.length / 40
+									:  text.length / 40 + 1;
+								_scenesTotalLength += 2; //Sumo el nombre del char		
+							}					
+						});
 					}
 				});
 			}
 		});
+	//	_scenesTotalLength = Math.round(_scenesTotalLength);
 
 		width = 0 ;
 		_numEscenas = 0;
 		var currentLength = 0;
 		angular.forEach(escenas, function(escena){
 			var sceneLength = 0;
-			sceneLength += 2;
+			sceneLength += 2; // sumo el encabezado de la escena
 			if (escena.hasOwnProperty('pointGroup')){
 				angular.forEach(escena.pointGroup.accion, function(accion){
-					if (text != null){
-						text = accion._descripcion;
-						text.length % 60 == 0
-							? sceneLength += text.length / 60
-							: sceneLength += text.length / 60 + 1;
-						sceneLength += 1;
+					text = accion._descripcion;
+					if (text != null){						
+						sceneLength += text.length % 60 == 0
+							? text.length / 60
+							: text.length / 60 + 1;
+						sceneLength += 1; // sumo la nueva linea de parrafo
 
 						angular.forEach(accion.charDialog, function(dialog){
 							text = dialog._texto;
 							if (text != null){
-								text.length % 40 == 0
-									? sceneLength += text.length / 40
-									: sceneLength += text.length / 40 + 1;
+								sceneLength += text.length % 40 == 0
+									? text.length / 40
+									: text.length / 40 + 1;
 								sceneLength += 2; //Sumo nombre del char
 							}
 						});
 					}
 				});
 			}
+
+		//	sceneLength = Math.round(sceneLength);
 
 			if (_sceneMinLength > sceneLength){
 				_sceneMinLength = sceneLength;
@@ -178,12 +190,14 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 				, _scenes
 				, escena.hasOwnProperty('pointGroup') ? escena.pointGroup._name : "" 
 				, sceneLength
-				, currentLength/_scenesTotalLength * numPagsScript
+				, currentLength/_scenesTotalLength * parseInt(_numPagsScript)
 				, null
 				, escena._sentimiento
 				, escena._colorSentimiento
 				, escena.hasOwnProperty('pointGroup') ? escena.pointGroup._name : "" );
 
+			currentLength +=sceneLength;
+//console.log(currentLength, _scenesTotalLength, parseInt(_numPagsScript),currentLength/_scenesTotalLength * parseInt(_numPagsScript))						
 			// si encuentro EXT
 			if(escena._cabecera.indexOf(".EXT.") >= 0){
 				scene.interior = 0;
@@ -324,7 +338,7 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 	$scope.showSceneNumber = true;
 	$scope.showSceneLength = false;
 	$scope.showScenes = true;
-	$scope.showCutLines = false;
+	$scope.showCutLines = true;
 	$scope.showActDivision = true;
 	$scope.nombrePelicula = localStorage.getItem("sharedGuion").replace(".plt-sent.xml","");
 
@@ -480,11 +494,12 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 			alert ("El guión no tiene un formato adecuado para visualizarse.")
 			return;
 		}
-		
+	
 		$scope.pelicula = pelicula;
 		var personajes = d3.select(pelicula).selectAll("char")[0];	
 		var escenas = d3.select(pelicula).selectAll("timeSlice")[0];
-		
+		var script = d3.select(pelicula).selectAll("script")[0];
+
 		// Relleno el array de objetos Personaje
 		var personajesXML = "<personajes>";
 		angular.forEach(personajes, function(e){
@@ -500,8 +515,6 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 		
 		if (debug) {console.log($scope.personajes)};
 
-
-
 		// Relleno el array de objetos Escena
 		var escenasXML = "<escenas>";
 		angular.forEach(escenas, function(e){
@@ -513,6 +526,11 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 		$scope.escenas = x2js.xml_str2json(escenasXML);
 		$scope.escenas = $scope.escenas.escenas.timeSlice;
 		if (debug) {console.log($scope.escenas)};
+
+		//Obtengo el numero de páginas en caso de que haya, si no pongo por defecto el número de escenas
+		_numPagsScript = script[0].attributes[0] != null ?
+			script[0].attributes[0].value :
+			escenas.length;
 
 		//Obtengo los personajes
 		createCharacters($scope.personajes);

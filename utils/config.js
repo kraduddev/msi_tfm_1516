@@ -7,6 +7,7 @@ var y;
 
 var MIN_VALUE = 0;
 var MAX_VALUE = 150;
+var _numPagsScript = 0;
 //Variables globales controller MainCtrl
 var _scenes = [];
 var _chars = [];

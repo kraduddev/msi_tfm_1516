@@ -21,32 +21,36 @@ var_dump($rgb);
 		$max = 1;
 		$min = -1;
 
-		if ($diff >= 0){
-			if ($diff >= 0 && $diff <= 0.25){
-				return "#e5ffe5";
+		if ($diff == 0){
+			return "#6666ff";
+		}
+
+		if ($diff > 0){
+			if ($diff > 0 && $diff <= 0.25){
+				return "#b2ffb2";//"#e5ffe5";
 			}
-			if ($diff > 0.25 && $diff <= 0.5){
-				return "#b2ffb2";
+			else if ($diff > 0.25 && $diff <= 0.5){
+				return "#66ff66";//"#b2ffb2";
 			}
-			if ($diff > 0.5 && $diff <= 0.75){
-				return "#66ff66";
+			else if ($diff > 0.5 && $diff <= 0.75){
+				return "#00ff00";//"#66ff66";
 			}
-			else{
-				return "#00ff00";
+			else if ($diff > 0.75){
+				return "#00b200";//"#00ff00";
 			}
 		}
-		else{
+		else if($diff < 0){
 			if ($diff < 0 && $diff >= -0.25){
-				return "#ffe5e5";
+				return "#ffb2b2";//"#ffe5e5";
 			}
-			if ($diff < -0.25 && $diff >= -0.5){
-				return "#ffb2b2";
+			else if ($diff < -0.25 && $diff >= -0.5){
+				return "#ff6666";//"#ffb2b2";
 			}
-			if ($diff < -0.5 && $diff >= -0.75){
-				return "#ff6666";
+			else if ($diff < -0.5 && $diff >= -0.75){
+				return "#ff0000";//"#ff6666";
 			}
-			else{
-				return "#ff0000";
+			else if($diff < -0.75){
+				return "#b20000";//"#ff0000";
 			}
 		}
 	}

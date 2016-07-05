@@ -82,30 +82,30 @@
 #detalle-escena{
 	display:none;
 	left: 50%;
-  	margin-left: -223px;
-  	z-index: 1002;
-  	position: fixed;
-  	top: 50%;
-  	margin-top: -159px;
+	margin-left: -223px;
+	z-index: 1002;
+	position: fixed;
+	top: 50%;
+	margin-top: -159px;
 
-  	background: #eef2f7;
-  	-webkit-border-radius: 6px;
-  	border: 1px solid #536376;
-  	-webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
-  	-moz-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
-  	padding: 14px 22px;
-  	width: 400px;
-  	position: relative;
+	background: #eef2f7;
+	-webkit-border-radius: 6px;
+	border: 1px solid #536376;
+	-webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
+	-moz-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
+	padding: 14px 22px;
+	width: 650px; /*400px*/
+	position: relative;
 
-  	margin: 0;
-  	padding: 15;
-  	font-size: 1em;
-  	text-decoration: none;
-  	border: none;
-  	list-style: none;
-  	outline: none;
+	margin: 0;
+	padding: 15;
+	font-size: 1em;
+	text-decoration: none;
+	border: thick double;
+	list-style: none;
+	outline: none;
 
-  	font: 13px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 13px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .tick text, .tick line{
@@ -114,9 +114,12 @@
 
 .liPersonaje{
   -webkit-border-radius: 6px;
-    border: 1px solid #536376;
+    border: solid #536376;
+    border-width: medium;
     -webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
     -moz-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
+    margin: 2px;
+    padding: 2px;
 }
 
 .tooltip { 

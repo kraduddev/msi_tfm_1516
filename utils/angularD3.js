@@ -43,7 +43,7 @@ var _showSceneLength = false;
 var _showScenes = true;
 var _showActDivision = true;
 
-var _cutLongLines = false;
+var _cutLongLines = true;
 
 // Saltos en las lineas de personaje
 var _maxJump = 12;
@@ -53,6 +53,7 @@ var _charJumps = [];
 // path de los personajes
 var lineChar = [];
 var pathPersonajes = [];
+var gLineChar = [];
 
 d3.select(window).on('resize', resize); 
 
@@ -110,6 +111,16 @@ function dragended(d) {
 }
 
 var drawLines = function (){
+
+    for (numChar=0; numChar<_chars.length;numChar++){
+        pathPersonajes[numChar] = "";
+
+        // añado un 'g' por cada personaje para pintar los path
+        gLineChar[numChar] = svg.append('g')
+            .attr('class', "personaje")
+            .attr('id', _chars[numChar].getNumber());
+    }
+
 	switch(_lineMethod)
 	{
 		// case 1:
@@ -139,9 +150,9 @@ var drawLinesNormal = function (){
 
     var colorOriginalEllipse; 
     
-    for (numChar=0; numChar<_chars.length;numChar++){
+  /*  for (numChar=0; numChar<_chars.length;numChar++){
     	pathPersonajes[numChar] = "";
-    }
+    }*/
 
     //Dibujo las líneas iniciales
     for (numChar=0; numChar<_chars.length;numChar++){
@@ -168,14 +179,14 @@ var drawLinesNormal = function (){
 	                    else if(_charJumps[numChar][i]>_maxJump && _charJumps[numChar][i+1]==0){
                          //   if(_scenes[i].getYChar(numChar) != 0){
     	                    	pathPersonajes[numChar] += "M"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar);
-                               // pathPersonajes[numChar] += "M"+position(dimensions[i+1])+","+ _scenes[i].getYChar(numChar);
-	                   	        var c1 = svg.append("circle")
+                            //    pathPersonajes[numChar] += "L"+position(dimensions[i+1])+","+ _scenes[i].getYChar(numChar);
+	                   	        var c1 = gLineChar[_chars[numChar].getNumber()].append("circle")
     					            .attr('cx', position(dimensions[i]))
     					            .attr('cy', _scenes[i].getYChar(numChar))
     					            .attr('r', 6)
     					            .attr('fill',  _chars[numChar].getColor());
 
-    					        var c2 = svg.append("circle")
+    					        var c2 = gLineChar[_chars[numChar].getNumber()].append("circle")
     					            .attr('cx', position(dimensions[i]))
     					            .attr('cy', _scenes[i].getYChar(numChar))
     					            .attr('r', 4)
@@ -185,14 +196,14 @@ var drawLinesNormal = function (){
                     	else if (i>0){
                     		if (_charJumps[numChar][i-1] == 0){
                               //  if(_scenes[i].getYChar(numChar) != 0){
-                                 //  pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar);
-                        			var c1 = svg.append("circle")
+                                    pathPersonajes[numChar] += "L"+position(dimensions[i])+","+ _scenes[i].getYChar(numChar);
+                        			var c1 = gLineChar[_chars[numChar].getNumber()].append("circle")
     						            .attr('cx', position(dimensions[i]))
     						            .attr('cy', _scenes[i].getYChar(numChar))
     						            .attr('r', 6)
     						            .attr('fill',  _chars[numChar].getColor());
 
-    						        var c2 = svg.append("circle")
+    						        var c2 = gLineChar[_chars[numChar].getNumber()].append("circle")
     						            .attr('cx', position(dimensions[i]))
     						            .attr('cy', _scenes[i].getYChar(numChar))
     						            .attr('r', 4)
@@ -221,13 +232,13 @@ var drawLinesNormal = function (){
     		+","
     		+ _scenes[indexUltimaEscena].getYChar(numChar);
 
-    	var c1 = svg.append("circle")
+    	var c1 = gLineChar[_chars[numChar].getNumber()].append("circle")
             .attr('cx', (position(dimensions[indexUltimaEscena])+_tamStartEndLine+_scenes[indexUltimaEscena].getSize()/2))
             .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
             .attr('r', 6)
             .attr('fill',  _chars[numChar].getColor());
 
-        var c2 = svg.append("circle")
+        var c2 = gLineChar[_chars[numChar].getNumber()].append("circle")
             .attr('cx', (position(dimensions[indexUltimaEscena])+_tamStartEndLine+_scenes[indexUltimaEscena].getSize()/2))
             .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
             .attr('r', 4)
@@ -237,7 +248,7 @@ var drawLinesNormal = function (){
     // console.log(pathPersonajes)
 
     angular.forEach (_chars, function (char, i){
-    	lineChar[char.getNumber()] = svg.append("path")
+    	lineChar[char.getNumber()] = gLineChar[char.getNumber()].append("path")
                             .attr("d", pathPersonajes[i])
                             .attr('class', char.getNumber())
                             .attr("stroke", char.getColor())
@@ -284,7 +295,8 @@ var drawLinesNormal = function (){
                                             ellipse[escena.getNumEscena()].transition()
                                                 .duration(500)
                                                 .ease("linear")
-                                                .style('fill', _colorEllipsePersonaje)
+                                                //.style('fill', _colorEllipsePersonaje)
+                                                .style('fill', colorSent)
                                                 .style('stroke', colorSent)
                                                 .style('stroke-width', '4px');
 
@@ -466,7 +478,7 @@ console.log(widthSurface, heightSurface)
 
     // Pinto las escenas
     angular.forEach(_scenes, function(scene){    	
-    	scene.pintar(g);
+    	scene.pintar(g, scene.getNumEscena());
     });
 
 		   // svg.selectAll("ellipse").data(_scenes).enter().append("ellipse")

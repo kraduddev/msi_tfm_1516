@@ -96,11 +96,10 @@
 			//	$accion->addAttribute('colorSentimiento','red');
 
 			}
-			/*else{
+			else{
 				$accion->addAttribute('sentimiento','neutro');
-				$accion->addAttribute('colorSentimiento','blue');
-var_dump("por aqui no debería entrar");
-			}*/
+			//	$accion->addAttribute('colorSentimiento','blue');
+			}
 
 			$valorSentimiento = 0; 
 			$contadorParcial = 0;
@@ -161,10 +160,10 @@ var_dump("por aqui no debería entrar");
 					$charDialog->addAttribute('sentimiento','negativo');
 				//	$charDialog->addAttribute('colorSentimiento','red');	
 				}
-				/*else{
+				else{
 					$charDialog->addAttribute('sentimiento','neutro');
-					$charDialog->addAttribute('olor-sentimiento','blue');
-				}*/
+				//	$charDialog->addAttribute('olor-sentimiento','blue');
+				}
 
 				$valorSentimiento = 0;
 				$contadorParcial = 0;
@@ -213,10 +212,10 @@ var_dump("por aqui no debería entrar");
 				$charPoint->addAttribute('sentimiento','negativo');
 			//	$charPoint->addAttribute('colorSentimiento','red');
 			}
-			/*else{
+			else{
 				$charPoint->addAttribute('sentimiento','neutro');
-				$charPoint->addAttribute('colorSentimiento','blue');
-			}*/
+			//	$charPoint->addAttribute('colorSentimiento','blue');
+			}
 			$contadorParcial = 0;
 			$valorSentimientoParcial = 0.0;
 		endforeach;
@@ -259,10 +258,10 @@ var_dump("por aqui no debería entrar");
 			$char->addAttribute('sentimiento','negativo');
 		//	$char->addAttribute('colorSentimiento','red');
 		}
-		/*else{
+		else{
 			$char->addAttribute('sentimiento','neutro');
-			$char->addAttribute('colorSentimiento','blue');
-		}*/
+		//	$char->addAttribute('colorSentimiento','blue');
+		}
 		$contadorParcial = 0;
 		$valorSentimientoParcial = 0.0;
 	endforeach;
@@ -306,10 +305,10 @@ var_dump("por aqui no debería entrar");
 			$timeSlice->addAttribute('sentimiento','negativo');
 		//	$timeSlice->addAttribute('colorSentimiento','red');
 		}
-		/*else{
+		else{
 			$timeSlice->addAttribute('sentimiento','neutro');
-			$timeSlice->addAttribute('colorSentimiento','blue');
-		}*/
+		//	$timeSlice->addAttribute('colorSentimiento','blue');
+		}
 		$contadorParcial = 0;
 		$valorSentimientoParcial = 0.0;
 	endforeach;
