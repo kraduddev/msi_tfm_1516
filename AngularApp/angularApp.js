@@ -361,6 +361,7 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 	$scope.showScenes = true;
 	$scope.showCutLines = true;
 	$scope.showActDivision = true;
+	$scope.modoNocturno = false;
 	$scope.nombrePelicula = localStorage.getItem("sharedGuion").replace(".plt-sent.xml","");
 
 	// mostrar importancia personaje
@@ -499,6 +500,21 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 				});				
 			}*/
 		}
+    });
+
+    // modo nocturno
+    $scope.$watch('modoNocturno', function() {
+    	if (_modoNocturno != $scope.modoNocturno){
+		    _modoNocturno = $scope.modoNocturno;
+		    if(_modoNocturno == true){
+		    	d3.select("svg").classed("modoNocturno", true);
+		    	$("body").css("background-color", "#999999");
+		    }
+		    else{
+		    	d3.select("svg").classed("modoNocturno", false);
+		    	$("body").css("background-color", "#FFFFFF");
+		    }
+    	}
     });
 
 	var _nombreGuion;

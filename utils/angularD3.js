@@ -42,6 +42,7 @@ var _showSceneNumber = true;
 var _showSceneLength = false;
 var _showScenes = true;
 var _showActDivision = true;
+var _modoNocturno = false;
 
 var _cutLongLines = true;
 
@@ -55,7 +56,7 @@ var lineChar = [];
 var pathPersonajes = [];
 var gLineChar = [];
 
-d3.select(window).on('resize', reloadVisualization); 
+//d3.select(window).on('resize', reloadVisualization); 
 
 function reloadVisualization() {
     $( "svg" ).empty();
@@ -264,87 +265,87 @@ var drawLinesNormal = function (){
                             .attr("fill", "none")
                             .attr('title', char.getName());
 
-        lineChar[char.getNumber()].on("mouseover", function(){
-                divTitleChar.transition()
-                    .duration(200)
-                    .style("background", char.getColor)
-                    .style("width", 75+"px")
-                    .style("height", 30+"px")
-                    .style("opacity", .9);
-                divTitleChar.html(char.getName()) 
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY - 28) + "px");   
-            
-                // mostramos sentimiento del personaje en las escenas donde interviene
-                // en el resto, se muestra en gris
-                angular.forEach(ellipse, function(e){
-                    e.transition()
+            lineChar[char.getNumber()].on("mouseover", function(){
+                    divTitleChar.transition()
+                        .duration(200)
+                        .style("background", char.getColor)
+                        .style("width", 75+"px")
+                        .style("height", 30+"px")
+                        .style("opacity", .9);
+                    divTitleChar.html(char.getName()) 
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");   
+                
+                    // mostramos sentimiento del personaje en las escenas donde interviene
+                    // en el resto, se muestra en gris
+                    angular.forEach(ellipse, function(e){
+                        e.transition()
+                            .duration(500)
+                            .ease("linear")
+                            .style('stroke', "gray")
+                            .style('stroke-width', '2px')
+                            .style('opacity', 0.1);
+                    });
+                    angular.forEach(_scenes, function(escena){                                    
+                        if (ellipse[escena.getNumEscena()] != null){                                    
+                            if (escena.charVisible(char.getNumber())){
+                                var colorSent; 
+                                angular.forEach(escena.getSceneChars(), function (cEnEscena){
+                                    if(cEnEscena._name == char.getName()){                                                         
+                                        colorSent = cEnEscena._colorSent;
+                                    }
+                                });
+                                ellipse[escena.getNumEscena()].transition()
+                                    .duration(500)
+                                    .ease("linear")
+                                    //.style('fill', _colorEllipsePersonaje)
+                                    .style('fill', colorSent)
+                                    .style('stroke', colorSent)
+                                    .style('stroke-width', '4px');
+
+                            }
+                        }
+                    });
+
+                    //atenuamos el resto de personajes
+                    angular.forEach(lineChar, function(l){
+                        if (l.attr('title') != char.getName()){
+                            l.transition()
+                            .duration(500)
+                            .ease("linear")
+                            .style('opacity', 0.1);
+                        }
+                    });
+
+                })
+                .on("mouseout", function(){
+                    divTitleChar.transition()
                         .duration(500)
                         .ease("linear")
-                        .style('stroke', "gray")
-                        .style('stroke-width', '2px')
-                        .style('opacity', 0.1);
-                });
-                angular.forEach(_scenes, function(escena){                                    
-                    if (ellipse[escena.getNumEscena()] != null){                                    
-                        if (escena.charVisible(char.getNumber())){
-                            var colorSent; 
-                            angular.forEach(escena.getSceneChars(), function (cEnEscena){
-                                if(cEnEscena._name == char.getName()){                                                         
-                                    colorSent = cEnEscena._colorSent;
-                                }
-                            });
+                        .style("opacity", 0);   
+
+                    // el borde de la escena vuelve a tener el sentimiento de la escena
+                    angular.forEach(_scenes, function(escena){                                    
+                        if (ellipse[escena.getNumEscena()] != null){    
+                            var colorSent = escena.getColorSent(); 
                             ellipse[escena.getNumEscena()].transition()
                                 .duration(500)
                                 .ease("linear")
-                                //.style('fill', _colorEllipsePersonaje)
-                                .style('fill', colorSent)
+                                .style('fill', _colorOriginalEllipse)
                                 .style('stroke', colorSent)
-                                .style('stroke-width', '4px');
-
+                                .style('stroke-width', '4px')
+                                .style('opacity', 1);
                         }
-                    }
-                });
+                    });
 
-                //atenuamos el resto de personajes
-                angular.forEach(lineChar, function(l){
-                    if (l.attr('title') != char.getName()){
+                    //las líneas de personajes vuelven a tener su opacidad original
+                    angular.forEach(lineChar, function(l){
                         l.transition()
                         .duration(500)
                         .ease("linear")
-                        .style('opacity', 0.1);
-                    }
+                        .style('opacity', 1);
+                    });
                 });
-
-            })
-            .on("mouseout", function(){
-                divTitleChar.transition()
-                    .duration(500)
-                    .ease("linear")
-                    .style("opacity", 0);   
-
-                // el borde de la escena vuelve a tener el sentimiento de la escena
-                angular.forEach(_scenes, function(escena){                                    
-                    if (ellipse[escena.getNumEscena()] != null){    
-                        var colorSent = escena.getColorSent(); 
-                        ellipse[escena.getNumEscena()].transition()
-                            .duration(500)
-                            .ease("linear")
-                            .style('fill', _colorOriginalEllipse)
-                            .style('stroke', colorSent)
-                            .style('stroke-width', '4px')
-                            .style('opacity', 1);
-                    }
-                });
-
-                //las líneas de personajes vuelven a tener su opacidad original
-                angular.forEach(lineChar, function(l){
-                    l.transition()
-                    .duration(500)
-                    .ease("linear")
-                    .style('opacity', 1);
-                });
-            });
                             		    	                        
     });
 }
@@ -383,7 +384,12 @@ console.log(widthSurface, heightSurface)
             .call(zoom
                 .on("zoom", function(){
                     svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
-                })).on("dblclick.zoom", null)
+                }))
+                .on("dblclick.zoom", null)
+             /*   .on("mousedown.zoom", null)
+                .on("touchstart.zoom", null)
+                .on("touchmove.zoom", null)
+                .on("touchend.zoom", null)*/
             .append('g');
  
 	
@@ -397,18 +403,6 @@ console.log(widthSurface, heightSurface)
 			.range([heightSurface,0]) 
 			); 
 	}));
-// Se añaden las lineas azules en el foco
-/*	foreground = svg.append("g") 
-		.attr('class', 'foreground')
-		.selectAll("path")
-		.data(_chars)
-		.enter().append('path')
-		.attr('d', path)
-		.attr("style", function(d) { return "stroke:" + d.getColor() +""; })
-		.attr("stroke-width", function(d) { return (d.getNumScenes()*5/7)+"px"; })
-		.append("svg:title")
-   .text(function(d) { return d.getName(); });*/
-
 
     // Pinto las líneas de los personajes
     drawLines();
@@ -469,37 +463,11 @@ console.log(widthSurface, heightSurface)
                     .style('display', function(){
                         return _showAxis == true ? "block" : "none";
                     });
- 
-          /*  g.append("g")
-                .attr("class", "brush")
-                .each(function(d) {
-                    d3.select(this).call(yD3[d].brush = d3.svg.brush().y(yD3[d]).on("brush", brush));
-                })
-                .selectAll("rect")
-                .attr("x", -8)
-                .attr("width", 16);*/
 
     // Pinto las escenas
     angular.forEach(_scenes, function(scene){    	
     	scene.pintar(g, scene.getNumEscena());
     });
-
-		   // svg.selectAll("ellipse").data(_scenes).enter().append("ellipse")
-		 //    .style("stroke", "gray")
-	  //       .style("fill", "white")
-			// .attr('cx', function(d,i){d.display(); return (d.getNextX()*2)-150;})
-			// //.attr('cy', function(d,i){return (Math.random()*200)+50;})
-			// .attr('cy', function(d){ 
-			// 	var chars = d.getSceneChars(); 
-			// 	var yEscena = 70;
-			// 	var primerElemento = Object.keys(chars)[0];
-			// 	return primerElemento == null ? yEscena : yEscena+chars[primerElemento].y;
-			// })			
-			// .attr('rx', 10)
-			// .attr('ry', 50)
-			// .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
-	  //       .on("mouseout", function(){d3.select(this).style("fill", "white");});
-
 
 }
 

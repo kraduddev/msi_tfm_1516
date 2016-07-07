@@ -58,7 +58,7 @@ algorithms.CenteredChar = function (){
 		charArray.splice(0,0,aux[0]);
 
 		// Obtengo el punto inicial
-		mid = numChars%2==0 ? numChars/2 - 1 : numChars/2;
+		mid = numChars%2==0 ? Math.floor(numChars/2 - 1) : Math.floor(numChars/2);
 		inf = mid+1;
 		sup = mid-1;
 
