@@ -33,7 +33,6 @@ var drag = d3.behavior.drag()
     .on("dragend", dragended);
 
 var _lineMethod = 0;
-var _minEscenas = 0;
 var _maxNumScenesPerChar = MAX_VALUE;
 var _tamStartEndLine = 10;
 var _showWeights = false;
@@ -154,15 +153,16 @@ var drawLinesNormal = function (){
   /*  for (numChar=0; numChar<_chars.length;numChar++){
     	pathPersonajes[numChar] = "";
     }*/
-
+console.log("_minEscenas",_minEscenas)
     //Dibujo las líneas iniciales
     for (numChar=0; numChar<_chars.length;numChar++){
     	var indexPrimeraEscena = _chars[numChar].getFirstScene()-1;
-    	
-    	pathPersonajes[numChar] = "M"
-    		+(position(dimensions[indexPrimeraEscena])-_tamStartEndLine-_scenes[indexPrimeraEscena].getSize()/2)
-    		+","
-    		+ _scenes[indexPrimeraEscena].getYChar(numChar); 
+    	if(_chars[numChar].getNumScenes() >= _minEscenas){
+        	pathPersonajes[numChar] = "M"
+        		+(position(dimensions[indexPrimeraEscena])-_tamStartEndLine-_scenes[indexPrimeraEscena].getSize()/2)
+        		+","
+        		+ _scenes[indexPrimeraEscena].getYChar(numChar); 
+        }
     }
 
 	for(i=0; i<_scenes.length;i++){
@@ -226,24 +226,26 @@ var drawLinesNormal = function (){
 
     //Dibujo las líneas finales
     for (numChar=0; numChar<_chars.length;numChar++){
-    	var indexUltimaEscena = _chars[numChar].getLastScene()-1;
-    	
-    	pathPersonajes[numChar] += "L"
-    		+(position(dimensions[indexUltimaEscena])+_tamStartEndLine+_scenes[indexUltimaEscena].getSize()/2)
-    		+","
-    		+ _scenes[indexUltimaEscena].getYChar(numChar);
+        if(_chars[numChar].getNumScenes() >= _minEscenas){
+        	var indexUltimaEscena = _chars[numChar].getLastScene()-1;
+        	
+        	pathPersonajes[numChar] += "L"
+        		+(position(dimensions[indexUltimaEscena])+_tamStartEndLine+_scenes[indexUltimaEscena].getSize()/2)
+        		+","
+        		+ _scenes[indexUltimaEscena].getYChar(numChar);
 
-    	var c1 = gLineChar[_chars[numChar].getNumber()].append("circle")
-            .attr('cx', (position(dimensions[indexUltimaEscena])+_tamStartEndLine+_scenes[indexUltimaEscena].getSize()/2))
-            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
-            .attr('r', 6)
-            .attr('fill',  _chars[numChar].getColor());
+        	var c1 = gLineChar[_chars[numChar].getNumber()].append("circle")
+                .attr('cx', (position(dimensions[indexUltimaEscena])+_tamStartEndLine+_scenes[indexUltimaEscena].getSize()/2))
+                .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
+                .attr('r', 6)
+                .attr('fill',  _chars[numChar].getColor());
 
-        var c2 = gLineChar[_chars[numChar].getNumber()].append("circle")
-            .attr('cx', (position(dimensions[indexUltimaEscena])+_tamStartEndLine+_scenes[indexUltimaEscena].getSize()/2))
-            .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
-            .attr('r', 4)
-            .attr('fill',  "#FFF");   
+            var c2 = gLineChar[_chars[numChar].getNumber()].append("circle")
+                .attr('cx', (position(dimensions[indexUltimaEscena])+_tamStartEndLine+_scenes[indexUltimaEscena].getSize()/2))
+                .attr('cy', _scenes[indexUltimaEscena].getYChar(numChar))
+                .attr('r', 4)
+                .attr('fill',  "#FFF");   
+        }
     }
     
     // console.log(pathPersonajes)
@@ -264,6 +266,17 @@ var drawLinesNormal = function (){
                             })
                             .attr("fill", "none")
                             .attr('title', char.getName());
+
+            // se añade animación en la línea de personajes
+            var totalLength = lineChar[char.getNumber()].node().getTotalLength();
+
+            lineChar[char.getNumber()].attr("stroke-dasharray", totalLength + " " + totalLength)
+                  .attr("stroke-dashoffset", totalLength)
+                  .transition()
+                    .duration(1500)
+                    .ease("linear")
+                    .attr("stroke-dashoffset", 0)
+                            
 
             lineChar[char.getNumber()].on("mouseover", function(){
                     divTitleChar.transition()

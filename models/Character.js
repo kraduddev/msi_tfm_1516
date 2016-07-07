@@ -74,6 +74,11 @@ models.Character = function(name, color, number, sent, colorSent){
 	{
 		return _color;
 	}
+
+	this.setColor = function(color)
+	{
+		_color = color;
+	}
 	
 	this.getSent = function()
 	{
@@ -83,5 +88,15 @@ models.Character = function(name, color, number, sent, colorSent){
 	this.getColorSent = function()
 	{
 		return _colorSent;
+	}
+
+	this.getPosition = function()
+	{
+		return _position;
+	}
+
+	this.setPosition = function(pos)
+	{
+		_position = pos;
 	}
 }

@@ -99,8 +99,8 @@ algorithms.CenteredChar = function (){
 
 		//Calculo la posición central
 		var mid = initCharPos.length%2==0 
-			? initCharPos.length/2-1 
-			: initCharPos.length/2;
+			? Math.floor(initCharPos.length/2-1) 
+			: Math.floor(initCharPos.length/2);
 
 		for (var k=0; k<scenePos.length; k++){
 			numChars = scenes[k].getNumVisibleChar();
@@ -197,7 +197,7 @@ algorithms.CenteredChar = function (){
 		var minCruces = null;
 		var cruces = null;
 		var posInScene = null;
-		var midPosition = numChars%2==0 ? numChars/2+1 : numChars/2;
+		var midPosition = numChars%2==0 ? Math.floor(numChars/2+1) : Math.floor(numChars/2);
 
 		// Para cada escena, se calcula la mejor posición
 		// se tiene en cuenta la restricciones del personaje central

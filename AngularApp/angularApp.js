@@ -41,7 +41,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 			$scope.charsEnEscena = [];
 			angular.forEach(_scenes[numEscena-1].getSceneChars(), function(c){
 				if (c != null) $scope.charsEnEscena.push(c);
-console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1].getSceneChars())
+//console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1].getSceneChars())
 			});
 		});
 	}
@@ -99,6 +99,29 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 			}		
 		});
 
+		var charAux = new Array(_chars.length);
+		for(var i=0; i< charAux.length; i++){
+			charAux[i] = _chars[i];
+		}
+
+		var pos = 1;
+		var currChar;
+		var maxScenes;
+
+		while(charAux.length > 0){
+			maxScenes = Number.MIN_VALUE;
+			for(var i=0; i<charAux.length; i++){
+				if(charAux[i].getNumScenes() > maxScenes){
+					maxScenes = charAux[i].getNumScenes();
+					currChar = i;
+				}
+			}
+			charAux[currChar].setPosition(parseInt(pos));
+			pos++;
+			charAux[currChar].setColor(getNextColor());
+			charAux.splice(currChar, 1);
+		}
+
 		if (debug){
 			angular.forEach(_chars, function(c){
 				console.log(c.getName() 
@@ -107,13 +130,20 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 					+" l"+c.getLastScene()
 					+" t"+c.getNumScenes());
 			});
-		}
-		//Queda añadir la importancia de cada personaje.
-		//
-		
+		}		
 
 		height = _chars.length * _pixelsPerChar;		
 	};
+
+	var getNextColor = function()
+	{
+		if (_currentColor == _numColors) {
+			_currentColor = 0;
+		}
+		var c = _colorList[_currentColor];
+		_currentColor++;
+		return c; 
+	}
 
 	var calcMaxSceneInChars = function(){
 		_maxNumScenesPerChar = -MIN_VALUE;
@@ -363,6 +393,8 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 	$scope.showActDivision = true;
 	$scope.modoNocturno = false;
 	$scope.nombrePelicula = localStorage.getItem("sharedGuion").replace(".plt-sent.xml","");
+	
+	$scope.regex = /^[0-9]+$/;
 
 	// mostrar importancia personaje
 	$scope.$watch('showWeights', function() {
@@ -512,10 +544,47 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 		    }
 		    else{
 		    	d3.select("svg").classed("modoNocturno", false);
-		    	$("body").css("background-color", "#FFFFFF");
+		    	$("body").css("background-color", "#999999");
 		    }
     	}
     });
+
+    // filtrar mínimo escenas
+    $scope.filtrarMinimoEscenas = function(){
+		if ($scope.formVisualization.filtroMinimoEscenas.$valid){
+			_minEscenas = $scope.filtroMinimoEscenas;
+			reloadVisualization();
+		}
+		else{
+    		alert("Número no válido");
+    	}
+
+	}
+
+    // filtrar mínimo escenas
+    $scope.filtrarNumPersonajes = function(){
+    	if ($scope.formVisualization.filtroNumPersonajes.$valid){
+console.log("$scope.filtroNumPersonajes",$scope.filtroNumPersonajes)
+    		if ($scope.filtroNumPersonajes == 0)
+			{
+				_minEscenas = 0;
+			}
+			else
+			{
+				angular.forEach(_chars, function(char){
+console.log(char.getPosition(), $scope.filtroNumPersonajes)					
+					if (char.getPosition() == $scope.filtroNumPersonajes){
+						_minEscenas = char.getNumScenes();
+						return;
+					}
+				});
+			}
+			reloadVisualization();
+    	}
+    	else{
+    		alert("Número no válido");
+    	}
+    }
 
 	var _nombreGuion;
 	(function (global) {
@@ -536,6 +605,7 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 		var personajes = d3.select(pelicula).selectAll("char")[0];	
 		var escenas = d3.select(pelicula).selectAll("timeSlice")[0];
 		var script = d3.select(pelicula).selectAll("script")[0];
+		_currentColor = 0;
 
 		// Relleno el array de objetos Personaje
 		var personajesXML = "<personajes>";

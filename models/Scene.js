@@ -356,11 +356,17 @@ if (b)
 					.attr('title', char._name);
 			});
 
+			// comportamiento cuando muevo una escena en el eje vertical
+			var cyInicial = null;
+			var cxInicial = [];
 			escenaGroup.call(d3.behavior.drag()
 	        	.origin(Object)
 		  		.on("dragstart", function (d) {
-				  d3.event.sourceEvent.stopPropagation();
-				  d3.select(this).classed("dragging", true);
+	  				cyInicial = cy;
+	  				cxInicial = gEscena.attr('transform').match(floatRegex)[0];
+console.log("cxInicial", cxInicial)	  				
+				  	d3.event.sourceEvent.stopPropagation();
+				  	d3.select(this).classed("dragging", true);
 				})
 			    .on("drag", function (d) { 
 		            d3.select(this).attr("transform", function(d,i){
@@ -369,12 +375,25 @@ if (b)
 		            });     				
 				})
 			    .on("dragend", function (d) {
-//console.log(yInicial, yFinal);
-				  d3.select(this).classed("dragging", false);
-				  // movemos también la línea de los personajes que intervienen en la escena
-				  angular.forEach(pathPersonajes, function(path){
-				  	//	path.replace()	
-				  });
+//console.log(cyInicial, cy);
+					var cyFinal = cy - cyInicial;
+				  	d3.select(this).classed("dragging", false);
+				  	// movemos también la línea de los personajes que intervienen en la escena
+			 	 	angular.forEach(pathPersonajes, function(path, i){
+			 	 		//obtengo y del personaje
+			 	 		var regex = new RegExp("L"+cxInicial+","+"[0-9]*");
+			 	 		var yPersonajeOriginalArray = path.match(regex);
+			 	 		if (yPersonajeOriginalArray != null){
+			 	 			var yPersonajeOriginal = yPersonajeOriginalArray[0].split(",");
+				 	 		// sumo el cyFinal
+				 	 		var yPersonajeAux = yPersonajeOriginal[0]+","+(parseInt(yPersonajeOriginal[1])+parseInt(cyFinal));
+console.log(yPersonajeOriginalArray[0], cyFinal, parseInt(yPersonajeOriginal[1])+parseInt(cyFinal), yPersonajeAux)			 	 						 	 		
+				 	 		// hago replace 
+				 	 		path = path.replace(yPersonajeOriginalArray[0], yPersonajeAux);
+				 	 		//repinto la línea del personaje con los nuevos atributos
+						//	$("path"+"."+i).attr("d", path);								 	 		
+			 	 		}
+				  	});
 				}
 			));	
 		}

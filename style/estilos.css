@@ -1,3 +1,7 @@
+body{
+  background-color: #999999;
+}
+
 #dvPersonajes{
 	float:left;
 	width: 250px;
@@ -24,7 +28,7 @@
 
 .elipse
 {
-  	width: 50px;
+	width: 50px;
  	height: 40px;
  	-moz-border-radius: 50%;
  	-webkit-border-radius: 50%;

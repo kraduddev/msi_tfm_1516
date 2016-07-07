@@ -81,31 +81,39 @@
 	
 <!-- 	<chars personajes="personajes"></chars> -->
 <div id="option-container">
-	<label style="font:'1.1em'">{{nombrePelicula}}</label>
-	<input type="checkbox" id="showWeights" name="showWeights" ng-model="showWeights">
-		<label for="showWeights">Mostrar importancia personaje</label>
-	</input>
-	<input type="checkbox" id="showAxis" name="showAxis" ng-model="showAxis">
-		<label for="showAxis">Mostrar ejes</label>
-	</input>
-	<input type="checkbox" id="showScenes" name="showScenes" ng-model="showScenes">
-		<label for="showScenes">Mostrar escenas</label>
-	</input>
-	<input type="checkbox" id="showSceneNumber" name="showSceneNumber" ng-model="showSceneNumber">
-		<label for="showSceneNumber">Mostrar número de escena</label>
-	</input>
-	<input type="checkbox" id="showActDivision" name="showActDivision" ng-model="showActDivision">
-		<label for="showActDivision">Mostrar división de actos</label>
-	</input>
-	<input type="checkbox" id="showCutLines" name="showCutLines" ng-model="showCutLines" >
-		<label for="showCutLines">Mostrar cortes</label>
-	</input>
-	<input type="checkbox" id="showSceneLength" name="showSceneLength" ng-model="showSceneLength" ng-disabled="true">
-		<label for="showSceneLength">Mostrar longitud escena</label>
-	</input>
-	<input type="checkbox" id="modoNocturno" name="modoNocturno" ng-model="modoNocturno">
-		<label for="modoNocturno">Modo nocturno</label>
-	</input>
+	<form name="formVisualization">
+		<label style="font:'1.1em'">{{nombrePelicula}}</label>
+		<input type="checkbox" id="showWeights" name="showWeights" ng-model="showWeights">
+			<label for="showWeights">Mostrar importancia personaje</label>
+		</input>
+		<input type="checkbox" id="showAxis" name="showAxis" ng-model="showAxis">
+			<label for="showAxis">Mostrar ejes</label>
+		</input>
+		<input type="checkbox" id="showScenes" name="showScenes" ng-model="showScenes">
+			<label for="showScenes">Mostrar escenas</label>
+		</input>
+		<input type="checkbox" id="showSceneNumber" name="showSceneNumber" ng-model="showSceneNumber">
+			<label for="showSceneNumber">Mostrar número de escena</label>
+		</input>
+		<input type="checkbox" id="showActDivision" name="showActDivision" ng-model="showActDivision">
+			<label for="showActDivision">Mostrar división de actos</label>
+		</input>
+		<input type="checkbox" id="showCutLines" name="showCutLines" ng-model="showCutLines" >
+			<label for="showCutLines">Mostrar cortes</label>
+		</input>
+		<input type="checkbox" id="showSceneLength" name="showSceneLength" ng-model="showSceneLength" ng-disabled="true">
+			<label for="showSceneLength">Mostrar longitud escena</label>
+		</input>
+		<input type="checkbox" id="modoNocturno" name="modoNocturno" ng-model="modoNocturno">
+			<label for="modoNocturno">Modo nocturno</label>
+		</input>
+
+		<input type="text" id="filtroMinimoEscenas" name="filtroMinimoEscenas" ng-model="filtroMinimoEscenas" placeholder="Nº mínimo de escenas" ng-pattern="regex"/>
+		<button id="btnFiltroMinimoEscenas" data-ng-click="filtrarMinimoEscenas()">FILTRAR MÍN. ESCENAS</button>
+
+		<input type="text" id="filtroNumPersonajes" name="filtroNumPersonajes" ng-model="filtroNumPersonajes" placeholder="Nº de personajes" ng-pattern="regex"/>
+		<button id="btnFiltroNumPersonajes" data-ng-click="filtrarNumPersonajes()">FILTRAR NUM. PERSONAJES</button>
+	</form>
 </div>
 
 	<vis escenas="escenas"></vis>
