@@ -45,7 +45,7 @@ algorithms.Iteractivo = function(){
 		}
 
 		// Obtengo el punto medio inicial
-		mid = numChars%2 == 0 ? numChars/2-1 : numChars/2;
+		mid = numChars%2 == 0 ? Math.floor(numChars/2-1) : Math.floor(numChars/2);
 		inf = mid+1;
 		sup = mid-1;
 // console.log("mid("+mid+"), inf("+inf+"), sup("+sup+")");
@@ -200,7 +200,7 @@ algorithms.Iteractivo = function(){
 			numCharsScene = scene.getNumVisibleChar(); 
 // console.log(numCharsScene);			
 			bestPos = Math.round(Math.random()*(numChars - numCharsScene));
-			minCruces = MAX_VALUE;	
+			minCruces = Number.MAX_VALUE;	
 
 			//Obtengo la ordenación de los personajes
 // console.log(prevPos);	
@@ -247,7 +247,7 @@ algorithms.Iteractivo = function(){
 			var charsObtained = 0;
 			var i = 0;
 // console.log("charsObtained:"+charsObtained+", numCharsScene:"+numCharsScene)			
-			while(charsObtained < numCharsScene)
+			while(charsObtained < enEscena.length)
 			{
 				if(scene.charVisible(posChar[i]))
 				{ // Estamos ante un personaje visible
@@ -261,7 +261,7 @@ algorithms.Iteractivo = function(){
 			// Ahora los de fuera de la escena
 			charsObtained = 0;
 			i=0;
-			while(charsObtained < (numChars - numCharsScene))
+			while(charsObtained < noEscena.length)
 			{
 				if(!scene.charVisible(posChar[i]))
 				{ // Estamos ante un personaje de fuera de la escena
@@ -274,7 +274,7 @@ algorithms.Iteractivo = function(){
 			var iNoEscena = 0;
 			var iEnEscena = 0; 
 // console.log("prevPos.length: "+Object.keys(prevPos).length)
-			for(i=0;i<Object.keys(prevPos).length;i++)
+			for(i=0;i<prevPos.length;i++)
 			{
 				if(i<bestPos || i>=bestPos+numCharsScene)
 				{
