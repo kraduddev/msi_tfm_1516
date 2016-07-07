@@ -55,9 +55,9 @@ var lineChar = [];
 var pathPersonajes = [];
 var gLineChar = [];
 
-d3.select(window).on('resize', resize); 
+d3.select(window).on('resize', reloadVisualization); 
 
-function resize() {
+function reloadVisualization() {
     $( "svg" ).empty();
     $( "svg" ).remove();
     $( ".tooltip" ).empty();
@@ -248,9 +248,10 @@ var drawLinesNormal = function (){
     // console.log(pathPersonajes)
 
     angular.forEach (_chars, function (char, i){
-    	lineChar[char.getNumber()] = gLineChar[char.getNumber()].append("path")
+    	lineChar[char.getNumber()] = gLineChar[char.getNumber()]
+                            .append("path")                          
                             .attr("d", pathPersonajes[i])
-                            .attr('class', char.getNumber())
+                            .attr('class', char.getNumber())                            
                             .attr("stroke", char.getColor())
                             .attr("stroke-width", function(){ 
                                 if (_showWeights == false){
@@ -261,88 +262,90 @@ var drawLinesNormal = function (){
                                 }
                             })
                             .attr("fill", "none")
-                            .attr('title', char.getName())
-                            .on("mouseover", function(){
-                                divTitleChar.transition()
-                                    .duration(200)
-                                    .style("background", char.getColor)
-                                    .style("width", 75+"px")
-                                    .style("height", 30+"px")
-                                    .style("opacity", .9);
-                                divTitleChar.html(char.getName()) 
-                                .style("left", (d3.event.pageX) + "px")
-                                .style("top", (d3.event.pageY - 28) + "px");   
-                            
-                                // mostramos sentimiento del personaje en las escenas donde interviene
-                                // en el resto, se muestra en gris
-                                angular.forEach(ellipse, function(e){
-                                    e.transition()
-                                        .duration(500)
-                                        .ease("linear")
-                                        .style('stroke', "gray")
-                                        .style('stroke-width', '2px')
-                                        .style('opacity', 0.1);
-                                });
-                                angular.forEach(_scenes, function(escena){                                    
-                                    if (ellipse[escena.getNumEscena()] != null){                                    
-                                        if (escena.charVisible(char.getNumber())){
-                                            var colorSent; 
-                                            angular.forEach(escena.getSceneChars(), function (cEnEscena){
-                                                if(cEnEscena._name == char.getName()){                                                         
-                                                    colorSent = cEnEscena._colorSent;
-                                                }
-                                            });
-                                            ellipse[escena.getNumEscena()].transition()
-                                                .duration(500)
-                                                .ease("linear")
-                                                //.style('fill', _colorEllipsePersonaje)
-                                                .style('fill', colorSent)
-                                                .style('stroke', colorSent)
-                                                .style('stroke-width', '4px');
+                            .attr('title', char.getName());
 
-                                        }
-                                    }
-                                });
+        lineChar[char.getNumber()].on("mouseover", function(){
+                divTitleChar.transition()
+                    .duration(200)
+                    .style("background", char.getColor)
+                    .style("width", 75+"px")
+                    .style("height", 30+"px")
+                    .style("opacity", .9);
+                divTitleChar.html(char.getName()) 
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");   
+            
+                // mostramos sentimiento del personaje en las escenas donde interviene
+                // en el resto, se muestra en gris
+                angular.forEach(ellipse, function(e){
+                    e.transition()
+                        .duration(500)
+                        .ease("linear")
+                        .style('stroke', "gray")
+                        .style('stroke-width', '2px')
+                        .style('opacity', 0.1);
+                });
+                angular.forEach(_scenes, function(escena){                                    
+                    if (ellipse[escena.getNumEscena()] != null){                                    
+                        if (escena.charVisible(char.getNumber())){
+                            var colorSent; 
+                            angular.forEach(escena.getSceneChars(), function (cEnEscena){
+                                if(cEnEscena._name == char.getName()){                                                         
+                                    colorSent = cEnEscena._colorSent;
+                                }
+                            });
+                            ellipse[escena.getNumEscena()].transition()
+                                .duration(500)
+                                .ease("linear")
+                                //.style('fill', _colorEllipsePersonaje)
+                                .style('fill', colorSent)
+                                .style('stroke', colorSent)
+                                .style('stroke-width', '4px');
 
-                                //atenuamos el resto de personajes
-                                angular.forEach(lineChar, function(l){
-                                    if (l.attr('title') != char.getName()){
-                                        l.transition()
-                                        .duration(500)
-                                        .ease("linear")
-                                        .style('opacity', 0.1);
-                                    }
-                                });
+                        }
+                    }
+                });
 
-                            })
-                            .on("mouseout", function(){
-                                divTitleChar.transition()
-                                    .duration(500)
-                                    .ease("linear")
-                                    .style("opacity", 0);   
+                //atenuamos el resto de personajes
+                angular.forEach(lineChar, function(l){
+                    if (l.attr('title') != char.getName()){
+                        l.transition()
+                        .duration(500)
+                        .ease("linear")
+                        .style('opacity', 0.1);
+                    }
+                });
 
-                                // el borde de la escena vuelve a tener el sentimiento de la escena
-                                angular.forEach(_scenes, function(escena){                                    
-                                    if (ellipse[escena.getNumEscena()] != null){    
-                                        var colorSent = escena.getColorSent(); 
-                                        ellipse[escena.getNumEscena()].transition()
-                                            .duration(500)
-                                            .ease("linear")
-                                            .style('fill', _colorOriginalEllipse)
-                                            .style('stroke', colorSent)
-                                            .style('stroke-width', '4px')
-                                            .style('opacity', 1);
-                                    }
-                                });
+            })
+            .on("mouseout", function(){
+                divTitleChar.transition()
+                    .duration(500)
+                    .ease("linear")
+                    .style("opacity", 0);   
 
-                                //las líneas de personajes vuelven a tener su opacidad original
-                                angular.forEach(lineChar, function(l){
-                                    l.transition()
-                                    .duration(500)
-                                    .ease("linear")
-                                    .style('opacity', 1);
-                                });
-                            }); 		    	                        
+                // el borde de la escena vuelve a tener el sentimiento de la escena
+                angular.forEach(_scenes, function(escena){                                    
+                    if (ellipse[escena.getNumEscena()] != null){    
+                        var colorSent = escena.getColorSent(); 
+                        ellipse[escena.getNumEscena()].transition()
+                            .duration(500)
+                            .ease("linear")
+                            .style('fill', _colorOriginalEllipse)
+                            .style('stroke', colorSent)
+                            .style('stroke-width', '4px')
+                            .style('opacity', 1);
+                    }
+                });
+
+                //las líneas de personajes vuelven a tener su opacidad original
+                angular.forEach(lineChar, function(l){
+                    l.transition()
+                    .duration(500)
+                    .ease("linear")
+                    .style('opacity', 1);
+                });
+            });
+                            		    	                        
     });
 }
 
@@ -380,7 +383,7 @@ console.log(widthSurface, heightSurface)
             .call(zoom
                 .on("zoom", function(){
                     svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
-                }))
+                })).on("dblclick.zoom", null)
             .append('g');
  
 	

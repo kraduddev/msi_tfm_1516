@@ -133,7 +133,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 		// Obtengo los personajes de la escena		
 		angular.forEach(_chars, function(charpoint){
-		
+
 			charpoint.y = _margenSuperior + positions[charpoint._num] * _pixelsPerChar;
 
 		});

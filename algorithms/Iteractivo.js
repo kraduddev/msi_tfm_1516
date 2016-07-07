@@ -86,7 +86,7 @@ algorithms.Iteractivo = function(){
 
 		var positions = new Array(scenePos.length);
 		var prevPos = initCharPos;
-		var numChars;				
+		var numChars = 0;				
 		
 // console.log("positions.length",positions.length);
 		for(var k=0; k< scenePos.length; k++){

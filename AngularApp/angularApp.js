@@ -15,12 +15,21 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 		    addDetalleEscena($(this).attr('title'));
 		});
 
+		// reacción al doble click en la línea de personaje
+		$(document).on("dblclick",'path',function(e) {		
+		    angular.forEach (_chars, function (char, i){
+				lineChar[char.getNumber()].on("dblclick", function(){
+                    centerChar(char.getNumber());
+		    	}); 
+			});
+		});
+
 		// reaccion cuando se pincha en una línea de personaje
-		$(document).on("click",'path',function(e) {		
+		/*$(document).on("click",'path',function(e) {		
 		    e.preventDefault();
 		    console.log("personaje",$(this).attr('class'))
 		    // addDetalleEscena($(this).attr('class'));
-		});
+		});*/
 	});
 
 	//se añaden los datos del detalle de la escena para representarlo
@@ -311,11 +320,23 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 
 	var calcPointScenes = function(scenePoints, positions){
 		//Calculo los puntos de la primera escena	
-// console.log(scenePoints, positions);
+ //console.log(scenePoints, positions);
 		for(var i=0; i< _scenes.length; i++){
-// console.log("_scenes[i].getSceneChars()",_scenes[i].getSceneChars());
+ //console.log("_scenes[i].getSceneChars()",_scenes[i].getSceneChars());
 			_scenes[i].calcCharPoints(scenePoints[i], positions[i]);
 		}
+	}
+
+	var centerChar = function (numChar){
+	    _algoritmo = new algorithms.CenteredChar();
+	    _algoritmo.setOption(numChar);
+
+	    var individuo = _algoritmo.calcIndividuo(_chars.length, _scenes, _chars);
+
+	    // Realizo el calculo inicial de posiciones
+	    calcPointScenes(individuo._scenePos, _algoritmo.calcPositions(individuo._initCharPos, individuo._scenePos, _scenes));
+
+	    reloadVisualization();    
 	}
 
 	var calcRepresentation = function(){
@@ -450,7 +471,7 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
     $scope.$watch('showCutLines', function() {
         _cutLongLines = $scope.showCutLines;
         if (g != null){
-	        drawLines();
+	        reloadVisualization();
 		}
     });
 
@@ -560,6 +581,13 @@ console.log(numEscena, _scenes[numEscena-1].getNumEscena(), _scenes[numEscena-1]
 		drawRepresentation();
 
 		$scope.$apply();
+
+		//evento para mostrar visualización centrada en el personaje
+	 	angular.forEach (_chars, function (char, i){
+    		lineChar[char.getNumber()].on("dblclick", function(){
+                                centerChar(char.getNumber());
+        	}); 
+    	});
 			
     });	
 

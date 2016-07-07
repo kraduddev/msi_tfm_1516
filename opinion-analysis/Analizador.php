@@ -39,6 +39,27 @@
 	$op = new Opinion();
 	$op->addToIndex('opinion/rt-polaritydata/rt-polarity.neg', 'neg');
 	$op->addToIndex('opinion/rt-polaritydata/rt-polarity.pos', 'pos');
+	
+	$ruta = 'opinion/rt-polaritydata/neg/';
+	//recorremos el directorio de neg
+	if ($dir = opendir($ruta)){
+		while(($archivo = readdir($dir)) !== false) {
+			if (!is_dir($archivo)){
+				$archivoRutaCompleta = $ruta . $archivo;
+				$op->addToIndex($archivoRutaCompleta, 'neg');				
+			}
+		}
+	}
+	$ruta = 'opinion/rt-polaritydata/pos/';
+	//recorremos el directorio de pos
+	if ($dir = opendir($ruta)){
+		while(($archivo = readdir($dir)) !== false) {
+			if (!is_dir($archivo)){
+				$archivoRutaCompleta = $ruta . $archivo;		
+				$op->addToIndex($archivoRutaCompleta, 'pos');
+			}
+		}
+	}
 
 	$valorSentimiento = 0;
 
@@ -65,7 +86,7 @@
 			        if(strlen(trim($sentence))) {
 			        		$contadorParcial++;
 			                $class = $op->classify($sentence);
-			              //  echo "Classifying: \"" . trim($sentence) . "\" as " . key($class) . "\n"; var_dump($class);
+			            //echo "Classifying: \"" . trim($sentence) . "\" as " . key($class) . "\n"; var_dump($class);
 			                $score[$class]++;
 
 			                $valorSentimientoParcial += ($class['pos'] - $class['neg']);
@@ -162,7 +183,7 @@
 				}
 				else{
 					$charDialog->addAttribute('sentimiento','neutro');
-				//	$charDialog->addAttribute('olor-sentimiento','blue');
+				//	$charDialog->addAttribute('colorSentimiento','blue');
 				}
 
 				$valorSentimiento = 0;

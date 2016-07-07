@@ -2,14 +2,13 @@ var algorithms = algorithms || {};
 
 algorithms.CenteredChar = function (){
 
-	var character = new Character("Name", "Color", "Number");
-	var scene = new Scene("layoutPadre", "sceneNum", "scenes", "sceneName", "sceneLength", "currentPage", "lastScene");
+	var character = new models.Character("Name", "Color", "Number");
+	var scene = new models.Scene("layoutPadre", "sceneNum", "scenes", "sceneName", "sceneLength", "currentPage", "lastScene");
 
 	var _theChar = 0;
 
-	this.calcInitialPosition = function (theChar, numChars, character){
+	this.calcInitialPosition = function (theChar, numChars, chars){
 		
-
 		var charArray = [];
 		var valueArray = [];
 		var result = [];
@@ -29,12 +28,12 @@ algorithms.CenteredChar = function (){
 			theChar = 0;
 		}
 
-		for(var i;i<numChars;i++){
+		for(var i=0;i<numChars;i++){
 			charArray[i] = chars[i].getNumber();
 			valueArray[i] = chars[i].getNumScenes();
 		}
 
-		for (var i=0; i<numChars; i++){
+		for (var i=1; i<numChars; i++){
 			valueToInsert = valueArray[i];
 			charToInsert = charArray[i];
 			holePos = i;
@@ -66,7 +65,7 @@ algorithms.CenteredChar = function (){
 		// Primer personaje
 		result[mid] = charArray[0];
 		// Resto de personajes
-		for(var i=0; i<numChars; i++){
+		for(var i=1; i<numChars; i++){
 			if(i%2 != 0){
 				result[inf] = charArray[i];
 				inf++;
@@ -77,15 +76,15 @@ algorithms.CenteredChar = function (){
 			}
 		}
 
-		return invertVector(result);
+		return this.invertVector(result);
 	}
 
-	var invertVector = function (v){
-		var result = [];
-		for (var i in v){
-			result[v[i]] = i;
-		}
+	this.invertVector = function (v){
+		var result = new Array(); 
 
+		for (var i in v){
+			result[v[i]] = parseInt(i); 
+		}
 		return result;
 	}
 
@@ -94,63 +93,69 @@ algorithms.CenteredChar = function (){
 	}
 
 	this.calcPositions = function (initCharPos, scenePos, scenes){
-		var positions = [];
+		var positions = new Array(scenePos.length);
 		var prevPos = initCharPos;
 		var numChars = 0;
 
 		//Calculo la posición central
-		var mid = initCharPos.length%2==0 ? initCharPos.length/2-1 : initCharPos.length/2;
+		var mid = initCharPos.length%2==0 
+			? initCharPos.length/2-1 
+			: initCharPos.length/2;
 
-		for (var k=0; k<positions.length; k++){
+		for (var k=0; k<scenePos.length; k++){
 			numChars = scenes[k].getNumVisibleChar();
-			var posChar = [];
-			var enEscena = [];
-			var noEscena = [];
+			var posChar = new Array(prevPos.length);
+			var enEscena = new Array(numChars);
+			var noEscena = new Array(prevPos.length - numChars);		
+			var newPos = new Array(prevPos.length);			
 			var scenePos_ = scenePos[k];
-			var newPos = [];
 
 			// Creo el vector para traducir posiciones a personajes
-			for (var i=0; i<prevPos.length; i++){
-				posChar[prevPos[i]] = i; //posChar[0] contiene el personaje que está en la pos 0					
+			for (i in prevPos){
+//console.log(i, prevPos[i])
+				posChar[prevPos[i]] = parseInt(i);
+				// posChar[5] contiene el personaje que está en la pos 5
 			}
-
+//console.log(posChar)
 			// Busco los visibles ordenadamente
 			var charsObtained = 0;
 			var i = 0;
-			while(charsObtained < enEscena.length){
+			while (charsObtained < enEscena.length){			
 				if(scenes[k].charVisible(posChar[i])){
 					//Estamos ante un personaje de la escena
-					enEscena[charsObtained] = posChar[i];
+					enEscena[charsObtained] = parseInt(posChar[i]);
 					charsObtained++;
+ // console.log(scenes[k].getNumEscena(), posChar[i],scenes[k].charVisible(posChar[i]));						
 				}
-				i++;
+			 	i++;
 			}
-
+//console.log(enEscena)
 			charsObtained = 0;
 			i = 0;
-			while (charsObtained < noEscena.length){
+			while(charsObtained < (prevPos.length - numChars)){
 				if(!scenes[k].charVisible(posChar[i])){
-					//Estamos aunte un personaje de fuera de la escena
-					noEscena[charsObtained] = posChar[i];
+					//Estamos ante un personaje de fuera de la escena
+					noEscena[charsObtained] = parseInt(posChar[i]);
 					charsObtained++;
 				}
 				i++;
 			}
-
+//console.log(noEscena)
 			//Creo un array con los personajes ordenados
 			var iNoEscena = 0;
 			var iEnEscena = 0;
-			for(i=0; i<prevPos.length; i++){
-				if(i<scenePos_ || i>scenePos_+numChars){
-					newPos[noEscena[iNoEscena]] = i;
+			for (var i=0; i<prevPos.length; i++){				
+// console.log("i",i,"scenePos_",scenePos_,"numChars",numChars);				
+				if(i<scenePos_ || i>=scenePos_+numChars){									
+					newPos[noEscena[iNoEscena]] = parseInt(i);			
 					iNoEscena++;
 				}
 				else{
-					newPos[enEscena[iEnEscena]] = i;
+					newPos[enEscena[iEnEscena]] = parseInt(i);				
 					iEnEscena++;
 				}
 			}
-
+//console.log(newPos)
 			//Si el personaje central no está en la escena ni en la pos central, se corrige
 			if(newPos[_theChar] != mid){
 				//Busco el char que está en mid
@@ -165,13 +170,13 @@ algorithms.CenteredChar = function (){
 			prevPos = newPos;
 			positions[k] = newPos;
 		}
-
+//console.log(positions);
 		return positions;
 
 	}
 
 	this.calcIndividuo = function(numChars, scenes, chars){
-		var initPos = calcInitialPosition(_theChar, numChars, chars);
+		var initPos = this.calcInitialPosition(_theChar, numChars, chars);
 
 		//Inicializo el vector de posiciones previas con las posiciones iniciales
 		var prevPos = [];
@@ -217,7 +222,7 @@ algorithms.CenteredChar = function (){
 				posChar.forEach(function(aChar){
 					if(scene.charVisible(aChar)){
 						if(aChar == _theChar){
-							break; 	//salgo y la pos del char en la escena se encuentra 
+							return; 	//salgo y la pos del char en la escena se encuentra 
 									//en posInScene(0-based)
 						}
 						posInScene++;
@@ -308,8 +313,7 @@ algorithms.CenteredChar = function (){
 
 		});
 
-		var individuo = new Individuo();
-		individuo.create(initPos, positions);
+		var individuo = new algorithms.Individuo(initPos, positions); 
 
 		return individuo;
 	}
