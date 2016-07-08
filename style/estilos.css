@@ -160,3 +160,22 @@ svg {
   background: #000000 !important;
   stroke: white;
 }
+
+/* lightbox*/
+.sprited {
+    background: url('./img/ic_close_black_16dp_1x.png') no-repeat;
+    line-height: 1000px;
+    overflow: hidden;
+    display: block;
+}
+
+#close_x {
+    width: 24px;
+    height: 23px;
+    overflow: hidden;
+    line-height: 1000px;
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}

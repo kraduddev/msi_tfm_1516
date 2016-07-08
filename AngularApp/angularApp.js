@@ -8,6 +8,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 		    $('#detalle-escena').lightbox_me({
 		        centered: true, 
 		        onLoad: function() { 
+		        	window.scrollTo(0, 0);
 		            $('#detalle-escena').find('input:first').focus()
 		            }
 		        });
