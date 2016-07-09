@@ -176,20 +176,30 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 
 	var showShadow = function()
 	{
-console.log("showShadow")
-		gEscena.select(".axis").append("rect")
-				.attr('class', 'actDivison')				
-				.style("fill", "#000000")
-				.style('opacity', 0.1)
-				.attr('x', -17) //xRect
-				.attr('y', -20)
-				.attr('width', _hSize)
-				.attr('height', function(){ return height+50;})
+		if (gEscena != null){
+			gEscena.select(".axis").append("rect")
+					.attr('class', 'actDivison')				
+					.style("fill", "#000000")
+					.style('opacity', 0.1)
+					.attr('x', -17) //xRect
+					.attr('y', -20)
+					.attr('width', _hSize)
+					.attr('height', function(){ return height+50;})
+		}
 	}
 
 	var clearShadow = function()
 	{
-
+		if (gEscena != null){
+			gEscena.select(".axis").select("rect")
+					.attr('class', 'actDivison')				
+					.style("fill", "#000000")
+					.style('opacity', 0)
+					.attr('x', -17) //xRect
+					.attr('y', -20)
+					.attr('width', _hSize)
+					.attr('height', function(){ return height+50;})
+		}
 	}
 
 	this.display = function()
@@ -240,17 +250,17 @@ console.log("showShadow")
 
 		if(_showActDivision)
 		{
-//console.log(_numEscena, _startingPag, numEscena);				
-			if(/*_startingPag<=30 && _scenes[numEscena]._startingPag>30 || */_startingPag>=30 && _startingPag<31){
+//console.log(_numEscena, _startingPag);				
+			if(/*_startingPag<=30 && _scenes[numEscena]._startingPag>30 || */_startingPag>=28 && _startingPag<=30){
 				showShadow();
 			}
 			
-			if(/*_startingPag<=60 && _scenes[numEscena]._startingPag>60 ||*/ _startingPag>=60 && _startingPag<61){
+			if(/*_startingPag<=60 && _scenes[numEscena]._startingPag>60 ||*/ _startingPag>=75 && _startingPag<=78){
 				showShadow();
 			}
 			
 			
-			if(/*_startingPag<=90 && _scenes[this.numEscena]._startingPag>90 || */_startingPag>=90 && _startingPag<91){
+			if(/*_startingPag<=90 && _scenes[this.numEscena]._startingPag>90 || */_startingPag>=90 && _startingPag<=91){
 				showShadow();
 			}
 		}
@@ -380,7 +390,7 @@ console.log("cxInicial", cxInicial)
 				  	d3.select(this).classed("dragging", false);
 				  	// movemos también la línea de los personajes que intervienen en la escena
 			 	 	angular.forEach(pathPersonajes, function(path, i){
-			 	 		//obtengo y del personaje
+			 	 		//obtengo y del personaje		 	 		
 			 	 		var regex = new RegExp("L"+cxInicial+","+"[0-9]*");
 			 	 		var yPersonajeOriginalArray = path.match(regex);
 			 	 		if (yPersonajeOriginalArray != null){
@@ -391,7 +401,7 @@ console.log(yPersonajeOriginalArray[0], cyFinal, parseInt(yPersonajeOriginal[1])
 				 	 		// hago replace 
 				 	 		path = path.replace(yPersonajeOriginalArray[0], yPersonajeAux);
 				 	 		//repinto la línea del personaje con los nuevos atributos
-						//	$("path"+"."+i).attr("d", path);								 	 		
+					//		$("path"+"."+i).attr("d", path);								 	 		
 			 	 		}
 				  	});
 				}

@@ -168,16 +168,16 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 					text = accion._descripcion; 
 					if (text != null){
 						_scenesTotalLength += text.length % 60 == 0 
-							? text.length / 60 
-							: text.length / 60 + 1;		
+							? Math.floor(text.length / 60) 
+							: Math.floor(text.length / 60 + 1);		
 						_scenesTotalLength += 1; // sumo la nueva linea de parrafo						
 									
 						angular.forEach(accion.charDialog, function(dialog){
 							text = dialog._texto;
 							if (text != null){
 								_scenesTotalLength +=text.length % 40 == 0
-									?  text.length / 40
-									:  text.length / 40 + 1;
+									?  Math.floor(text.length / 40)
+									:  Math.floor(text.length / 40 + 1);
 								_scenesTotalLength += 2; //Sumo el nombre del char		
 							}					
 						});
@@ -185,7 +185,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 				});
 			}
 		});
-	//	_scenesTotalLength = Math.round(_scenesTotalLength);
+		_scenesTotalLength = Math.floor(_scenesTotalLength);
 
 		width = 0 ;
 		_numEscenas = 0;
@@ -198,16 +198,16 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 					text = accion._descripcion;
 					if (text != null){						
 						sceneLength += text.length % 60 == 0
-							? text.length / 60
-							: text.length / 60 + 1;
+							? Math.floor(text.length / 60)
+							: Math.floor(text.length / 60 + 1);
 						sceneLength += 1; // sumo la nueva linea de parrafo
 
 						angular.forEach(accion.charDialog, function(dialog){
 							text = dialog._texto;
 							if (text != null){
 								sceneLength += text.length % 40 == 0
-									? text.length / 40
-									: text.length / 40 + 1;
+									? Math.floor(text.length / 40)
+									: Math.floor(text.length / 40 + 1);
 								sceneLength += 2; //Sumo nombre del char
 							}
 						});
@@ -215,7 +215,7 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 				});
 			}
 
-		//	sceneLength = Math.round(sceneLength);
+			sceneLength = Math.floor(sceneLength);
 
 			if (_sceneMinLength > sceneLength){
 				_sceneMinLength = sceneLength;
@@ -230,14 +230,14 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
 				, _scenes
 				, escena.hasOwnProperty('pointGroup') ? escena.pointGroup._name : "" 
 				, sceneLength
-				, currentLength/_scenesTotalLength * parseInt(_numPagsScript)
+				, Math.floor(currentLength/_scenesTotalLength * parseInt(_numPagsScript))
 				, null
 				, escena._sentimiento
 				, escena._colorSentimiento
 				, escena.hasOwnProperty('pointGroup') ? escena.pointGroup._name : "" );
 
 			currentLength +=sceneLength;
-//console.log(currentLength, _scenesTotalLength, parseInt(_numPagsScript),currentLength/_scenesTotalLength * parseInt(_numPagsScript))						
+//console.log(currentLength, _scenesTotalLength, parseInt(_numPagsScript),Math.floor(currentLength/_scenesTotalLength * parseInt(_numPagsScript)))						
 			// si encuentro EXT
 			if(escena._cabecera.indexOf(".EXT.") >= 0){
 				scene.interior = 0;
@@ -513,25 +513,9 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
     $scope.$watch('showActDivision', function() {
         _showActDivision = $scope.showActDivision;
         if (g != null){
-        /*	if (_showActDivision){
-		        if(this._startingPag<=30 && this._scenes[this.numEscena]._startingPag>30 || this._startingPag>=30 && this._startingPag<31){
-					showShadow();
-				}
-				
-				if(this._startingPag<=60 && this._scenes[this.numEscena]._startingPag>60 || this._startingPag>=60 && this._startingPag<61){
-					showShadow();
-				}
-				
-				
-				if(this._startingPag<=90 && this._scenes[this.numEscena]._startingPag>90 || this._startingPag>=90 && this._startingPag<91){
-					showShadow();
-				}
-			}
-			else{
-				angular.forEach(_scenes, function(scene){
-					clearShadow();
-				});				
-			}*/
+        	angular.forEach(_scenes, function(scene){
+        	//	scene.clearShadow();
+        	});
 		}
     });
 

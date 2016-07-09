@@ -153,7 +153,7 @@ var drawLinesNormal = function (){
   /*  for (numChar=0; numChar<_chars.length;numChar++){
     	pathPersonajes[numChar] = "";
     }*/
-console.log("_minEscenas",_minEscenas)
+//console.log("_minEscenas",_minEscenas)
     //Dibujo las líneas iniciales
     for (numChar=0; numChar<_chars.length;numChar++){
     	var indexPrimeraEscena = _chars[numChar].getFirstScene()-1;

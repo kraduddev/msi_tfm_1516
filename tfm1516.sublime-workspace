@@ -4,6 +4,98 @@
 		"selected_items":
 		[
 			[
+				"OV",
+				"overflow"
+			],
+			[
+				"getnum",
+				"getNumScenes"
+			],
+			[
+				"getN",
+				"getNumScenes"
+			],
+			[
+				"char",
+				"charAux"
+			],
+			[
+				"getNu",
+				"getNumScenes"
+			],
+			[
+				"yPerso",
+				"yPersonajeAux"
+			],
+			[
+				"cy",
+				"cyFinal"
+			],
+			[
+				"MODO",
+				"modoNocturno"
+			],
+			[
+				"modo",
+				"_modoNocturno"
+			],
+			[
+				"para",
+				"parallelcoordinates"
+			],
+			[
+				"value",
+				"valueArray"
+			],
+			[
+				"num",
+				"numChar"
+			],
+			[
+				"VAR",
+				"var_dump"
+			],
+			[
+				"_scenes",
+				"_scenesTotalLength"
+			],
+			[
+				"Valor",
+				"valorSentimientoParcial"
+			],
+			[
+				"valor",
+				"valorSentimiento"
+			],
+			[
+				"va",
+				"valorSentimientoParcial"
+			],
+			[
+				"color",
+				"colorPositivo"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"conta",
+				"contadorParcial"
+			],
+			[
+				"_color",
+				"_colorSentimiento"
+			],
+			[
+				"list",
+				"listChars"
+			],
+			[
+				"numE",
+				"numEscena-1"
+			],
+			[
 				"xD",
 				"xD3"
 			],
@@ -68,14 +160,6 @@
 				"forEach"
 			],
 			[
-				"getN",
-				"getNumEscena"
-			],
-			[
-				"_color",
-				"_colorSent"
-			],
-			[
 				"esce",
 				"escenaGroup"
 			],
@@ -98,10 +182,6 @@
 			[
 				"path",
 				"pathPersonajes"
-			],
-			[
-				"getNu",
-				"getNumScenes"
 			],
 			[
 				"get",
@@ -220,18 +300,18 @@
 	"buffers":
 	[
 		{
-			"file": "utils/angularD3.js",
+			"file": "algorithms/Iteractivo.js",
 			"settings":
 			{
-				"buffer_size": 18876,
-				"line_ending": "Unix"
+				"buffer_size": 8396,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "utils/util.js",
+			"file": "algorithms/CenteredChar.js",
 			"settings":
 			{
-				"buffer_size": 4539,
+				"buffer_size": 8568,
 				"line_ending": "Windows"
 			}
 		},
@@ -239,23 +319,23 @@
 			"file": "models/Scene.js",
 			"settings":
 			{
-				"buffer_size": 10105,
+				"buffer_size": 12431,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "utils/angularD3.js",
+			"settings":
+			{
+				"buffer_size": 18271,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "AngularApp/angularApp.js",
 			"settings":
 			{
-				"buffer_size": 15350,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "layout/vis.htm",
-			"settings":
-			{
-				"buffer_size": 2129,
+				"buffer_size": 19663,
 				"line_ending": "Windows"
 			}
 		},
@@ -263,31 +343,15 @@
 			"file": "guion-vis.html",
 			"settings":
 			{
-				"buffer_size": 3437,
+				"buffer_size": 7090,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "utils/config.js",
+			"file": "style/estilos.css",
 			"settings":
 			{
-				"buffer_size": 525,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "opinion-analysis/Analizador.php",
-			"settings":
-			{
-				"buffer_size": 9137,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.php",
-			"settings":
-			{
-				"buffer_size": 1676,
+				"buffer_size": 4976,
 				"line_ending": "Windows"
 			}
 		}
@@ -324,19 +388,37 @@
 	},
 	"file_history":
 	[
-		"/C/wamp/www/tfm_1516/xml_guiones/IMPAVIDO.plt-sent.xml",
-		"/C/wamp/www/tfm_1516/index.php",
-		"/C/wamp/www/tfm_1516/xml_guiones/Rocky_corregido.plt-sent.xml",
-		"/C/wamp/www/tfm_1516/xml_guiones/Rocky_corregido-min.plt-sent.xml",
-		"/C/wamp/www/tfm_1516/style/estilos.css",
+		"/C/wamp/www/tfm_1516/style/magnific-popup.css",
+		"/C/wamp/www/tfm_1516/references/maginific-popup.js",
 		"/C/wamp/www/tfm_1516/utils/config.js",
+		"/C/wamp/www/tfm_1516/models/Character.js",
+		"/C/wamp/www/tfm_1516/references/jquery.lightbox_me.js",
+		"/C/wamp/www/tfm_1516/style/estilos.css",
+		"/C/wamp/www/tfm_1516/references/angular-bootstrap-lightbox.min.js",
+		"/C/wamp/www/tfm_1516/style/angular-bootstrap-lightbox.min.css",
 		"/C/wamp/www/tfm_1516/guion-vis.html",
+		"/C/wamp/www/tfm_1516/layout/chars.htm",
+		"/C/wamp/www/tfm_1516/opinion-analysis/Util.php",
+		"/C/wamp/www/tfm_1516/opinion-analysis/bayesian-opinion-mining.php",
+		"/C/wamp/www/tfm_1516/opinion-analysis/Analizador.php",
+		"/C/wamp/www/tfm_1516/utils/angularD3.js",
+		"/C/wamp/www/tfm_1516/xml_guiones/Rocky_corregido-min.plt-sent.xml",
+		"/C/wamp/www/tfm_1516/AngularApp/angularApp.js",
+		"/C/wamp/www/tfm_1516/models/Scene.js",
+		"/C/wamp/www/tfm_1516/xml_guiones/LordoftheRings1-FOTR.plt-sent.xml",
+		"/C/wamp/www/tfm_1516/opinion-analysis/opinion/rt-polaritydata/pos/MicroWNO_corpus.pos",
+		"/C/wamp/www/tfm_1516/opinion-analysis/opinion/rt-polaritydata/neg/MicroWNOCorpus_neg.neg",
+		"/C/wamp/www/tfm_1516/xml_guiones/Rocky_corregido_ANALISIS.plt-sent.xml",
+		"/C/wamp/www/tfm_1516/xml_guiones/Rocky_corregido_NUE.plt-sent.xml",
 		"/C/wamp/www/tfm_1516/layout/vis.htm",
-		"/C/wamp/www/tfm_1516/style/style.css",
+		"/C/Users/Eduardo/AppData/Local/Temp/fz3temp-1/error_log",
+		"/C/wamp/www/tfm_1516/xml_guiones/Rocky_corregido.plt-sent.xml",
 		"/C/wamp/www/tfm_1516/utils/util.js",
+		"/C/wamp/www/tfm_1516/index.php",
+		"/C/wamp/www/tfm_1516/xml_guiones/IMPAVIDO.plt-sent.xml",
+		"/C/wamp/www/tfm_1516/style/style.css",
 		"/C/Users/Eduardo/Downloads/iris.csv",
 		"/C/wamp/www/tfm_1516/utils/mid3.js",
-		"/C/wamp/www/tfm_1516/AngularApp/angularApp.js",
 		"/C/Users/Eduardo/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Eduardo/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/C/wamp/www/tfm_1516/xml_guiones/backup_guiones/Rocky_corregido-min.plt",
@@ -368,7 +450,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 92.0,
+		"height": 0.0,
 		"where_history":
 		[
 		]
@@ -378,6 +460,57 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"startingpag",
+			"personajes",
+			"close",
+			"'absolute'",
+			"relative",
+			"absolute",
+			"width",
+			"overlay",
+			"closeClick",
+			"closeLightbox",
+			"_mins",
+			",",
+			"0x",
+			"minesc",
+			"_minEscenas",
+			"L325",
+			"M325",
+			"325",
+			"domain",
+			"line",
+			"mid",
+			"svg",
+			"showact",
+			"calcInitialPosition",
+			"calcPointScenes",
+			"calcInitialPosition",
+			"initPos",
+			"initcharpos",
+			"calcCharPoints",
+			"calcInitialPosition",
+			"salgo",
+			"calcRepresentation",
+			"_algoritmo",
+			"dblclick",
+			"zoom",
+			"y",
+			", ",
+			"olor-sentimiento",
+			"step",
+			"_startingPag",
+			"pintar",
+			"startingpag",
+			"_colorEllipsePersonaje",
+			"<accion",
+			"valorsentimiento",
+			"valorsentim",
+			"\"11\"",
+			"chars",
+			"bgrect",
+			"_startingPag",
+			"actdivision",
 			"xd3",
 			"_cutLongLines",
 			"width",
@@ -454,24 +587,7 @@
 			"line",
 			"yd3",
 			"yD3",
-			"dragging",
-			"position",
-			"fill",
-			"y",
-			"x",
-			"dimens",
-			"brus",
-			"trait",
-			"back",
-			"_anchoEllipse",
-			"dimension",
-			"ellipse",
-			"duracion",
-			"_actDivision",
-			"_startingPag",
-			"margenderech",
-			"numescen",
-			"line"
+			"dragging"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -479,6 +595,13 @@
 		"regex": false,
 		"replace_history":
 		[
+			"'relative'",
+			"\",",
+			"\"#",
+			"\"",
+			"\\n",
+			"",
+			"colorSentimiento",
 			"'",
 			"ü",
 			"E",
@@ -508,59 +631,72 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "utils/angularD3.js",
+					"file": "algorithms/Iteractivo.js",
 					"settings":
 					{
-						"buffer_size": 18876,
+						"buffer_size": 8396,
 						"regions":
 						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+									[
+										2712,
+										2712
+									]
+								],
+								"scope": "bookmarks"
+							}
 						},
 						"selection":
 						[
 							[
-								9343,
-								9343
+								1495,
+								1498
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4262.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "utils/util.js",
+					"file": "algorithms/CenteredChar.js",
 					"settings":
 					{
-						"buffer_size": 4539,
+						"buffer_size": 8568,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2266,
-								2266
+								3721,
+								3721
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 343.0,
+						"translation.y": 1585.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -570,15 +706,15 @@
 					"file": "models/Scene.js",
 					"settings":
 					{
-						"buffer_size": 10105,
+						"buffer_size": 12431,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6486,
-								6486
+								3892,
+								3903
 							]
 						],
 						"settings":
@@ -587,25 +723,53 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3223.0,
+						"translation.y": 2355.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "AngularApp/angularApp.js",
+					"file": "utils/angularD3.js",
 					"settings":
 					{
-						"buffer_size": 15350,
+						"buffer_size": 18271,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								9188,
-								9188
+								3382,
+								3382
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1932.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "AngularApp/angularApp.js",
+					"settings":
+					{
+						"buffer_size": 19663,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15218,
+								15218
 							]
 						],
 						"settings":
@@ -614,34 +778,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4161.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "layout/vis.htm",
-					"settings":
-					{
-						"buffer_size": 2129,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								409,
-								409
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 7026.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -651,15 +788,15 @@
 					"file": "guion-vis.html",
 					"settings":
 					{
-						"buffer_size": 3437,
+						"buffer_size": 7090,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1098,
-								1098
+								403,
+								403
 							]
 						],
 						"settings":
@@ -668,87 +805,35 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 42.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "utils/config.js",
-					"settings":
-					{
-						"buffer_size": 525,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								76,
-								76
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "opinion-analysis/Analizador.php",
+					"buffer": 6,
+					"file": "style/estilos.css",
 					"settings":
 					{
-						"buffer_size": 9137,
+						"buffer_size": 4976,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8284,
-								8284
+								4466,
+								4466
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2043.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "index.php",
-					"settings":
-					{
-						"buffer_size": 1676,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1066,
-								1066
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 84.0,
+						"translation.y": 2809.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -820,6 +905,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 265.0,
+	"side_bar_width": 299.0,
 	"status_bar_visible": true
 }

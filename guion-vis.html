@@ -8,6 +8,21 @@
 </head>
 <body ng-app="myApp" ng-controller="MainCtrl">
 
+	<div id="slideout">
+	   <!-- <img src="./styLe/img/personajes.png" alt="Personajes" /> -->
+    	<span class="rotate">P</span>
+	    <div id="slideout_inner">
+	        <div >	
+				<div ng-repeat="personaje in personajes" class="liPersonaje" style="border-color:{{personaje._colorSentimiento}}; cursor:pointer;"> 
+					<!-- style="color:{{personaje._color}};" -->
+					{{personaje._name}}
+				</div>
+				<!--<div class="cuadrado" style="background: {{personaje._colorSentimiento}};"></div>
+				<div class="{{personaje._sentimiento}}"></div>-->
+			</div>
+	    </div>
+	</div>
+
 	<div id="detalle-escena" style="opacity:0.98;border-color:{{colorSentEscenaActual}}"> <!-- background:{{colorSentEscenaActual}};  -->
 		<!-- <div class="cuadrado" style ="background:{{colorSentEscenaActual}}"></div> 	-->
 
@@ -81,10 +96,10 @@
         <a id="close_x" class="close sprited" href="#">close</a>            
     </div>
 	
-<!-- 	<chars personajes="personajes"></chars> -->
+<!-- 	<chars  personajes="personajes"></chars> -->
 <div id="option-container">
 	<form name="formVisualization">
-		<label style="font:'1.1em'">{{nombrePelicula}}</label>
+		<span class="nombrePelicula">{{nombrePelicula}}</span>
 		<input type="checkbox" id="showWeights" name="showWeights" ng-model="showWeights">
 			<label for="showWeights">Mostrar importancia personaje</label>
 		</input>
