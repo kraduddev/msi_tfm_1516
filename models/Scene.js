@@ -174,7 +174,7 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		}
 	}
 
-	var showShadow = function()
+	this.showShadow = function()
 	{
 		if (gEscena != null){
 			gEscena.select(".axis").append("rect")
@@ -188,17 +188,25 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		}
 	}
 
-	var clearShadow = function()
+	this.showShadowCreated = function()
 	{
 		if (gEscena != null){
-			gEscena.select(".axis").select("rect")
-					.attr('class', 'actDivison')				
-					.style("fill", "#000000")
+			gEscena.select(".actDivison")
+					.transition()
+					.duration(500)
+					.ease("linear")
+					.style('opacity', 0.1);
+		}
+	}
+
+	this.clearShadow = function()
+	{
+		if (gEscena != null){
+			gEscena.select(".actDivison")				
+					.transition()
+					.duration(500)
+					.ease("linear")
 					.style('opacity', 0)
-					.attr('x', -17) //xRect
-					.attr('y', -20)
-					.attr('width', _hSize)
-					.attr('height', function(){ return height+50;})
 		}
 	}
 
@@ -252,16 +260,16 @@ models.Scene = function (layoutPadre, numEscena, scenes, sceneName, sceneLength,
 		{
 //console.log(_numEscena, _startingPag);				
 			if(/*_startingPag<=30 && _scenes[numEscena]._startingPag>30 || */_startingPag>=28 && _startingPag<=30){
-				showShadow();
+				this.showShadow();
 			}
 			
 			if(/*_startingPag<=60 && _scenes[numEscena]._startingPag>60 ||*/ _startingPag>=75 && _startingPag<=78){
-				showShadow();
+				this.showShadow();
 			}
 			
 			
 			if(/*_startingPag<=90 && _scenes[this.numEscena]._startingPag>90 || */_startingPag>=90 && _startingPag<=91){
-				showShadow();
+				this.showShadow();
 			}
 		}
 

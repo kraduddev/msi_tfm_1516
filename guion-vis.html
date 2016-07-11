@@ -13,9 +13,10 @@
     	<span class="rotate">P</span>
 	    <div id="slideout_inner">
 	        <div >	
-				<div ng-repeat="personaje in personajes" class="liPersonaje" style="border-color:{{personaje._colorSentimiento}}; cursor:pointer;"> 
+				<div ng-repeat="personaje in personajes" class="liPersonaje {{personaje._selected ? 'liPersonajeSelected' : ''}}" style="border-color:{{personaje._colorSentimiento}}; cursor:pointer;" data-ng-click="mostrarDetallePersonaje(personaje)" 
+				id="p_{{personaje._color}}"> 
 					<!-- style="color:{{personaje._color}};" -->
-					{{personaje._name}}
+					<span>{{personaje._name}}</span>
 				</div>
 				<!--<div class="cuadrado" style="background: {{personaje._colorSentimiento}};"></div>
 				<div class="{{personaje._sentimiento}}"></div>-->
@@ -112,15 +113,15 @@
 		<input type="checkbox" id="showSceneNumber" name="showSceneNumber" ng-model="showSceneNumber">
 			<label for="showSceneNumber">Mostrar número de escena</label>
 		</input>
-		<input type="checkbox" id="showActDivision" name="showActDivision" ng-model="showActDivision">
+		<input type="checkbox" id="showActDivision" name="showActDivision" ng-model="showActDivision" ng-disabled="!existeNumPages">
 			<label for="showActDivision">Mostrar división de actos</label>
 		</input>
 		<input type="checkbox" id="showCutLines" name="showCutLines" ng-model="showCutLines" >
 			<label for="showCutLines">Mostrar cortes</label>
 		</input>
-		<input type="checkbox" id="showSceneLength" name="showSceneLength" ng-model="showSceneLength" ng-disabled="true">
+		<!-- <input type="checkbox" id="showSceneLength" name="showSceneLength" ng-model="showSceneLength" ng-disabled="true">
 			<label for="showSceneLength">Mostrar longitud escena</label>
-		</input>
+		</input> -->
 		<input type="checkbox" id="modoNocturno" name="modoNocturno" ng-model="modoNocturno">
 			<label for="modoNocturno">Modo nocturno</label>
 		</input>
@@ -130,6 +131,9 @@
 
 		<input type="text" id="filtroNumPersonajes" name="filtroNumPersonajes" ng-model="filtroNumPersonajes" placeholder="Nº de personajes" ng-pattern="regex"/>
 		<button id="btnFiltroNumPersonajes" data-ng-click="filtrarNumPersonajes()">FILTRAR NUM. PERSONAJES</button>
+
+		<!--<button id="zoom_in" class="botonZoom">+</button>
+		<button id="zoom_out" class="botonZoom">-</button>-->
 	</form>
 </div>
 

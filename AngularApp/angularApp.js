@@ -513,9 +513,16 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
     $scope.$watch('showActDivision', function() {
         _showActDivision = $scope.showActDivision;
         if (g != null){
-        	angular.forEach(_scenes, function(scene){
-        	//	scene.clearShadow();
-        	});
+        	if (_showActDivision == false){
+	        	angular.forEach(_scenes, function(scene){
+	        		scene.clearShadow();
+	        	});
+	    	}
+	    	else{
+	    		angular.forEach(_scenes, function(scene){
+	        		scene.showShadowCreated();
+	        	});
+	    	}
 		}
     });
 
@@ -571,6 +578,128 @@ console.log(char.getPosition(), $scope.filtroNumPersonajes)
     	}
     }
 
+    //mostrar detalle personaje
+    $scope.mostrarDetallePersonaje = function(personaje){    	
+    	angular.forEach($scope.personajes, function(p){
+    		if (p._name != personaje._name){
+    			p._selected = false;
+    		}
+    	});
+    	angular.forEach (_chars, function (char, i){
+    		lineChar[char.getNumber()].attr('pointer-events', "none");
+    		if(char.getName() == personaje._name){
+
+    			// el borde de la escena vuelve a tener el sentimiento de la escena
+                angular.forEach(_scenes, function(escena){                                    
+                    if (ellipse[escena.getNumEscena()] != null){    
+                        var colorSent = escena.getColorSent(); 
+                        ellipse[escena.getNumEscena()].transition()
+                            .duration(500)
+                            .ease("linear")
+                            .style('fill', _colorOriginalEllipse)
+                            .style('stroke', colorSent)
+                            .style('stroke-width', '4px')
+                            .style('opacity', 1);
+                    }
+                });
+
+                //las líneas de personajes vuelven a tener su opacidad original
+                angular.forEach(lineChar, function(l){
+                    l.transition()
+                    .duration(500)
+                    .ease("linear")
+                    .style('opacity', 1);
+                });
+
+    			personaje._selected = !personaje._selected;
+
+    			if (personaje._selected == true){
+	    			// mostramos sentimiento del personaje en las escenas donde interviene
+	                // en el resto, se muestra en gris
+	                angular.forEach(ellipse, function(e){
+	                	e.attr('pointer-events', "none");
+	                    e.transition()
+	                        .duration(500)
+	                        .ease("linear")
+	                        .style('stroke', "gray")
+	                        .style('stroke-width', '2px')
+	                        .style('opacity', 0.1);
+	                });
+	                angular.forEach(_scenes, function(escena){                                    
+	                    if (ellipse[escena.getNumEscena()] != null){                                    
+	                        if (escena.charVisible(char.getNumber())){
+	                            var colorSent; 
+	                            angular.forEach(escena.getSceneChars(), function (cEnEscena){
+	                                if(cEnEscena._name == char.getName()){                                                         
+	                                    colorSent = cEnEscena._colorSent;
+	                                }
+	                            });
+	                            ellipse[escena.getNumEscena()].transition()
+	                                .duration(500)
+	                                .ease("linear")
+	                                //.style('fill', _colorEllipsePersonaje)
+	                                .style('fill', colorSent)
+	                                .style('stroke', colorSent)
+	                                .style('stroke-width', '4px');
+
+	                        }
+	                    }
+	                });
+
+					//atenuamos el resto de personajes
+	                angular.forEach(lineChar, function(l){
+	                    if (l.attr('title') != char.getName()){
+	                        l.transition()
+	                        .duration(500)
+	                        .ease("linear")
+	                        .style('opacity', 0.1);
+	                    }
+	                });
+	            }
+	            else{
+	            	angular.forEach(ellipse, function(e){
+	                	e.attr('pointer-events', "auto");
+	                });
+	                angular.forEach (_chars, function (char, i){
+			    		lineChar[char.getNumber()].attr('pointer-events', "auto");
+			    	});
+	            }
+    		}
+
+/*
+                .on("mouseout", function(){
+                    divTitleChar.transition()
+                        .duration(500)
+                        .ease("linear")
+                        .style("opacity", 0);   
+
+                    // el borde de la escena vuelve a tener el sentimiento de la escena
+                    angular.forEach(_scenes, function(escena){                                    
+                        if (ellipse[escena.getNumEscena()] != null){    
+                            var colorSent = escena.getColorSent(); 
+                            ellipse[escena.getNumEscena()].transition()
+                                .duration(500)
+                                .ease("linear")
+                                .style('fill', _colorOriginalEllipse)
+                                .style('stroke', colorSent)
+                                .style('stroke-width', '4px')
+                                .style('opacity', 1);
+                        }
+                    });
+
+                    //las líneas de personajes vuelven a tener su opacidad original
+                    angular.forEach(lineChar, function(l){
+                        l.transition()
+                        .duration(500)
+                        .ease("linear")
+                        .style('opacity', 1);
+                    });
+                });*/
+                            		    	                        
+    	});
+	
+    }
+
 	var _nombreGuion;
 	(function (global) {
 	    _nombreGuion = localStorage.getItem("sharedGuion");
@@ -603,6 +732,7 @@ console.log(char.getPosition(), $scope.filtroNumPersonajes)
 		$scope.personajes = $scope.personajes.personajes.char;
 		angular.forEach($scope.personajes, function(p){
 			p._color = p._color.replace("0x","#");
+			p._selected = false;
 		});
 		
 		if (debug) {console.log($scope.personajes)};
@@ -620,9 +750,15 @@ console.log(char.getPosition(), $scope.filtroNumPersonajes)
 		if (debug) {console.log($scope.escenas)};
 
 		//Obtengo el numero de páginas en caso de que haya, si no pongo por defecto el número de escenas
-		_numPagsScript = script[0].attributes[0] != null ?
-			script[0].attributes[0].value :
-			escenas.length;
+		$scope.existeNumPages = false;
+		if (script[0].attributes[0] != null){
+			_numPagsScript = script[0].attributes[0].value;
+			$scope.existeNumPages = true;
+		}
+		else{
+			$scope.existeNumPages = false;
+			$scope.showActDivision = false;
+		}
 
 		//Obtengo los personajes
 		createCharacters($scope.personajes);

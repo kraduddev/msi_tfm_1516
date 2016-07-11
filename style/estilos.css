@@ -148,6 +148,10 @@ label{
     -moz-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
     margin: 2px;
     padding: 2px;
+    background: aliceblue;
+}
+.liPersonajeSelected{
+  background: #6DAD53;
 }
 
 .tooltip { 
