@@ -9,6 +9,7 @@
 	include './Util.php';
 
 	error_reporting(E_ERROR);
+	ini_set('memory_limit', '-1');
 
   	copy($_FILES['archivo']['tmp_name'],$_FILES['archivo']['name']);
   	echo "El fichero ha sido cargado en el servidor correctamente.<br>";

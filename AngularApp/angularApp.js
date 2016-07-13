@@ -531,11 +531,17 @@ myApp.controller('MainCtrl', function($scope, $window, $rootScope){
     	if (_modoNocturno != $scope.modoNocturno){
 		    _modoNocturno = $scope.modoNocturno;
 		    if(_modoNocturno == true){
-		    	d3.select("svg").classed("modoNocturno", true);
+		    	//d3.select("svg").classed("modoNocturno", true);
+		    	d3.select("svg").transition().duration(500)
+		    		.style('background','#00000')
+		    		.style('stroke', '#FFFFFF');
 		    	$("body").css("background-color", "#999999");
 		    }
 		    else{
-		    	d3.select("svg").classed("modoNocturno", false);
+		    	//d3.select("svg").classed("modoNocturno", false);
+		    	d3.select("svg").transition().duration(500)
+		    		.style('background','#FFFFFF')
+		    		.style('stroke', '');
 		    	$("body").css("background-color", "#999999");
 		    }
     	}
