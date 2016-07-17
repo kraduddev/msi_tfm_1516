@@ -377,7 +377,7 @@ if (b)
 			// comportamiento cuando muevo una escena en el eje vertical
 			var cyInicial = null;
 			var cxInicial = [];
-			escenaGroup.call(d3.behavior.drag()
+		/*	escenaGroup.call(d3.behavior.drag()
 	        	.origin(Object)
 		  		.on("dragstart", function (d) {
 	  				cyInicial = cy;
@@ -413,7 +413,7 @@ console.log(yPersonajeOriginalArray[0], cyFinal, parseInt(yPersonajeOriginal[1])
 			 	 		}
 				  	});
 				}
-			));	
+			));	*/
 		}
 	}
 

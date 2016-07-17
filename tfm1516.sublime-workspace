@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"nombre",
+				"nombrePersonaje"
+			],
+			[
 				"OV",
 				"overflow"
 			],
@@ -319,7 +323,7 @@
 			"file": "models/Scene.js",
 			"settings":
 			{
-				"buffer_size": 12431,
+				"buffer_size": 12497,
 				"line_ending": "Windows"
 			}
 		},
@@ -327,7 +331,7 @@
 			"file": "utils/angularD3.js",
 			"settings":
 			{
-				"buffer_size": 18271,
+				"buffer_size": 19390,
 				"line_ending": "Unix"
 			}
 		},
@@ -335,7 +339,7 @@
 			"file": "AngularApp/angularApp.js",
 			"settings":
 			{
-				"buffer_size": 19663,
+				"buffer_size": 25606,
 				"line_ending": "Windows"
 			}
 		},
@@ -343,7 +347,7 @@
 			"file": "guion-vis.html",
 			"settings":
 			{
-				"buffer_size": 7090,
+				"buffer_size": 7392,
 				"line_ending": "Windows"
 			}
 		},
@@ -351,7 +355,23 @@
 			"file": "style/estilos.css",
 			"settings":
 			{
-				"buffer_size": 4976,
+				"buffer_size": 5051,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "opinion-analysis/bayesian-opinion-mining.php",
+			"settings":
+			{
+				"buffer_size": 3506,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "opinion-analysis/Analizador.php",
+			"settings":
+			{
+				"buffer_size": 12324,
 				"line_ending": "Windows"
 			}
 		}
@@ -460,6 +480,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"stroke",
+			"zoomed",
+			"li",
+			"ellipse",
+			"divTitleChar",
+			"showShadow",
+			"showact",
+			"_numpag",
+			"_numPagsScript",
+			"scope.",
 			"startingpag",
 			"personajes",
 			"close",
@@ -577,17 +607,7 @@
 			"addDetalleEscena",
 			"_maxJump",
 			"LINE",
-			"_colorCircle",
-			"addChar",
-			"_charsAux",
-			"_chars",
-			"calcCharPoints",
-			"calcchar",
-			"math",
-			"line",
-			"yd3",
-			"yD3",
-			"dragging"
+			"_colorCircle"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -631,7 +651,6 @@
 	"groups":
 	[
 		{
-			"selected": 5,
 			"sheets":
 			[
 				{
@@ -706,15 +725,15 @@
 					"file": "models/Scene.js",
 					"settings":
 					{
-						"buffer_size": 12431,
+						"buffer_size": 12497,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3892,
-								3903
+								3894,
+								3911
 							]
 						],
 						"settings":
@@ -723,7 +742,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2355.0,
+						"translation.y": 2411.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -733,15 +752,15 @@
 					"file": "utils/angularD3.js",
 					"settings":
 					{
-						"buffer_size": 18271,
+						"buffer_size": 19390,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3382,
-								3382
+								14612,
+								14612
 							]
 						],
 						"settings":
@@ -751,7 +770,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1932.0,
+						"translation.y": 5154.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -761,15 +780,15 @@
 					"file": "AngularApp/angularApp.js",
 					"settings":
 					{
-						"buffer_size": 19663,
+						"buffer_size": 25606,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15218,
-								15218
+								15884,
+								15884
 							]
 						],
 						"settings":
@@ -778,7 +797,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 7026.0,
+						"translation.y": 7129.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -788,15 +807,15 @@
 					"file": "guion-vis.html",
 					"settings":
 					{
-						"buffer_size": 7090,
+						"buffer_size": 7392,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								403,
-								403
+								6094,
+								6094
 							]
 						],
 						"settings":
@@ -805,7 +824,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1255.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -815,15 +834,15 @@
 					"file": "style/estilos.css",
 					"settings":
 					{
-						"buffer_size": 4976,
+						"buffer_size": 5051,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4466,
-								4466
+								3094,
+								3100
 							]
 						],
 						"settings":
@@ -833,7 +852,62 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2809.0,
+						"translation.y": 2268.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "opinion-analysis/bayesian-opinion-mining.php",
+					"settings":
+					{
+						"buffer_size": 3506,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3077,
+								3078
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 8,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "opinion-analysis/Analizador.php",
+					"settings":
+					{
+						"buffer_size": 12324,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								253,
+								253
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

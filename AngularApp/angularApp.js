@@ -671,36 +671,6 @@ console.log(char.getPosition(), $scope.filtroNumPersonajes)
 			    	});
 	            }
     		}
-
-/*
-                .on("mouseout", function(){
-                    divTitleChar.transition()
-                        .duration(500)
-                        .ease("linear")
-                        .style("opacity", 0);   
-
-                    // el borde de la escena vuelve a tener el sentimiento de la escena
-                    angular.forEach(_scenes, function(escena){                                    
-                        if (ellipse[escena.getNumEscena()] != null){    
-                            var colorSent = escena.getColorSent(); 
-                            ellipse[escena.getNumEscena()].transition()
-                                .duration(500)
-                                .ease("linear")
-                                .style('fill', _colorOriginalEllipse)
-                                .style('stroke', colorSent)
-                                .style('stroke-width', '4px')
-                                .style('opacity', 1);
-                        }
-                    });
-
-                    //las líneas de personajes vuelven a tener su opacidad original
-                    angular.forEach(lineChar, function(l){
-                        l.transition()
-                        .duration(500)
-                        .ease("linear")
-                        .style('opacity', 1);
-                    });
-                });*/
                             		    	                        
     	});
 	
